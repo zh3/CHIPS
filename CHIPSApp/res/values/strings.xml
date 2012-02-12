@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">CHIPSApp</string>
     <string name="scanBarcodeButton">Scan Barcode</string>
+    <string name="searchFoodButton">Search For Food</string>
 </resources>

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.Chips.R;
+import com.chips.R;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -16,6 +16,12 @@ public class ApplicationHubActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.application_hub);
+        
+        setupIntents();
+    }
+    
+    private void setupIntents() {
+        searchFoodActivityIntent = new Intent(this, SearchFoodActivity.class);
     }
     
     // Callback for barcode scanner activity
@@ -39,4 +45,10 @@ public class ApplicationHubActivity extends Activity {
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.initiateScan();
     }
+    
+    public void searchFoodClicked(View view) {
+        startActivity(searchFoodActivityIntent);
+    }
+    
+    private Intent searchFoodActivityIntent;
 }

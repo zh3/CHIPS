@@ -5,9 +5,15 @@
     android:layout_height="fill_parent"
     >
 <Button
-    android:id="@+id/button1"
+    android:id="@+id/scanBarcodeButton"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:onClick="scanBarcodeClicked"
     android:text="@string/scanBarcodeButton" />
+<Button
+    android:id="@+id/searchFoodButton"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:onClick="searchFoodClicked"
+    android:text="@string/searchFoodButton" />
 </LinearLayout>
