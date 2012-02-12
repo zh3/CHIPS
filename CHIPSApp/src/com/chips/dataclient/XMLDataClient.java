@@ -57,7 +57,7 @@ public abstract class XMLDataClient extends Observable {
     // Force client to reload the data asynchronously
     public void refreshClient() {
         long now = SystemClock.uptimeMillis();
-        if (getDataTask == null && (now > nextRunTime || now < lastRunTime)) {
+        if (getDataTask == null && (true || (now > nextRunTime || now < lastRunTime))) {
             // 2nd check is in case the clock's been reset.
             lastRunTime = SystemClock.uptimeMillis();
             nextRunTime = lastRunTime + 1000 * 60 * 5; // 5 minutes

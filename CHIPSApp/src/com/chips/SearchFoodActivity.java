@@ -1,19 +1,21 @@
 package com.chips;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnKeyListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
-public class SearchFoodActivity extends Activity {
+import com.chips.dataclient.FoodSearchClient;
+import com.chips.datarecord.FoodRecord;
+
+public class SearchFoodActivity extends Activity implements Observer {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,41 +23,52 @@ public class SearchFoodActivity extends Activity {
         setContentView(R.layout.search_food);
         
         searchFoodEditText = (EditText) findViewById(R.id.searchFoodEditText);
-        searchFoodEditText.setOnKeyListener(new SearchFoodKeyListener());
+        loadFoundItems();
     }
     
-    private class SearchFoodKeyListener implements OnKeyListener {
+    @Override
+    protected void onPause() {
+        super.onPause();
+        FoodSearchClient.getInstance().deleteObserver(this);
+    }
 
-        @Override
-        public boolean onKey(View v, int keyCode, KeyEvent event) {
-            if (event.getAction() == KeyEvent.ACTION_UP) {
-                try {
-                    URL chips = new URL("http://cs110chips.phpfogapp.com/index.php/mobile/find_foods/caraway");
-                    BufferedReader in = new BufferedReader(
-                          new InputStreamReader(
-                          chips.openStream()));
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FoodSearchClient.getInstance().addObserver(this);
+        update(null,null);
+        FoodSearchClient.getInstance().refreshClient();
+    }
+    
+    @Override
+    public void update(Observable dataClient, Object data) {
+        foodRecordAdapter.notifyDataSetChanged();
         
-                    String inputLine = in.readLine();
-        
-                    if ((inputLine = in.readLine()) != null) {
-                        Toast.makeText(SearchFoodActivity.this, 
-                                inputLine, 
-                                Toast.LENGTH_SHORT).show();
-                    }
-                        
-                    in.close();
-                } catch (IOException e) {
-                    Toast.makeText(SearchFoodActivity.this, 
-                            "Communication Error", 
-                            Toast.LENGTH_SHORT).show();
-                }
-
-                return true;
-            }
-            
-            return false;
+        List<?> list = FoodSearchClient.getInstance().getFoodRecords();
+        if (list.size() == 0) {
+            Toast.makeText(SearchFoodActivity.this, 
+                    "No items found", 
+                    Toast.LENGTH_SHORT).show();
         }
     }
     
+    public void loadFoundItems() {
+        ListView foundItemsView 
+            = (ListView) findViewById(R.id.searchResultView);
+        
+        foodRecordAdapter = new ArrayAdapter<FoodRecord>(this,
+                android.R.layout.simple_list_item_1, 
+                    FoodSearchClient.getInstance().getFoodRecords());
+        
+        foundItemsView.setAdapter(foodRecordAdapter);
+    }
+    
+    public void doSearchFoodButtonClicked(View view) {
+        FoodSearchClient client = FoodSearchClient.getInstance();
+        client.setSearchTerm(searchFoodEditText.getText().toString());
+        client.refreshClient();
+    }
+    
+    private ArrayAdapter<FoodRecord> foodRecordAdapter;
     private EditText searchFoodEditText;
 }

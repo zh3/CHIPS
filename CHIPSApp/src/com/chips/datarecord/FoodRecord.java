@@ -1,10 +1,16 @@
 package com.chips.datarecord;
 
+import android.util.Log;
+
 public class FoodRecord extends DataRecord {
 
-    public FoodRecord(String newId, String name, String calories, String carbs,
-            String fat, String protein) {
+    public FoodRecord(String newId, String newName, String newCalories, String newCarbs,
+            String newFat, String newProtein) {
         super(newId);
+        name = newName.trim();
+        calories = Double.parseDouble(newCalories.trim());
+        carbs = Double.parseDouble(newCarbs.trim());
+        fat = Double.parseDouble(newFat.trim());
     }
 
     public String getName() {
@@ -25,6 +31,11 @@ public class FoodRecord extends DataRecord {
     
     public double getProtein() {
         return protein;
+    }
+    
+    public String toString() {
+        Log.d("Food record name", name);
+        return name;
     }
 
     private String name;
