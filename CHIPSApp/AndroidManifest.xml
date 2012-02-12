@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="SearchFoodActivity" >
+        <activity android:name=".SearchFoodActivity" >
         </activity>
     </application>
 </manifest>

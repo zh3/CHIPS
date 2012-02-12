@@ -1,5 +1,10 @@
 package com.chips;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -23,12 +28,29 @@ public class SearchFoodActivity extends Activity {
 
         @Override
         public boolean onKey(View v, int keyCode, KeyEvent event) {
-         // If the event is a key-down event on the "enter" button
             if (event.getAction() == KeyEvent.ACTION_UP) {
-              Toast.makeText(SearchFoodActivity.this, 
-                             searchFoodEditText.getText(), 
-                             Toast.LENGTH_SHORT).show();
-              return true;
+                try {
+                    URL chips = new URL("http://cs110chips.phpfogapp.com/index.php/mobile/find_foods/caraway");
+                    BufferedReader in = new BufferedReader(
+                          new InputStreamReader(
+                          chips.openStream()));
+        
+                    String inputLine = in.readLine();
+        
+                    if ((inputLine = in.readLine()) != null) {
+                        Toast.makeText(SearchFoodActivity.this, 
+                                inputLine, 
+                                Toast.LENGTH_SHORT).show();
+                    }
+                        
+                    in.close();
+                } catch (IOException e) {
+                    Toast.makeText(SearchFoodActivity.this, 
+                            "Communication Error", 
+                            Toast.LENGTH_SHORT).show();
+                }
+
+                return true;
             }
             
             return false;
