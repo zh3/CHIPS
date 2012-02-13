@@ -4,4 +4,15 @@
     <string name="scanBarcodeButton">Scan Barcode</string>
     <string name="searchFoodButton">Search For Food</string>
     <string name="doSearchFoodButton">Search</string>
+    <string name="shoppingList">Shopping Lists</string>
+    <string name="calendar">Calendar</string>
+    <string name="inventory">Inventory</string>
+    <string name="preferences">Preferences</string>
+    <string name="statistics">Statistics</string>
+    <string name="shoppingListsHeader">Your Shopping List:</string>
+    <string name="calendarHeader">Your Calendar:</string>
+    <string name="inventoryHeader">Your Current Inventory:</string>
+    <string name="preferencesHeader">Your Preferences:</string>
+    <string name="statisticsHeader">Your Statistics:</string>
+    <string name="back">Back</string>
 </resources>

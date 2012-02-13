@@ -14,7 +14,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import android.os.AsyncTask;
-import android.os.SystemClock;
+//import android.os.SystemClock;
 
 import com.chips.xmlhandler.SAXHandler;
 
@@ -56,11 +56,11 @@ public abstract class XMLDataClient extends Observable {
     
     // Force client to reload the data asynchronously
     public void refreshClient() {
-        long now = SystemClock.uptimeMillis();
-        if (getDataTask == null && (true || (now > nextRunTime || now < lastRunTime))) {
+        //long now = SystemClock.uptimeMillis();
+        if (getDataTask == null/* && (now > nextRunTime || now < lastRunTime)*/) {
             // 2nd check is in case the clock's been reset.
-            lastRunTime = SystemClock.uptimeMillis();
-            nextRunTime = lastRunTime + 1000 * 60 * 5; // 5 minutes
+            //lastRunTime = SystemClock.uptimeMillis();
+            //nextRunTime = lastRunTime + 1000 * 60 * 5; // 5 minutes
             getDataTask = new GetDataAsyncTask();
             getDataTask.execute();
         }
@@ -90,6 +90,6 @@ public abstract class XMLDataClient extends Observable {
     
     // Asynchronous task
     private GetDataAsyncTask getDataTask;
-    private long lastRunTime = 0;
-    private long nextRunTime = 0;
+    //private long lastRunTime = 0;
+    //private long nextRunTime = 0;
 }

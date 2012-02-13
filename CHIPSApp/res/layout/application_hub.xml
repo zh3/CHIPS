@@ -4,16 +4,43 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-<Button
-    android:id="@+id/scanBarcodeButton"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:onClick="scanBarcodeClicked"
-    android:text="@string/scanBarcodeButton" />
-<Button
-    android:id="@+id/searchFoodButton"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:onClick="searchFoodClicked"
-    android:text="@string/searchFoodButton" />
+	<Button
+	    android:id="@+id/scanBarcodeButton"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:onClick="scanBarcodeClicked"
+	    android:text="@string/scanBarcodeButton" />
+	<Button
+	    android:id="@+id/searchFoodButton"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:onClick="searchFoodClicked"
+	    android:text="@string/searchFoodButton" />
+	    
+	<Button android:id="@+id/shoppingListButton"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:onClick="shoppingListClicked"
+	    android:padding="10dp"
+	    android:text="@string/shoppingList" />
+	<Button android:id="@+id/calendarButton"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:onClick="calendarClicked"
+	    android:text="@string/calendar" />
+	<Button android:id="@+id/inventory"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:onClick="inventoryClicked"
+	    android:text="@string/inventory" />
+	<Button android:id="@+id/preferencesButton"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:onClick="preferencesClicked"
+	    android:text="@string/preferences" />
+	<Button android:id="@+id/statisticsButton"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:onClick="statisticsClicked"
+	    android:text="@string/statistics" />
 </LinearLayout>

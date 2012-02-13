@@ -18,5 +18,15 @@
         
         <activity android:name=".SearchFoodActivity" >
         </activity>
+        <activity android:name=".ShoppingListActivity">
+        </activity>
+        <activity android:name=".CalendarActivity">
+        </activity>
+        <activity android:name=".InventoryActivity">
+        </activity>
+        <activity android:name=".PreferencesActivity">
+        </activity>
+        <activity android:name=".StatisticsActivity">
+        </activity>
     </application>
 </manifest>

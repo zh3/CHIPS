@@ -22,6 +22,11 @@ public class ApplicationHubActivity extends Activity {
     
     private void setupIntents() {
         searchFoodActivityIntent = new Intent(this, SearchFoodActivity.class);
+        shoppingListActivityIntent = new Intent(this, ShoppingListActivity.class);
+        calendarActivityIntent = new Intent(this, CalendarActivity.class);
+        inventoryActivityIntent = new Intent(this, InventoryActivity.class);
+        preferencesActivityIntent = new Intent(this, PreferencesActivity.class);
+        statisticsActivityIntent = new Intent(this, StatisticsActivity.class);
     }
     
     // Callback for barcode scanner activity
@@ -50,5 +55,30 @@ public class ApplicationHubActivity extends Activity {
         startActivity(searchFoodActivityIntent);
     }
     
+    public void shoppingListClicked(View view) {
+        startActivity(shoppingListActivityIntent);
+    }
+    
+    public void calendarClicked(View view) {
+        startActivity(calendarActivityIntent);
+    }
+    
+    public void inventoryClicked(View view) {
+        startActivity(inventoryActivityIntent);
+    }
+    
+    public void preferencesClicked(View view) {
+        startActivity(preferencesActivityIntent);
+    }
+    
+    public void statisticsClicked(View view) {
+        startActivity(statisticsActivityIntent);
+    }
+    
     private Intent searchFoodActivityIntent;
+    private Intent shoppingListActivityIntent;
+    private Intent calendarActivityIntent;
+    private Intent inventoryActivityIntent;
+    private Intent preferencesActivityIntent;
+    private Intent statisticsActivityIntent;
 }
