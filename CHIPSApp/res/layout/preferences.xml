@@ -110,7 +110,7 @@
         <SeekBar
             android:id="@+id/barLunch"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />   
+            android:layout_height="wrap_content" />
             
         <TextView
             android:id="@+id/textView3"
@@ -130,6 +130,21 @@
             android:id="@+id/barDinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="97dp"
+                android:layout_height="97dp"
+                android:layout_gravity="center"
+                android:src="@drawable/save" />
+
+        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>
