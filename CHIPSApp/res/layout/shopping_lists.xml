@@ -10,7 +10,7 @@
         android:layout_height="46dp" >
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imageHome"
             android:layout_width="44dp"
             android:layout_height="match_parent"
             android:layout_x="3dp"
@@ -18,7 +18,7 @@
             android:src="@drawable/home" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imagePlus"
             android:layout_width="33dp"
             android:layout_height="33dp"
             android:layout_x="276dp"
@@ -41,7 +41,7 @@
         </AbsoluteLayout>
 
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/imagePurchase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_x="60dp"
@@ -49,7 +49,7 @@
             android:src="@drawable/purchase" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imagePruchase_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_x="180dp"
