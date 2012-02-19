@@ -1,46 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    >
-	<Button
-	    android:id="@+id/scanBarcodeButton"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:onClick="scanBarcodeClicked"
-	    android:text="@string/scanBarcodeButton" />
-	<Button
-	    android:id="@+id/searchFoodButton"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:onClick="searchFoodClicked"
-	    android:text="@string/searchFoodButton" />
-	    
-	<Button android:id="@+id/shoppingListButton"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:onClick="shoppingListClicked"
-	    android:padding="10dp"
-	    android:text="@string/shoppingList" />
-	<Button android:id="@+id/calendarButton"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:onClick="calendarClicked"
-	    android:text="@string/calendar" />
-	<Button android:id="@+id/inventory"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:onClick="inventoryClicked"
-	    android:text="@string/inventory" />
-	<Button android:id="@+id/preferencesButton"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:onClick="preferencesClicked"
-	    android:text="@string/preferences" />
-	<Button android:id="@+id/statisticsButton"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:onClick="statisticsClicked"
-	    android:text="@string/statistics" />
+    android:orientation="vertical" >
+
+    <AbsoluteLayout
+        android:id="@+id/absoluteLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="46dp" >
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="44dp"
+            android:layout_height="match_parent"
+            android:layout_x="3dp"
+            android:layout_y="-1dp"
+            android:src="@drawable/settings" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_x="276dp"
+            android:layout_y="6dp"
+            android:src="@drawable/plus" />
+
+    </AbsoluteLayout>
+
+    <AbsoluteLayout
+        android:id="@+id/absoluteLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="28dp"
+            android:layout_y="323dp"
+            android:src="@drawable/inventory" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="184dp"
+            android:layout_y="322dp"
+            android:src="@drawable/shopping" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="84dp"
+            android:layout_y="175dp"
+            android:src="@drawable/calendar" />
+
+        <AbsoluteLayout
+            android:id="@+id/absoluteLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="165dp"
+            android:layout_x="0dp"
+            android:layout_y="0dp" >
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_x="14dp"
+                android:layout_y="16dp"
+                android:src="@drawable/bubble_today" />
+        </AbsoluteLayout>
+
+    </AbsoluteLayout>
+
 </LinearLayout>

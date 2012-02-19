@@ -1,20 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    >
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/shoppingListsHeader"
-    />
-<Button
-    android:id="@+id/back_shopping_lists"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:padding="10dp"
+    android:orientation="vertical" >
 
-    android:text="@string/back" />
+    <AbsoluteLayout
+        android:id="@+id/absoluteLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="46dp" >
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="44dp"
+            android:layout_height="match_parent"
+            android:layout_x="3dp"
+            android:layout_y="-1dp"
+            android:src="@drawable/home" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_x="276dp"
+            android:layout_y="6dp"
+            android:src="@drawable/plus" />
+
+    </AbsoluteLayout>
+
+    <AbsoluteLayout
+        android:id="@+id/absoluteLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <AbsoluteLayout
+            android:id="@+id/absoluteLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="348dp"
+            android:layout_x="0dp"
+            android:layout_y="8dp" >
+        </AbsoluteLayout>
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="60dp"
+            android:layout_y="360dp"
+            android:src="@drawable/purchase" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="180dp"
+            android:layout_y="360dp"
+            android:src="@drawable/purchase_all" />
+
+    </AbsoluteLayout>
 
 </LinearLayout>
