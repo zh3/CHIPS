@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Gallery;
+
+import com.chips.adapters.MealDisplayAdapter;
 
 public class ApplicationHubActivity extends Activity {
     /** Called when the activity is first created. */
@@ -11,6 +14,9 @@ public class ApplicationHubActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.application_hub);
+        
+        Gallery gallery = (Gallery) findViewById(R.id.gallery);        
+        gallery.setAdapter(new MealDisplayAdapter(this));
         
         setupIntents();
     }
