@@ -6,7 +6,7 @@
   android:layout_height="match_parent">
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:id="@+id/applicationHubTopBar">
         <ImageView android:src="@drawable/settings" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/applicationHubSettingsButton"></ImageView>
-        <ImageView android:id="@+id/imageView2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1"></ImageView>
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:id="@+id/applicationHubTopBarPadding"></ImageView>
         <ImageView android:src="@drawable/plus" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/applicationHubCreateMealsButton"></ImageView>
     </LinearLayout>
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:layout_weight="1" android:id="@+id/mealDisplay">
