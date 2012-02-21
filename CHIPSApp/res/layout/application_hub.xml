@@ -9,21 +9,21 @@
         android:layout_width="match_parent"
         android:layout_height="46dp" >
 
-        <ImageView
+        <Button
             android:id="@+id/imageSettings"
             android:layout_width="44dp"
             android:layout_height="match_parent"
             android:layout_x="3dp"
             android:layout_y="-1dp"
-            android:src="@drawable/settings" />
+            android:background="@drawable/settings" />
 
-        <ImageView
+        <Button
             android:id="@+id/imagePlus"
             android:layout_width="33dp"
             android:layout_height="33dp"
             android:layout_x="276dp"
             android:layout_y="6dp"
-            android:src="@drawable/plus" />
+            android:background="@drawable/plus" />
 
     </AbsoluteLayout>
 
@@ -32,29 +32,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <ImageView
+        <Button
             android:id="@+id/imageInventory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_x="28dp"
             android:layout_y="323dp"
-            android:src="@drawable/inventory" />
+            android:background="@drawable/inventory" />
 
-        <ImageView
+        <Button
             android:id="@+id/imageShopping"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_x="184dp"
             android:layout_y="322dp"
-            android:src="@drawable/shopping" />
+            android:background="@drawable/shopping" />
 
-        <ImageView
+        <Button
             android:id="@+id/imageCalendar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_x="84dp"
             android:layout_y="175dp"
-            android:src="@drawable/calendar" />
+            android:background="@drawable/calendar" />
 
         <AbsoluteLayout
             android:id="@+id/absoluteLayout2"

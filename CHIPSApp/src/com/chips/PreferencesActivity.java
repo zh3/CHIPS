@@ -16,7 +16,7 @@ public class PreferencesActivity extends Activity {
         setContentView(R.layout.preferences);
         
         // For the back button.
-    final Button button = (Button) findViewById(R.id.back_shopping_lists);
+    final Button button = (Button) findViewById(R.id.imageHome);
         button.setOnClickListener(new OnClickListener() {
         public void onClick(View v) {
             // Perform action on clicks
