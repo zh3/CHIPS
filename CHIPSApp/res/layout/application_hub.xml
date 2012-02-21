@@ -12,10 +12,10 @@
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:layout_weight="1" android:id="@+id/applicationHubMealDisplayGroup">
         <ImageView android:src="@drawable/bubble_today" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/mealDisplayBubble"></ImageView>
     </LinearLayout>
-    <ImageButton android:src="@drawable/calendar_button" android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_weight="1" android:id="@+id/calendarButton" android:scaleType="fitCenter" android:background="@android:color/transparent"></ImageButton>
+    <ImageButton android:src="@drawable/calendar_button" android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_weight="1" android:id="@+id/calendarButton" android:scaleType="fitCenter" android:background="@android:color/transparent" android:onClick="calendarClicked"></ImageButton>
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:id="@+id/applicationHubBottomButtonGroup">
-        <ImageButton android:src="@drawable/inventory_button" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/inventoryButton" android:layout_weight="1" android:scaleType="fitCenter" android:background="@android:color/transparent"></ImageButton>
-        <ImageButton android:src="@drawable/shopping_button" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/shoppingButton" android:layout_weight="1" android:scaleType="fitCenter" android:background="@android:color/transparent"></ImageButton>
+        <ImageButton android:src="@drawable/inventory_button" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/inventoryButton" android:layout_weight="1" android:scaleType="fitCenter" android:background="@android:color/transparent" android:onClick="inventoryClicked"></ImageButton>
+        <ImageButton android:src="@drawable/shopping_button" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/shoppingButton" android:layout_weight="1" android:scaleType="fitCenter" android:background="@android:color/transparent" android:onClick="shoppingListClicked"></ImageButton>
     </LinearLayout>
     
 </LinearLayout>
