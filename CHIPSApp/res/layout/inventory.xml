@@ -4,58 +4,17 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <AbsoluteLayout
-        android:id="@+id/absoluteLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="46dp" >
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:id="@+id/inventoryTopBarGroup">
+        <ImageView android:src="@drawable/home" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/inventorySettingsButton"></ImageView>
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:id="@+id/inventoryTopBarPadding"></ImageView>
+        <ImageView android:src="@drawable/plus" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/inventoryCreateMealsButton"></ImageView>
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/inventoryItemGroup" android:layout_weight="1"></LinearLayout>
 
-        <ImageView
-            android:id="@+id/imageHome"
-            android:layout_width="44dp"
-            android:layout_height="match_parent"
-            android:layout_x="3dp"
-            android:layout_y="-1dp"
-            android:src="@drawable/home" />
-
-        <ImageView
-            android:id="@+id/imagePlus"
-            android:layout_width="33dp"
-            android:layout_height="33dp"
-            android:layout_x="276dp"
-            android:layout_y="6dp"
-            android:src="@drawable/plus" />
-
-    </AbsoluteLayout>
-
-    <AbsoluteLayout
+    <LinearLayout
         android:id="@+id/absoluteLayout1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <AbsoluteLayout
-            android:id="@+id/absoluteLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="348dp"
-            android:layout_x="0dp"
-            android:layout_y="8dp" >
-
-            <ImageView
-                android:id="@+id/imageFoodInvetory1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_x="12dp"
-                android:layout_y="0dp"
-                android:src="@drawable/bubble_smal" />
-
-            <ImageView
-                android:id="@+id/imageFoodInvetory2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_x="12dp"
-                android:layout_y="60dp"
-                android:src="@drawable/bubble_smal" />
-
-        </AbsoluteLayout>
+        android:layout_height="wrap_content" android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/imageAdd"
@@ -63,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_x="60dp"
             android:layout_y="360dp"
-            android:src="@drawable/add" />
+            android:src="@drawable/add" android:layout_weight="1"/>
 
         <ImageView
             android:id="@+id/imageScan"
@@ -71,8 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_x="184dp"
             android:layout_y="360dp"
-            android:src="@drawable/scan" />
+            android:src="@drawable/scan" android:layout_weight="1"/>
 
-    </AbsoluteLayout>
+    </LinearLayout>
 
 </LinearLayout>
