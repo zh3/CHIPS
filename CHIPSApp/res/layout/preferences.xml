@@ -3,35 +3,17 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-
-    <AbsoluteLayout
-        android:id="@+id/absoluteLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="46dp" >
-
-        <ImageView
-            android:id="@+id/imageHome"
-            android:layout_width="44dp"
-            android:layout_height="match_parent"
-            android:layout_x="3dp"
-            android:layout_y="-1dp"
-            android:src="@drawable/home" />
-
-        <ImageView
-            android:id="@+id/imagePlus"
-            android:layout_width="33dp"
-            android:layout_height="33dp"
-            android:layout_x="276dp"
-            android:layout_y="6dp"
-            android:src="@drawable/plus" />
-
-    </AbsoluteLayout>
+    
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:id="@+id/preferencesTopBarGroup">
+        <ImageView android:src="@drawable/home" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/preferencesSettingsButton"></ImageView>
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:id="@+id/preferencesTopBarPadding"></ImageView>
+        <ImageView android:src="@drawable/plus" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/preferencesCreateMealsButton"></ImageView>
+    </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:layout_height="wrap_content"
+        android:orientation="vertical" android:id="@+id/preferencesEditGroup" android:layout_weight="1">
 
         <TextView
             android:id="@+id/textAge"
@@ -131,20 +113,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
 
-            <ImageView
-                android:id="@+id/imageSave"
-                android:layout_width="97dp"
-                android:layout_height="97dp"
-                android:layout_gravity="center"
-                android:src="@drawable/save" />
-
-        </LinearLayout>
 
     </LinearLayout>
+    
+    <ImageView
+        android:id="@+id/imageSave"
+        android:layout_width="97dp"
+        android:layout_height="97dp"
+        android:layout_gravity="center"
+        android:src="@drawable/save" />
 </LinearLayout>
