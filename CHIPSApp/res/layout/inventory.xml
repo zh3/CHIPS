@@ -5,7 +5,7 @@
     android:orientation="vertical" >
 
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:id="@+id/inventoryTopBarGroup">
-        <ImageView android:src="@drawable/home" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/inventorySettingsButton"></ImageView>
+        <ImageView android:src="@drawable/home" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/inventorySettingsButton" android:onClick="goHomeClicked"></ImageView>
         <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:id="@+id/inventoryTopBarPadding"></ImageView>
         <ImageView android:src="@drawable/plus" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/inventoryCreateMealsButton"></ImageView>
     </LinearLayout>
