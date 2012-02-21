@@ -12,9 +12,8 @@
     <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/inventoryItemGroup" android:layout_weight="1"></LinearLayout>
 
     <LinearLayout
-        android:id="@+id/absoluteLayout1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:orientation="horizontal">
+        android:layout_height="wrap_content" android:orientation="horizontal" android:id="@+id/inventoryBottomButtonGroup">
 
         <ImageView
             android:id="@+id/imageAdd"

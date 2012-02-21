@@ -9,11 +9,11 @@
         <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:id="@+id/applicationHubTopBarPadding"></ImageView>
         <ImageView android:src="@drawable/plus" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/applicationHubCreateMealsButton"></ImageView>
     </LinearLayout>
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:layout_weight="1" android:id="@+id/mealDisplayGroup">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:layout_weight="1" android:id="@+id/applicationHubMealDisplayGroup">
         <ImageView android:src="@drawable/bubble_today" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/mealDisplayBubble"></ImageView>
     </LinearLayout>
     <ImageView android:src="@drawable/calendar" android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_weight="1" android:id="@+id/calendarButton"></ImageView>
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:id="@+id/bottomButtonGroup">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:id="@+id/applicationHubBottomButtonGroup">
         <ImageView android:src="@drawable/inventory" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:id="@+id/inventoryButton"></ImageView>
         <ImageView android:src="@drawable/shopping" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:id="@+id/shoppingButton"></ImageView>
     </LinearLayout>
