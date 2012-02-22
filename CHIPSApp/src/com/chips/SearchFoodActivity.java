@@ -12,10 +12,13 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.chips.dataclient.FoodSearchClient;
+import com.chips.dataclient.FoodClient;
 import com.chips.datarecord.FoodRecord;
 
 public class SearchFoodActivity extends Activity implements Observer {
+    private static final String BASE_SEARCH_URL 
+        = "http://cs110chips.phpfogapp.com/index.php/mobile/list_foods_in_nutrition_database_with_name/";
+    
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -23,27 +26,28 @@ public class SearchFoodActivity extends Activity implements Observer {
         setContentView(R.layout.search_food);
         
         searchFoodEditText = (EditText) findViewById(R.id.searchFoodEditText);
+        searchClient = new FoodClient();
         loadFoundItems();
     }
     
     @Override
     protected void onPause() {
         super.onPause();
-        FoodSearchClient.getInstance().deleteObserver(this);
+        searchClient.deleteObserver(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        FoodSearchClient.getInstance().addObserver(this);
+        searchClient.addObserver(this);
         update(null,null);
-        FoodSearchClient.getInstance().refreshClient();
+        searchClient.refreshClient();
     }
     
     public void update(Observable dataClient, Object data) {
         foodRecordAdapter.notifyDataSetChanged();
         
-        List<?> list = FoodSearchClient.getInstance().getFoodRecords();
+        List<?> list = searchClient.getFoodRecords();
         if (list.size() == 0) {
             Toast.makeText(SearchFoodActivity.this, 
                     "No items found", 
@@ -57,17 +61,19 @@ public class SearchFoodActivity extends Activity implements Observer {
         
         foodRecordAdapter = new ArrayAdapter<FoodRecord>(this,
                 android.R.layout.simple_list_item_1, 
-                    FoodSearchClient.getInstance().getFoodRecords());
+                    searchClient.getFoodRecords());
         
         foundItemsView.setAdapter(foodRecordAdapter);
     }
     
     public void doSearchFoodButtonClicked(View view) {
-        FoodSearchClient client = FoodSearchClient.getInstance();
-        client.setSearchTerm(searchFoodEditText.getText().toString());
-        client.refreshClient();
+        searchClient.setURL(
+                BASE_SEARCH_URL + searchFoodEditText.getText().toString()
+        );
+        searchClient.refreshClient();
     }
     
     private ArrayAdapter<FoodRecord> foodRecordAdapter;
     private EditText searchFoodEditText;
+    private FoodClient searchClient;
 }

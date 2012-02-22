@@ -34,9 +34,23 @@ public abstract class XMLDataClient extends Observable {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        
+        setURL("http://cs110chips.phpfogapp.com/index.php/");
     }
     
-    protected abstract URL getXMLURL() throws MalformedURLException;
+    private URL getXMLURL() throws MalformedURLException {
+        return new URL(URL);
+    }
+    
+    public void setURL(String newURL) {
+        URL = newURL.trim();
+        
+        try {
+            xmlURL = getXMLURL();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
     
     private class GetDataAsyncTask extends AsyncTask<Void, Void, Void> {
         @Override
@@ -86,6 +100,7 @@ public abstract class XMLDataClient extends Observable {
     private XMLReader xr;
     private SAXParser sp;
     private SAXParserFactory spf;
+    private String URL;
     protected URL xmlURL;
     
     // Asynchronous task
