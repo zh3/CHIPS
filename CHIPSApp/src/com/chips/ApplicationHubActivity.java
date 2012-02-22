@@ -54,6 +54,13 @@ public class ApplicationHubActivity extends Activity {
         startActivity(statisticsActivityIntent);
     }
     
+    public void addFavoriteClicked(View view) {
+//      Intent favoriteActivityIntent 
+//          = new Intent(this, FavoriteActivity.class);
+//      favoriteActivityIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//      startActivity(favoriteActivityIntent);
+  }
+    
     private Intent searchFoodActivityIntent;
     private Intent shoppingListActivityIntent;
     private Intent calendarActivityIntent;

@@ -13,6 +13,9 @@ public abstract class HomeBarActivity extends Activity {
     }
     
     public void addFavoriteClicked(View view) {
-        
+//        Intent favoriteActivityIntent 
+//            = new Intent(this, FavoriteActivity.class);
+//        favoriteActivityIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        startActivity(favoriteActivityIntent);
     }
 }
