@@ -40,7 +40,6 @@ public class SearchFoodActivity extends Activity implements Observer {
         FoodSearchClient.getInstance().refreshClient();
     }
     
-    @Override
     public void update(Observable dataClient, Object data) {
         foodRecordAdapter.notifyDataSetChanged();
         
