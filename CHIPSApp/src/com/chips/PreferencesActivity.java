@@ -1,11 +1,8 @@
 package com.chips;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
-public class PreferencesActivity extends Activity {
+public class PreferencesActivity extends HomeBarActivity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,12 +41,5 @@ public class PreferencesActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         // The activity is about to be destroyed.
-    }
-    
-    public void goHomeClicked(View view) {
-        Intent applicationHubActivityIntent 
-            = new Intent(this, ApplicationHubActivity.class);
-        applicationHubActivityIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(applicationHubActivityIntent);
     }
 }

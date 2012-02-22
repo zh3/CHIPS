@@ -1,6 +1,5 @@
 package com.chips;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +8,7 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-public class InventoryActivity extends Activity {
+public class InventoryActivity extends HomeBarActivity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,13 +51,6 @@ public class InventoryActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         // The activity is about to be destroyed.
-    }
-    
-    public void goHomeClicked(View view) {
-        Intent applicationHubActivityIntent 
-            = new Intent(this, ApplicationHubActivity.class);
-        applicationHubActivityIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(applicationHubActivityIntent);
     }
     
     /*
