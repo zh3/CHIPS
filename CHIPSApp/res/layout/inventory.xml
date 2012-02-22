@@ -19,8 +19,6 @@
             android:id="@+id/imageAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_x="60dp"
-            android:layout_y="360dp"
             android:src="@drawable/add_button" android:layout_weight="1"
             android:background="@android:color/transparent" android:onClick="addFoodToInventoryClicked"/>
 
@@ -28,8 +26,6 @@
             android:id="@+id/imageScan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_x="184dp"
-            android:layout_y="360dp"
             android:src="@drawable/scan_button" android:layout_weight="1"
             android:background="@android:color/transparent" android:onClick="scanBarcodeClicked"/>
 
