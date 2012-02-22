@@ -10,7 +10,7 @@ import com.chips.xmlhandler.FoodHandler;
 
 public class FoodSearchClient extends XMLDataClient {
     private static final String BASE_SEARCH_URL 
-        = "http://cs110chips.phpfogapp.com/index.php/mobile/find_foods/";
+        = "http://cs110chips.phpfogapp.com/index.php/mobile/list_foods_in_nutrition_database_with_name/";
     
     private FoodSearchClient() {
         foodRecords = new ArrayList<FoodRecord>();

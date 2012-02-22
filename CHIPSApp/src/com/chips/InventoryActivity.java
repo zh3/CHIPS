@@ -20,6 +20,7 @@ public class InventoryActivity extends HomeBarActivity {
     
     private void setupIntents() {
         addFoodToInventoryIntent = new Intent(this, AddFoodToInventoryActivity.class);
+        searchFoodIntent = new Intent(this, SearchFoodActivity.class);
     }
     
     // super calls for basic activity-changing functions.
@@ -79,5 +80,10 @@ public class InventoryActivity extends HomeBarActivity {
         startActivity(addFoodToInventoryIntent);
     }
     
-    Intent addFoodToInventoryIntent;
+    public void searchFoodClicked(View view) {
+        startActivity(searchFoodIntent);
+    }
+    
+    private Intent addFoodToInventoryIntent;
+    private Intent searchFoodIntent;
 }

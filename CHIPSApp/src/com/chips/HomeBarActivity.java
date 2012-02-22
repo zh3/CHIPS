@@ -11,4 +11,8 @@ public abstract class HomeBarActivity extends Activity {
         applicationHubActivityIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(applicationHubActivityIntent);
     }
+    
+    public void addFavoriteClicked(View view) {
+        
+    }
 }
