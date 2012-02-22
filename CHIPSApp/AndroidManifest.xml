@@ -35,5 +35,7 @@
         <activity android:name=".StatisticsActivity"
                   android:theme="@android:style/Theme.NoTitleBar">
         </activity>
+        <activity android:name="AddFoodToInventoryActivity"
+                  android:theme="@android:style/Theme.NoTitleBar"></activity>
     </application>
 </manifest>

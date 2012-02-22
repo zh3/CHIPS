@@ -15,6 +15,12 @@ public class InventoryActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inventory);
+        
+        setupIntents();
+    }
+    
+    private void setupIntents() {
+        addFoodToInventoryIntent = new Intent(this, AddFoodToInventoryActivity.class);
     }
     
     // super calls for basic activity-changing functions.
@@ -76,4 +82,10 @@ public class InventoryActivity extends Activity {
         // else continue with any other code you need in the method
         toast.show();
     }
+    
+    public void addFoodToInventoryClicked(View view) {
+        startActivity(addFoodToInventoryIntent);
+    }
+    
+    Intent addFoodToInventoryIntent;
 }

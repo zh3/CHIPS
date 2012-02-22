@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:id="@+id/addFoodToInventoryTopBarGroup">
+        <ImageView android:src="@drawable/home" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/addFoodToInventorySettingsButton" android:onClick="goHomeClicked"></ImageView>
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:id="@+id/addFoodToInventoryTopBarPadding"></ImageView>
+        <ImageView android:src="@drawable/plus" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/addFoodToInventoryCreateMealsButton"></ImageView>
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/addFoodToInventoryItemGroup" android:layout_weight="1"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal" android:id="@+id/addFoodToInventoryBottomButtonGroup" android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/addFoodToInventoryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="184dp"
+            android:layout_y="360dp"
+            android:src="@drawable/add_button"
+            android:background="@android:color/transparent" android:onClick="addFoodToInventoryClicked"/>
+
+    </LinearLayout>
+
+</LinearLayout>
