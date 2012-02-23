@@ -17,14 +17,14 @@ public class InventoryActivity extends HomeBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.top_bar);
-        
-        LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService
         (Context.LAYOUT_INFLATER_SERVICE);
-
-        View subview = inflater.inflate(R.layout.inventory, null);
-        
         LinearLayout mainView = (LinearLayout)findViewById(R.id.subview);
-        mainView.addView(subview);
+        
+        View subView = inflater.inflate(R.layout.inventory, mainView, false);
+        mainView.addView(subView);
+        
+        setContentView(mainView);
         
         setupIntents();
     }
