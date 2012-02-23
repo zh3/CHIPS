@@ -33,7 +33,6 @@ public class SearchFoodActivity extends AsynchronousFoodRecordListViewActivity
     
     @Override
     protected ListView getListView() {
-        // TODO Auto-generated method stub
         return (ListView) findViewById(R.id.searchResultView);
     }
     
