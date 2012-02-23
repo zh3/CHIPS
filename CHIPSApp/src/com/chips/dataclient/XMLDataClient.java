@@ -16,7 +16,6 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.chips.xmlhandler.SAXHandler;
 
@@ -37,8 +36,7 @@ public abstract class XMLDataClient extends Observable {
             e.printStackTrace();
         }
         
-        // Set to a default website URL, returns nothing
-        setURL("http://cs110chips.phpfogapp.com/index.php/", "");
+        dataLoadedOnce = false;
     }
     
     private URL getXMLURL() throws MalformedURLException {
@@ -48,13 +46,16 @@ public abstract class XMLDataClient extends Observable {
     public void setURL(String baseURL, String arguments) {
         try {
             URL = baseURL.trim() + URLEncoder.encode(arguments.trim(), "UTF-8");
-            Log.d("URL is: ", URL);
             xmlURL = getXMLURL();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+    }
+    
+    public boolean hasLoadedOnce() {
+        return dataLoadedOnce;
     }
     
     private class GetDataAsyncTask extends AsyncTask<Void, Void, Void> {
@@ -67,6 +68,7 @@ public abstract class XMLDataClient extends Observable {
         @Override
         protected void onPostExecute(Void result) {
             getDataTask = null;
+            dataLoadedOnce = true;
             clientNotifyObservers();
         }
     }
@@ -76,7 +78,7 @@ public abstract class XMLDataClient extends Observable {
     // Force client to reload the data asynchronously
     public void refreshClient() {
         //long now = SystemClock.uptimeMillis();
-        if (getDataTask == null/* && (now > nextRunTime || now < lastRunTime)*/) {
+        if (getDataTask == null && URL != null/* && (now > nextRunTime || now < lastRunTime)*/) {
             // 2nd check is in case the clock's been reset.
             //lastRunTime = SystemClock.uptimeMillis();
             //nextRunTime = lastRunTime + 1000 * 60 * 5; // 5 minutes
@@ -107,7 +109,7 @@ public abstract class XMLDataClient extends Observable {
     private SAXParserFactory spf;
     private String URL;
     protected URL xmlURL;
-    
+    private boolean dataLoadedOnce;
     // Asynchronous task
     private GetDataAsyncTask getDataTask;
     //private long lastRunTime = 0;

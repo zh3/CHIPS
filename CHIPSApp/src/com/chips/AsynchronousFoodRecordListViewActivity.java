@@ -51,7 +51,7 @@ public abstract class AsynchronousFoodRecordListViewActivity
         recordAdapter.notifyDataSetChanged();
         
         List<?> list = client.getFoodRecords();
-        if (list.size() == 0) {
+        if (list.size() == 0 && client.hasLoadedOnce()) {
             Toast.makeText(this, 
                     "No items found", 
                     Toast.LENGTH_SHORT).show();
