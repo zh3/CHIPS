@@ -58,7 +58,8 @@ public class SearchFoodActivity extends AsynchronousFoodRecordListViewActivity {
     
     public void doSearchFoodButtonClicked(View view) {
         client.setURL(
-                BASE_SEARCH_URL + searchFoodEditText.getText().toString()
+                BASE_SEARCH_URL, 
+                searchFoodEditText.getText().toString()
         );
         client.refreshClient();
     }

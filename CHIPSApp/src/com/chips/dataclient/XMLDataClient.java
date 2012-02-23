@@ -1,8 +1,10 @@
 package com.chips.dataclient;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.Observable;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -14,7 +16,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import android.os.AsyncTask;
-//import android.os.SystemClock;
+import android.util.Log;
 
 import com.chips.xmlhandler.SAXHandler;
 
@@ -35,19 +37,22 @@ public abstract class XMLDataClient extends Observable {
             e.printStackTrace();
         }
         
-        setURL("http://cs110chips.phpfogapp.com/index.php/");
+        // Set to a default website URL, returns nothing
+        setURL("http://cs110chips.phpfogapp.com/index.php/", "");
     }
     
     private URL getXMLURL() throws MalformedURLException {
         return new URL(URL);
     }
     
-    public void setURL(String newURL) {
-        URL = newURL.trim();
-        
+    public void setURL(String baseURL, String arguments) {
         try {
+            URL = baseURL.trim() + URLEncoder.encode(arguments.trim(), "UTF-8");
+            Log.d("URL is: ", URL);
             xmlURL = getXMLURL();
         } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }

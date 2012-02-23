@@ -25,8 +25,6 @@ public class InventoryActivity extends Activity {
         View subView = inflater.inflate(R.layout.inventory, mainView, false);
         mainView.addView(subView);
         
-        setContentView(mainView);
-        
         setupIntents();
     }
     
