@@ -20,4 +20,8 @@ public class HomeBarAction {
         
         callingActivity.startActivity(favoriteActivityIntent);
     }
+    
+    public static void inflateHomeBarView(Activity activity) {
+        
+    }
 }

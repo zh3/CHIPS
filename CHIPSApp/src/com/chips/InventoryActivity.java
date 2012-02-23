@@ -17,10 +17,13 @@ public class InventoryActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.top_bar);
-        LayoutInflater inflater = (LayoutInflater)this.getSystemService
-        (Context.LAYOUT_INFLATER_SERVICE);
-        LinearLayout mainView = (LinearLayout)findViewById(R.id.subview);
+        setContentView(R.layout.home_bar);
+        LayoutInflater inflater 
+            = (LayoutInflater)this.getSystemService(
+                    Context.LAYOUT_INFLATER_SERVICE
+              );
+        LinearLayout mainView 
+            = (LinearLayout) findViewById(R.id.homeBarMainView);
         
         View subView = inflater.inflate(R.layout.inventory, mainView, false);
         mainView.addView(subView);
