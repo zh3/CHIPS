@@ -20,7 +20,7 @@ public class SearchFoodActivity extends AsynchronousFoodRecordListViewActivity
         HomeBarAction.inflateHomeBarView(this, R.layout.search_food);
         
         searchFoodEditText = (EditText) findViewById(R.id.searchFoodEditText);
-        loadFoundItems();
+        loadFoundItems(android.R.layout.simple_list_item_1);
     }
     
     public void doSearchFoodButtonClicked(View view) {

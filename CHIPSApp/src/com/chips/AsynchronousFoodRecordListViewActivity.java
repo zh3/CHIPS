@@ -37,11 +37,10 @@ public abstract class AsynchronousFoodRecordListViewActivity
         client.refreshClient();
     }
     
-    public void loadFoundItems() {
+    public void loadFoundItems(int layout) {
         ListView foundItemsView = getListView();
         
-        recordAdapter = new ArrayAdapter<FoodRecord>(this,
-                android.R.layout.simple_list_item_1, 
+        recordAdapter = new ArrayAdapter<FoodRecord>(this, layout, 
                     client.getFoodRecords());
         
         foundItemsView.setAdapter(recordAdapter);

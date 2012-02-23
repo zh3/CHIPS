@@ -1,49 +1,31 @@
 package com.chips;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
 
-public class ShoppingListActivity extends Activity implements HomeBar {
+public class ShoppingListActivity extends AsynchronousFoodRecordListViewActivity 
+        implements HomeBar {
+    private static final String SHOPPING_LIST_URL 
+        = "http://cs110chips.phpfogapp.com/index.php/mobile/"
+          + "list_foods_in_shopping_list";
+    
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         HomeBarAction.inflateHomeBarView(this, R.layout.shopping_list);
-    }
+        
+        loadFoundItems(android.R.layout.simple_list_item_multiple_choice);
+        client.setURL(
+                SHOPPING_LIST_URL, 
+                ""
+        );
 
-    // super calls for basic activity-changing functions.
-    @Override
-    protected void onStart() {
-        super.onStart();
-        // The activity is about to become visible.
-    }
-    
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // The activity has become visible (it is now "resumed").
-    }
-   
-    @Override
-    protected void onPause() {
-        super.onPause();
-        // Another activity is taking focus (this activity is about to be "paused").
-    }
-    
-    @Override
-    protected void onStop() {
-        super.onStop();
-        // The activity is no longer visible (it is now "stopped")
-    }
-    
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // The activity is about to be destroyed.
+        client.refreshClient();
     }
     
     public void goHomeClicked(View view) {
@@ -52,5 +34,10 @@ public class ShoppingListActivity extends Activity implements HomeBar {
     
     public void addFavoriteClicked(View view) {
         HomeBarAction.addFavoriteClicked(this, view);
+    }
+
+    @Override
+    protected ListView getListView() {
+        return (ListView) findViewById(R.id.shoppingListView);
     }
 }

@@ -22,7 +22,7 @@ public class InventoryActivity extends AsynchronousFoodRecordListViewActivity im
         super.onCreate(savedInstanceState);
         HomeBarAction.inflateHomeBarView(this, R.layout.inventory);
         
-        loadFoundItems();
+        loadFoundItems(android.R.layout.simple_list_item_1);
         client.setURL(
                 INVENTORY_LIST_URL, 
                 ""

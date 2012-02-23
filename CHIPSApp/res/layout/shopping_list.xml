@@ -4,7 +4,13 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/shoppingListGroup" android:layout_weight="1"></LinearLayout>
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/shoppingListGroup" android:layout_weight="1">
+        <ListView
+            android:id="@+id/shoppingListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
