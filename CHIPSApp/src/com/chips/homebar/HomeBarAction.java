@@ -1,4 +1,4 @@
-package com.chips;
+package com.chips.homebar;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import com.chips.ApplicationHubActivity;
+import com.chips.FavoritesActivity;
+import com.chips.R;
 
 public class HomeBarAction {
     public static void goHomeClicked(Activity callingActivity, View view) {

@@ -1,15 +1,18 @@
 package com.chips;
 
+import com.chips.homebar.HomeBar;
+import com.chips.homebar.HomeBarAction;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
-public class FavoritesActivity extends Activity {
+public class FavoritesActivity extends Activity implements HomeBar {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.favorites);
+        HomeBarAction.inflateHomeBarView(this, R.layout.favorites);
     }
     
     // super calls for basic activity-changing functions.

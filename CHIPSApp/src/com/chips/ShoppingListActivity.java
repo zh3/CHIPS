@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
-public class ShoppingListActivity extends Activity {
+import com.chips.homebar.HomeBar;
+import com.chips.homebar.HomeBarAction;
+
+public class ShoppingListActivity extends Activity implements HomeBar {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.shopping_list);
+        HomeBarAction.inflateHomeBarView(this, R.layout.shopping_list);
     }
 
     // super calls for basic activity-changing functions.

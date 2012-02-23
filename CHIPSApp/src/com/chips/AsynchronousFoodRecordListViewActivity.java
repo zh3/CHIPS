@@ -13,14 +13,14 @@ import android.widget.Toast;
 import com.chips.dataclient.FoodClient;
 import com.chips.datarecord.FoodRecord;
 
-public abstract class AsynchronousFoodRecordListViewActivity extends Activity implements Observer {
+public abstract class AsynchronousFoodRecordListViewActivity 
+        extends Activity implements Observer {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
         client = new FoodClient();
-        //loadFoundItems();
     }
     
     @Override

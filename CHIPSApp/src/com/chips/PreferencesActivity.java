@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
-public class PreferencesActivity extends Activity {
+import com.chips.homebar.HomeBar;
+import com.chips.homebar.HomeBarAction;
+
+public class PreferencesActivity extends Activity implements HomeBar {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.preferences);
+        HomeBarAction.inflateHomeBarView(this, R.layout.preferences);
     }
     
     
