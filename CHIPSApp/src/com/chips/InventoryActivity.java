@@ -1,8 +1,11 @@
 package com.chips;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -13,7 +16,15 @@ public class InventoryActivity extends HomeBarActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.inventory);
+        setContentView(R.layout.top_bar);
+        
+        LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService
+        (Context.LAYOUT_INFLATER_SERVICE);
+
+        View subview = inflater.inflate(R.layout.inventory, null);
+        
+        LinearLayout mainView = (LinearLayout)findViewById(R.id.subview);
+        mainView.addView(subview);
         
         setupIntents();
     }
