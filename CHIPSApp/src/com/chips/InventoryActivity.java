@@ -1,5 +1,6 @@
 package com.chips;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +12,7 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-public class InventoryActivity extends HomeBarActivity {
+public class InventoryActivity extends Activity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -93,6 +94,14 @@ public class InventoryActivity extends HomeBarActivity {
     
     public void searchFoodClicked(View view) {
         startActivity(searchFoodIntent);
+    }
+    
+    public void goHomeClicked(View view) {
+        HomeBarAction.goHomeClicked(this, view);
+    }
+    
+    public void addFavoriteClicked(View view) {
+        HomeBarAction.addFavoriteClicked(this, view);
     }
     
     private Intent addFoodToInventoryIntent;

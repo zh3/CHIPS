@@ -1,8 +1,10 @@
 package com.chips;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 
-public class CalendarActivity extends HomeBarActivity {
+public class CalendarActivity extends Activity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,5 +41,13 @@ public class CalendarActivity extends HomeBarActivity {
     protected void onDestroy() {
         super.onDestroy();
         // The activity is about to be destroyed.
+    }
+    
+    public void goHomeClicked(View view) {
+        HomeBarAction.goHomeClicked(this, view);
+    }
+    
+    public void addFavoriteClicked(View view) {
+        HomeBarAction.addFavoriteClicked(this, view);
     }
 }
