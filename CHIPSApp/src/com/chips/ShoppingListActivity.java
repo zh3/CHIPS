@@ -13,7 +13,7 @@ public class ShoppingListActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.shopping_lists);
+        setContentView(R.layout.shopping_list);
         
         // For the Shopping Lists button.
     final Button button = (Button) findViewById(R.id.imageHome);
