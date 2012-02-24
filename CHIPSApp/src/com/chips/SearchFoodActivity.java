@@ -1,74 +1,48 @@
 package com.chips;
 
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
-
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.chips.dataclient.FoodSearchClient;
-import com.chips.datarecord.FoodRecord;
+import com.chips.homebar.HomeBar;
+import com.chips.homebar.HomeBarAction;
 
-public class SearchFoodActivity extends Activity implements Observer {
+public class SearchFoodActivity extends AsynchronousFoodRecordListViewActivity 
+        implements HomeBar {
+    private static final String BASE_SEARCH_URL 
+        = "http://cs110chips.phpfogapp.com/index.php/mobile/list_foods_in_nutrition_database_with_name/";
+    
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_food);
+        HomeBarAction.inflateHomeBarView(this, R.layout.search_food);
         
         searchFoodEditText = (EditText) findViewById(R.id.searchFoodEditText);
-        loadFoundItems();
-    }
-    
-    @Override
-    protected void onPause() {
-        super.onPause();
-        FoodSearchClient.getInstance().deleteObserver(this);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        FoodSearchClient.getInstance().addObserver(this);
-        update(null,null);
-        FoodSearchClient.getInstance().refreshClient();
-    }
-    
-    @Override
-    public void update(Observable dataClient, Object data) {
-        foodRecordAdapter.notifyDataSetChanged();
-        
-        List<?> list = FoodSearchClient.getInstance().getFoodRecords();
-        if (list.size() == 0) {
-            Toast.makeText(SearchFoodActivity.this, 
-                    "No items found", 
-                    Toast.LENGTH_SHORT).show();
-        }
-    }
-    
-    public void loadFoundItems() {
-        ListView foundItemsView 
-            = (ListView) findViewById(R.id.searchResultView);
-        
-        foodRecordAdapter = new ArrayAdapter<FoodRecord>(this,
-                android.R.layout.simple_list_item_1, 
-                    FoodSearchClient.getInstance().getFoodRecords());
-        
-        foundItemsView.setAdapter(foodRecordAdapter);
+        loadFoundItems(android.R.layout.simple_list_item_1);
     }
     
     public void doSearchFoodButtonClicked(View view) {
-        FoodSearchClient client = FoodSearchClient.getInstance();
-        client.setSearchTerm(searchFoodEditText.getText().toString());
+        client.setURL(
+                BASE_SEARCH_URL, 
+                searchFoodEditText.getText().toString()
+        );
         client.refreshClient();
     }
     
-    private ArrayAdapter<FoodRecord> foodRecordAdapter;
+    @Override
+    protected ListView getListView() {
+        return (ListView) findViewById(R.id.searchResultView);
+    }
+    
+    public void goHomeClicked(View view) {
+        HomeBarAction.goHomeClicked(this, view);
+    }
+    
+    public void addFavoriteClicked(View view) {
+        HomeBarAction.addFavoriteClicked(this, view);
+    }
+    
     private EditText searchFoodEditText;
 }

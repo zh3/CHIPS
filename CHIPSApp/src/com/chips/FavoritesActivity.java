@@ -7,12 +7,12 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
-public class CalendarActivity extends Activity implements HomeBar {
+public class FavoritesActivity extends Activity implements HomeBar {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        HomeBarAction.inflateHomeBarView(this, R.layout.calendar);
+        HomeBarAction.inflateHomeBarView(this, R.layout.favorites);
     }
     
     // super calls for basic activity-changing functions.

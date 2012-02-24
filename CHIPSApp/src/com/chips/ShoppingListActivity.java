@@ -1,62 +1,63 @@
 package com.chips;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.CheckedTextView;
+import android.widget.ListView;
 
-public class ShoppingListActivity extends Activity {
+import com.chips.homebar.HomeBar;
+import com.chips.homebar.HomeBarAction;
+
+public class ShoppingListActivity extends AsynchronousFoodRecordListViewActivity 
+        implements HomeBar {
+    private static final String SHOPPING_LIST_URL 
+        = "http://cs110chips.phpfogapp.com/index.php/mobile/"
+          + "list_foods_in_shopping_list";
+    
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.shopping_list);
+        HomeBarAction.inflateHomeBarView(this, R.layout.shopping_list);
         
-        // For the Shopping Lists button.
-    final Button button = (Button) findViewById(R.id.imageHome);
-        button.setOnClickListener(new OnClickListener() {
-        public void onClick(View v) {
-            // Perform action on clicks
-        	
-        	Toast.makeText(ShoppingListActivity.this, "Going back!", Toast.LENGTH_SHORT).show();
-        	
-        	Intent intent = new Intent(ShoppingListActivity.this, ApplicationHubActivity.class);
-        	startActivity(intent);
-        }
-        }); 
-        // -----------------------
+        loadFoundItems(android.R.layout.simple_list_item_multiple_choice);
+        setupShoppingListView();
+        client.setURL(
+                SHOPPING_LIST_URL, 
+                ""
+        );
+        client.refreshClient();
     }
     
-    
-    
-    // super calls for basic activity-changing functions.
-        @Override
-        protected void onStart() {
-            super.onStart();
-            // The activity is about to become visible.
-        }
-        @Override
-        protected void onResume() {
-            super.onResume();
-            // The activity has become visible (it is now "resumed").
-        }
-        @Override
-        protected void onPause() {
-            super.onPause();
-            // Another activity is taking focus (this activity is about to be "paused").
-        }
-        @Override
-        protected void onStop() {
-            super.onStop();
-            // The activity is no longer visible (it is now "stopped")
-        }
-        @Override
-        protected void onDestroy() {
-            super.onDestroy();
-            // The activity is about to be destroyed.
-        }
+    private void setupShoppingListView() {
+        final ListView lv = (ListView) findViewById(R.id.shoppingListView);
+        
+        // Make items not focusable to avoid listitem / button conflicts
+        lv.setItemsCanFocus(false);
+        lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
+        // Listen for checked items
+        lv.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View v, int arg2,
+                    long arg3) {
+                ((CheckedTextView)v).toggle();
+            }
+        });
+    }
+    
+    public void goHomeClicked(View view) {
+        HomeBarAction.goHomeClicked(this, view);
+    }
+    
+    public void addFavoriteClicked(View view) {
+        HomeBarAction.addFavoriteClicked(this, view);
+    }
+
+    @Override
+    protected ListView getListView() {
+        return (ListView) findViewById(R.id.shoppingListView);
+    }
 }

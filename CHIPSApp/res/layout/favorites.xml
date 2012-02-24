@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+<ScrollView
+android:layout_width="fill_parent"
+android:layout_height="fill_parent" >
+
+	<LinearLayout
+	android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" android:id="@+id/preferencesEditGroup" android:layout_weight="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" android:id="@+id/preferencesEditGroup" android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/favoritesHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add a Favorite Meal"
+            android:textAppearance="?android:attr/textAppearanceLarge">
+        </TextView>
+
+		
+		<TextView
+            android:id="@+id/textMeal"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="Meal:"
+            android:gravity="center_horizontal"
+            android:textAppearance="?android:attr/textAppearanceLarge">
+        </TextView>
+		
+		<EditText
+            android:id="@+id/editText1"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_horizontal"
+            android:layout_weight="1" >
+            <requestFocus />
+        </EditText>
+		
+        <EditText
+            android:id="@+id/editText2"
+            android:text="THIS ONE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </EditText>
+        
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+        <TextView
+            android:id="@+id/textMealsVariability"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Meals Variability"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/textBreakfast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Breakfast"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <SeekBar
+            android:id="@+id/barBreakfast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        
+		<TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/textLunch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lunch"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <SeekBar
+            android:id="@+id/barLunch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+            
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/textDinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dinner"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <SeekBar
+            android:id="@+id/barDinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:id="@+id/favoritesBottomButtonGroup">
+
+        <ImageButton
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/save_button" />
+        
+    </LinearLayout>
+    </LinearLayout>
+</ScrollView>
+        
+</LinearLayout>
