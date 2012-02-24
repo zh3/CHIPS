@@ -5,6 +5,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -43,9 +45,20 @@ public abstract class XMLDataClient extends Observable {
         return new URL(URL);
     }
     
-    public void setURL(String baseURL, String arguments) {
+    public void setURL(String baseURL, String argumentString) {
+        ArrayList<String> argList = new ArrayList<String>();
+        argList.add(argumentString);
+        setURL(baseURL, argList);
+    }
+    
+    public void setURL(String baseURL, List<String> arguments) {
         try {
-            URL = baseURL.trim() + URLEncoder.encode(arguments.trim(), "UTF-8");
+            URL = baseURL.trim();
+            
+            for (String arg : arguments) {
+                URL += URLEncoder.encode(arg.trim(), "UTF-8");
+            }
+            
             xmlURL = getXMLURL();
         } catch (MalformedURLException e) {
             e.printStackTrace();
