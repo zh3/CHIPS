@@ -124,19 +124,23 @@ android:layout_height="fill_parent" >
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-
-
     </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:id="@+id/favoritesBottomButtonGroup">
 
-    <ImageView
-        android:id="@+id/imageSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/save" />
+        <ImageButton
+            android:id="@+id/scanButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/save_button" />
         
     </LinearLayout>
+    </LinearLayout>
 </ScrollView>
- 
         
 </LinearLayout>
