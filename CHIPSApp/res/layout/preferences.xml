@@ -3,6 +3,10 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
+    
+    <ScrollView
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -109,12 +113,21 @@
 
 
 
-    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:id="@+id/preferencesBottomButtonGroup">
     
-    <ImageView
-        android:id="@+id/imageSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/save" />
+        <ImageButton
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/save_button" />
+    </LinearLayout>
+	
+	</LinearLayout>
+	</ScrollView>
 </LinearLayout>

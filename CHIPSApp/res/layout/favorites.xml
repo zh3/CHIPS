@@ -26,8 +26,7 @@ android:layout_height="fill_parent" >
             android:layout_height="wrap_content"
             android:text="Add a Favorite Meal"
             android:textAppearance="?android:attr/textAppearanceLarge" >
-        </TextView>
-
+        </TextView>
         <LinearLayout
             android:id="@+id/linearLayout1"
             android:layout_width="match_parent"
@@ -71,12 +70,14 @@ android:layout_height="fill_parent" >
 
     </ListView>
 
-    <ImageView
-        android:id="@+id/imageSave"
+    <ImageButton
+        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/save" />
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:src="@drawable/save_button" />
         
     </LinearLayout>
 </ScrollView>
