@@ -7,11 +7,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Gallery;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.chips.adapters.MealDisplayAdapter;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 
 public class ApplicationHubActivity extends Activity {
     /** Called when the activity is first created. */
@@ -35,15 +34,17 @@ public class ApplicationHubActivity extends Activity {
         statisticsActivityIntent = new Intent(this, StatisticsActivity.class);
         
         // Initialize buttons --
-        searchFoodClicked();
+//        searchFoodClicked();
         shoppingListClicked();
         calendarClicked();
         inventoryClicked();
         preferencesClicked();
-//        statisticsClicked();
+        statisticsClicked();
         
     }
     
+    
+    /*
     // Callback for barcode scanner activity
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         Toast toast;
@@ -57,19 +58,23 @@ public class ApplicationHubActivity extends Activity {
         // else continue with any other code you need in the method
         toast.show();
     }
+    */
+    
     
     /*
      * Callback function for when 'Scan Barcode' is clicked
      */
+    /*
     public void scanBarcodeClicked(View view) {
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.initiateScan();
     }
-    
+*/
+
     public void searchFoodClicked() {
     	// For the search food button.
-        final Button button1 = (Button) findViewById(R.id.doSearchFoodButton);
-            button1.setOnClickListener(new OnClickListener() {
+        final ImageButton button = (ImageButton) findViewById(R.id.doSearchFoodButton);
+            button.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 // Perform action on clicks
             	
@@ -81,7 +86,7 @@ public class ApplicationHubActivity extends Activity {
     
     public void shoppingListClicked() {
     	// For the Shopping List button.
-        final Button button1 = (Button) findViewById(R.id.shoppingButton);
+        final ImageButton button1 = (ImageButton) findViewById(R.id.shoppingButton);
             button1.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 // Perform action on clicks
@@ -94,7 +99,7 @@ public class ApplicationHubActivity extends Activity {
     
     public void calendarClicked() {
     	// For the Calendar button.
-        final Button button2 = (Button) findViewById(R.id.calendarButton);
+        final ImageButton button2 = (ImageButton) findViewById(R.id.calendarButton);
             button2.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 // Perform action on clicks
@@ -111,7 +116,7 @@ public class ApplicationHubActivity extends Activity {
     
     public void inventoryClicked() {
     	// For the Inventory button.
-        final Button button3 = (Button) findViewById(R.id.inventoryButton);
+        final ImageButton button3 = (ImageButton) findViewById(R.id.inventoryButton);
             button3.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 // Perform action on clicks
@@ -124,7 +129,7 @@ public class ApplicationHubActivity extends Activity {
     
     public void preferencesClicked() {
     	// For the Preferences button.
-        final Button button4 = (Button) findViewById(R.id.applicationHubSettingsButton);
+        final ImageButton button4 = (ImageButton) findViewById(R.id.applicationHubSettingsButton);
             button4.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 // Perform action on clicks
@@ -137,22 +142,22 @@ public class ApplicationHubActivity extends Activity {
     
     public void statisticsClicked() {
     	// For the Statistics button.
-        final Button button5 = (Button) findViewById(R.id.addButton);
-            button5.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
+        final ImageButton button5 = (ImageButton) findViewById(R.id.addButton);
+//            button5.setOnClickListener(new OnClickListener() {
+//            public void onClick(View v) {
                 // Perform action on clicks
             	
-            	Toast.makeText(ApplicationHubActivity.this, "Going to statistics!", Toast.LENGTH_SHORT).show();
-            	startActivity(statisticsActivityIntent);
-            }
-            }); 
+//            	Toast.makeText(ApplicationHubActivity.this, "Going to statistics!", Toast.LENGTH_SHORT).show();
+//            	startActivity(statisticsActivityIntent);
+//            }
+//            }); 
     }
     
     public void addFavoriteClicked(View view) {
       Intent favoriteActivityIntent 
           = new Intent(this, FavoritesActivity.class);
       favoriteActivityIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-      //startActivity(favoriteActivityIntent);
+      startActivity(favoriteActivityIntent);
   }
     
     private Intent searchFoodActivityIntent;
