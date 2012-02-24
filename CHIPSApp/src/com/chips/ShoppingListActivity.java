@@ -40,7 +40,6 @@ public class ShoppingListActivity extends AsynchronousFoodRecordListViewActivity
 
         // Listen for checked items
         lv.setOnItemClickListener(new OnItemClickListener() {
-            @Override
             public void onItemClick(AdapterView<?> arg0, View v, int arg2,
                     long arg3) {
                 ((CheckedTextView)v).toggle();
