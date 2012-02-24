@@ -2,6 +2,9 @@ package com.chips;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.CheckedTextView;
 import android.widget.ListView;
 
 import com.chips.homebar.HomeBar;
@@ -20,12 +23,31 @@ public class ShoppingListActivity extends AsynchronousFoodRecordListViewActivity
         HomeBarAction.inflateHomeBarView(this, R.layout.shopping_list);
         
         loadFoundItems(android.R.layout.simple_list_item_multiple_choice);
+        setupShoppingListView();
+        
         client.setURL(
                 SHOPPING_LIST_URL, 
                 ""
         );
 
         client.refreshClient();
+    }
+    
+    private void setupShoppingListView() {
+        final ListView lv = (ListView) findViewById(R.id.shoppingListView);
+        
+        // Make items not focusable to avoid listitem / button conflicts
+        lv.setItemsCanFocus(false);
+        lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+
+        // Listen for checked items
+        lv.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View v, int arg2,
+                    long arg3) {
+                ((CheckedTextView)v).toggle();
+            }
+        });
     }
     
     public void goHomeClicked(View view) {
