@@ -15,4 +15,10 @@
     <string name="preferencesHeader">Your Preferences:</string>
     <string name="statisticsHeader">Your Statistics:</string>
     <string name="back">Back</string>
+    <string name="foodNameTextViewTitle">Food Name</string>
+    <string name="caloriesTextViewTitle">Calories</string>
+    <string name="carbohydratesTextViewTitle">Carbohydrates</string>
+    <string name="fatTextViewTitle">Fat</string>
+    <string name="proteinTextViewTitle">Protein</string>
+    <string name="quantityTextViewTitle">Quantity</string>
 </resources>

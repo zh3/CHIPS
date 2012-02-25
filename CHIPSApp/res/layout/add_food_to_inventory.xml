@@ -1,22 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/addFoodToInventoryItemGroup" android:layout_weight="1"></LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:orientation="horizontal" android:id="@+id/addFoodToInventoryBottomButtonGroup" android:gravity="center">
-
-        <ImageButton
-            android:id="@+id/addFoodToInventoryButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/add_button"
-            android:background="@android:color/transparent" android:onClick="addFoodToInventoryClicked"/>
-
-    </LinearLayout>
-
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1">
+	    <LinearLayout android:orientation="vertical" android:layout_height="wrap_content" android:id="@+id/addFoodToInventoryItemGroup" android:layout_weight="1" android:layout_width="match_parent">
+	        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0" android:id="@+id/foodNameTextView" android:text="@string/foodNameTextViewTitle"></TextView>
+	        <EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0" android:id="@+id/newFoodNameEditText"></EditText>
+	        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0" android:id="@+id/caloriesTextView" android:text="@string/caloriesTextViewTitle"></TextView>
+	        <EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0" android:inputType="numberDecimal" android:id="@+id/caloriesEditText">
+	            <requestFocus></requestFocus>
+	        </EditText>
+	        <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_weight="0" android:id="@+id/carbohydratesTextView" android:text="@string/carbohydratesTextViewTitle"></TextView>
+	        <EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0" android:inputType="numberDecimal" android:id="@+id/carbohydratesEditText"></EditText>
+	        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0" android:id="@+id/proteinTextView" android:text="@string/proteinTextViewTitle"></TextView>
+	        <EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0" android:inputType="numberDecimal" android:id="@+id/proteinEditText"></EditText>
+	        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0" android:id="@+id/fatTextView" android:text="@string/fatTextViewTitle"></TextView>
+	       
+	        
+	        <EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0" android:inputType="numberDecimal" android:id="@+id/fatEditText"></EditText>
+	        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0" android:id="@+id/quantityTextView" android:text="@string/quantityTextViewTitle"></TextView>
+	        <EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0" android:id="@+id/quantityEditText" android:inputType="number|numberSigned"></EditText>
+	    
+	    </LinearLayout>
+	</ScrollView>
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" android:orientation="horizontal" android:id="@+id/addFoodToInventoryBottomButtonGroup" android:gravity="center">
+	
+	        <ImageButton
+	            android:id="@+id/addFoodToInventoryButton"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:src="@drawable/add_button"
+	            android:background="@android:color/transparent" android:onClick="addFoodToInventoryClicked"/>
+	
+	    </LinearLayout>
 </LinearLayout>
