@@ -12,6 +12,7 @@ public class FoodRecord extends DataRecord {
         calories = Double.parseDouble(newCalories.trim());
         carbs = Double.parseDouble(newCarbs.trim());
         fat = Double.parseDouble(newFat.trim());
+        protein = Double.parseDouble(newProtein.trim());
     }
 
     public String getName() {
@@ -22,7 +23,7 @@ public class FoodRecord extends DataRecord {
         return calories;
     }
     
-    public double getCarbs() {
+    public double getCarbohydrates() {
         return carbs;
     }
     

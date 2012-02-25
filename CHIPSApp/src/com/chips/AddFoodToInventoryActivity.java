@@ -1,16 +1,17 @@
 package com.chips;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import com.chips.datarecord.FoodRecord;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
 
 public class AddFoodToInventoryActivity extends Activity implements HomeBar {
     private static final int SEARCH_REQUEST_CODE = 0;
@@ -22,6 +23,17 @@ public class AddFoodToInventoryActivity extends Activity implements HomeBar {
         HomeBarAction.inflateHomeBarView(this, R.layout.add_food_to_inventory);
         
         searchFoodIntent = new Intent(this, SearchFoodActivity.class);
+        setupEditTexts();
+    }
+    
+    private void setupEditTexts() {
+        nameField = (EditText) findViewById(R.id.newFoodNameEditText);
+        caloriesField = (EditText) findViewById(R.id.caloriesEditText);
+        carbohydratesField 
+            = (EditText) findViewById(R.id.carbohydratesEditText);
+        proteinField = (EditText) findViewById(R.id.proteinEditText);
+        fatField = (EditText) findViewById(R.id.fatEditText);
+        quantityField = (EditText) findViewById(R.id.quantityEditText);
     }
     
     /*
@@ -49,10 +61,20 @@ public class AddFoodToInventoryActivity extends Activity implements HomeBar {
             Bundle extras = intent.getExtras();
             FoodRecord selectedFood = (FoodRecord) extras.get("selectedFood");
             
+            populateFields(selectedFood);
             Toast toast;
             toast = Toast.makeText(getApplicationContext(), "Result is: " + selectedFood.toString(), Toast.LENGTH_LONG);
             toast.show();
         }
+    }
+    
+    private void populateFields(FoodRecord food) {
+        nameField.setText(food.getName());
+        caloriesField.setText(Double.toString(food.getCalories()));
+        carbohydratesField.setText(Double.toString(food.getCarbohydrates()));
+        proteinField.setText(Double.toString(food.getProtein()));
+        fatField.setText(Double.toString(food.getFat()));
+        quantityField.setText("0");
     }
     
     private void handleScanResult(int requestCode, int resultCode, 
@@ -86,4 +108,10 @@ public class AddFoodToInventoryActivity extends Activity implements HomeBar {
     }
     
     private Intent searchFoodIntent;
+    private EditText nameField;
+    private EditText caloriesField;
+    private EditText carbohydratesField;
+    private EditText proteinField;
+    private EditText fatField;
+    private EditText quantityField;
 }
