@@ -24,9 +24,6 @@ public class ShoppingListActivity extends AsynchronousDataClientActivity
         super.onCreate(savedInstanceState);
         HomeBarAction.inflateHomeBarView(this, R.layout.shopping_list);
         
-        //loadFoundItems(android.R.layout.simple_list_item_multiple_choice);
-        setupShoppingListView();
-        
         FoodClient foodClient = new FoodClient();
         FoodClientObserver foodClientObserver 
             = new FoodClientObserver(this, foodClient);
@@ -38,6 +35,14 @@ public class ShoppingListActivity extends AsynchronousDataClientActivity
                 ""
         );
         foodClient.refreshClient();
+        
+        foodClientObserver.loadFoundItems(
+                (ListView) findViewById(R.id.shoppingListView),
+                android.R.layout.simple_list_item_multiple_choice
+        );
+        setupShoppingListView();
+        
+        
     }
     
     private void setupShoppingListView() {
@@ -63,9 +68,4 @@ public class ShoppingListActivity extends AsynchronousDataClientActivity
     public void addFavoriteClicked(View view) {
         HomeBarAction.addFavoriteClicked(this, view);
     }
-
-//    @Override
-//    protected ListView getListView() {
-//        return (ListView) findViewById(R.id.shoppingListView);
-//    }
 }
