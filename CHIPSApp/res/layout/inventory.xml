@@ -24,15 +24,6 @@
             android:src="@drawable/add_button" android:layout_weight="1"
             android:background="@android:color/transparent" android:onClick="addFoodToInventoryClicked"/>
 
-        <ImageButton android:layout_weight="1" android:onClick="searchFoodClicked" android:src="@drawable/search_button" android:id="@+id/ImageButton01" android:background="@android:color/transparent" android:layout_height="wrap_content" android:layout_width="wrap_content"></ImageButton>
-
-        <ImageButton
-            android:id="@+id/scanButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/scan_button" android:layout_weight="1"
-            android:background="@android:color/transparent" android:onClick="scanBarcodeClicked"/>
-
     </LinearLayout>
 
 </LinearLayout>
