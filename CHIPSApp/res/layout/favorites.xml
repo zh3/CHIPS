@@ -3,10 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-
+    
 <ScrollView
 android:layout_width="fill_parent"
-android:layout_height="fill_parent" >
+android:layout_height="fill_parent"
+android:layout_weight="1">
 
 	<LinearLayout
 	android:layout_width="match_parent"
@@ -53,34 +54,43 @@ android:layout_height="fill_parent" >
         </LinearLayout>
 
     </LinearLayout>
-
+
     <ImageButton
-        android:src="@drawable/add_button"
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@android:color/transparent"
-         />
-
+        android:src="@drawable/add_button" />
+
     <ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
-
     </ListView>
 
-    <ImageButton
-        android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:background="@android:color/transparent"
-        android:src="@drawable/save_button" />
         
     </LinearLayout>
 </ScrollView>
  
+    <LinearLayout
+    	android:id="@+id/buttons"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_alignParentBottom="true">
+        
+    	<ImageButton
+        	android:id="@+id/saveButton"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_gravity="center_horizontal"
+        	android:layout_weight="1"
+        	android:background="@android:color/transparent"
+        	android:src="@drawable/save_button" />
+    
+    </LinearLayout>
+
         
 </LinearLayout>
