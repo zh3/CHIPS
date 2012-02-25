@@ -22,7 +22,7 @@ public class ShoppingListActivity extends AsynchronousFoodRecordListViewActivity
         super.onCreate(savedInstanceState);
         HomeBarAction.inflateHomeBarView(this, R.layout.shopping_list);
         
-        loadFoundItems(android.R.layout.simple_list_item_multiple_choice);
+        //loadFoundItems(android.R.layout.simple_list_item_multiple_choice);
         setupShoppingListView();
         client.setURL(
                 SHOPPING_LIST_URL, 
@@ -56,8 +56,8 @@ public class ShoppingListActivity extends AsynchronousFoodRecordListViewActivity
         HomeBarAction.addFavoriteClicked(this, view);
     }
 
-    @Override
-    protected ListView getListView() {
-        return (ListView) findViewById(R.id.shoppingListView);
-    }
+//    @Override
+//    protected ListView getListView() {
+//        return (ListView) findViewById(R.id.shoppingListView);
+//    }
 }

@@ -22,8 +22,11 @@ public class InventoryActivity extends AsynchronousFoodRecordListViewActivity im
         super.onCreate(savedInstanceState);
         HomeBarAction.inflateHomeBarView(this, R.layout.inventory);
         
-
-        loadFoundItems(android.R.layout.simple_list_item_1);
+        foodClientObserver.loadFoundItems(
+            (ListView) findViewById(R.id.inventoryListView),
+            android.R.layout.simple_list_item_1
+        );
+        
         client.setURL(
                 INVENTORY_LIST_URL, 
                 ""
@@ -76,10 +79,10 @@ public class InventoryActivity extends AsynchronousFoodRecordListViewActivity im
         HomeBarAction.addFavoriteClicked(this, view);
     }
     
-    @Override
-    protected ListView getListView() {
-        return (ListView) findViewById(R.id.inventoryListView);
-    }
+//    @Override
+//    protected ListView getListView() {
+//        return (ListView) findViewById(R.id.inventoryListView);
+//    }
     
     private Intent addFoodToInventoryIntent;
     private Intent searchFoodIntent;

@@ -20,7 +20,10 @@ public class SearchFoodActivity extends AsynchronousFoodRecordListViewActivity
         HomeBarAction.inflateHomeBarView(this, R.layout.search_food);
         
         searchFoodEditText = (EditText) findViewById(R.id.searchFoodEditText);
-        loadFoundItems(android.R.layout.simple_list_item_1);
+        foodClientObserver.loadFoundItems(
+                (ListView) findViewById(R.id.searchResultView),
+                android.R.layout.simple_list_item_1
+        );
     }
     
     public void doSearchFoodButtonClicked(View view) {
@@ -31,10 +34,10 @@ public class SearchFoodActivity extends AsynchronousFoodRecordListViewActivity
         client.refreshClient();
     }
     
-    @Override
-    protected ListView getListView() {
-        return (ListView) findViewById(R.id.searchResultView);
-    }
+//    @Override
+//    protected ListView getListView() {
+//        return (ListView) findViewById(R.id.searchResultView);
+//    }
     
     public void goHomeClicked(View view) {
         HomeBarAction.goHomeClicked(this, view);

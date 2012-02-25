@@ -40,7 +40,6 @@ public class ApplicationHubActivity extends Activity {
     
     public void calendarClicked(View v) {
         startActivity(calendarActivityIntent);
-
     }
     
     public void inventoryClicked(View v) {

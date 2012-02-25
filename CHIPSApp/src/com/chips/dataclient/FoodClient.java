@@ -21,15 +21,6 @@ public class FoodClient extends XMLDataClient {
         foodRecords.addAll(handler.getFoodRecords());
     }
     
-    // Singleton
-//    public static FoodSearchClient getInstance() {
-//        return FoodSearchClientHolder.client;
-//    }
-//
-//    private static class FoodSearchClientHolder {
-//        public static final FoodSearchClient client = new FoodSearchClient();
-//    }
-    
     public List<FoodRecord> getFoodRecords() {
         return foodRecords;
     }

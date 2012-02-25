@@ -86,6 +86,10 @@ public abstract class XMLDataClient extends Observable {
         }
     }
     
+    /**
+     * Action to be performed in the background by the client. Should reload
+     * the XML data and parse into an object representation or state flags.
+     */
     protected abstract void reloadData();
     
     // Force client to reload the data asynchronously
