@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.chips.dataclient.FoodClient;
 import com.chips.dataclientobservers.FoodClientObserver;
+import com.chips.datarecord.FoodRecord;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -17,6 +18,7 @@ public class InventoryActivity extends AsynchronousDataClientActivity implements
     private static final String INVENTORY_LIST_URL 
         = "http://cs110chips.phpfogapp.com/index.php/mobile/"
           + "list_foods_in_inventory";
+    private static final int SEARCH_REQUEST_CODE = 0;
     
     /** Called when the activity is first created. */
     @Override
@@ -59,6 +61,29 @@ public class InventoryActivity extends AsynchronousDataClientActivity implements
     
     // Callback for barcode scanner activity
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        switch (requestCode) {
+        case SEARCH_REQUEST_CODE:
+            handleSearchResult(requestCode, resultCode, intent);
+            break;
+        default:
+            handleScanResult(requestCode, resultCode, intent);
+        }
+    }
+    
+    private void handleSearchResult(int requestCode, int resultCode, 
+            Intent intent) {
+        if (resultCode == RESULT_OK) {
+            Bundle extras = intent.getExtras();
+            FoodRecord selectedFood = (FoodRecord) extras.get("selectedFood");
+            
+            Toast toast;
+            toast = Toast.makeText(getApplicationContext(), "Result is: " + selectedFood.toString(), Toast.LENGTH_LONG);
+            toast.show();
+        }
+    }
+    
+    private void handleScanResult(int requestCode, int resultCode, 
+            Intent intent) {
         Toast toast;
         IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if (scanResult != null) {
@@ -76,7 +101,7 @@ public class InventoryActivity extends AsynchronousDataClientActivity implements
     }
     
     public void searchFoodClicked(View view) {
-        startActivity(searchFoodIntent);
+        startActivityForResult(searchFoodIntent, SEARCH_REQUEST_CODE);
     }
     
     public void goHomeClicked(View view) {

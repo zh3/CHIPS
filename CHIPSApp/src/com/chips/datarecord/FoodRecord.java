@@ -3,7 +3,8 @@ package com.chips.datarecord;
 import android.util.Log;
 
 public class FoodRecord extends DataRecord {
-
+    private static final long serialVersionUID = -5061554920995817677L;
+    
     public FoodRecord(String newId, String newName, String newCalories, String newCarbs,
             String newFat, String newProtein) {
         super(newId);

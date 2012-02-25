@@ -1,6 +1,10 @@
 package com.chips.datarecord;
 
-public class DataRecord {
+import java.io.Serializable;
+
+public class DataRecord implements Serializable {
+    private static final long serialVersionUID = 2173664914586334123L;
+
     public DataRecord(String newId) {
         id = Integer.parseInt(newId.trim());
     }

@@ -1,12 +1,16 @@
 package com.chips;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 
 import com.chips.dataclient.FoodClient;
 import com.chips.dataclientobservers.FoodClientObserver;
+import com.chips.datarecord.FoodRecord;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
 
@@ -29,8 +33,14 @@ public class SearchFoodActivity extends AsynchronousDataClientActivity
         
         addClientObserverPair(foodClient, foodClientObserver);
         
+        ListView searchResultView 
+            = (ListView) findViewById(R.id.searchResultView);
+        searchResultView.setOnItemClickListener(
+                new SearchResultOnClickListener()
+        );
+        
         foodClientObserver.loadFoundItems(
-                (ListView) findViewById(R.id.searchResultView),
+                searchResultView,
                 android.R.layout.simple_list_item_1
         );
     }
@@ -43,17 +53,33 @@ public class SearchFoodActivity extends AsynchronousDataClientActivity
         foodClient.refreshClient();
     }
     
-//    @Override
-//    protected ListView getListView() {
-//        return (ListView) findViewById(R.id.searchResultView);
-//    }
-    
     public void goHomeClicked(View view) {
         HomeBarAction.goHomeClicked(this, view);
     }
     
     public void addFavoriteClicked(View view) {
         HomeBarAction.addFavoriteClicked(this, view);
+    }
+    
+    private class SearchResultOnClickListener implements OnItemClickListener {
+        public void onItemClick(AdapterView<?> parent, View view, int position,
+                long id) {
+            if (parent.getClass() == ListView.class) {
+                Intent intent = new Intent();
+                
+                ListView parentList = (ListView) parent;
+                
+                FoodRecord selectedFood 
+                    = (FoodRecord) parentList.getItemAtPosition(position);
+                intent.putExtra("selectedFood", selectedFood);
+                
+                if (selectedFood != null) {
+                    setResult(RESULT_OK, intent);
+                }
+                
+                finish();
+            }
+        }
     }
     
     private EditText searchFoodEditText;
