@@ -6,12 +6,14 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.chips.dataclient.FoodClient;
+import com.chips.dataclientobservers.FoodClientObserver;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-public class InventoryActivity extends AsynchronousFoodRecordListViewActivity implements HomeBar {
+public class InventoryActivity extends AsynchronousDataClientActivity implements HomeBar {
     private static final String INVENTORY_LIST_URL 
         = "http://cs110chips.phpfogapp.com/index.php/mobile/"
           + "list_foods_in_inventory";
@@ -22,17 +24,23 @@ public class InventoryActivity extends AsynchronousFoodRecordListViewActivity im
         super.onCreate(savedInstanceState);
         HomeBarAction.inflateHomeBarView(this, R.layout.inventory);
         
+        FoodClient foodClient = new FoodClient();
+        FoodClientObserver foodClientObserver 
+            = new FoodClientObserver(this, foodClient);
+        
+        addClientObserverPair(foodClient, foodClientObserver);
+        
         foodClientObserver.loadFoundItems(
             (ListView) findViewById(R.id.inventoryListView),
             android.R.layout.simple_list_item_1
         );
         
-        client.setURL(
+        foodClient.setURL(
                 INVENTORY_LIST_URL, 
                 ""
         );
 
-        client.refreshClient();
+        foodClient.refreshClient();
         setupIntents();
     }
     
@@ -78,11 +86,6 @@ public class InventoryActivity extends AsynchronousFoodRecordListViewActivity im
     public void addFavoriteClicked(View view) {
         HomeBarAction.addFavoriteClicked(this, view);
     }
-    
-//    @Override
-//    protected ListView getListView() {
-//        return (ListView) findViewById(R.id.inventoryListView);
-//    }
     
     private Intent addFoodToInventoryIntent;
     private Intent searchFoodIntent;

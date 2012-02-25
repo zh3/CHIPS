@@ -7,10 +7,12 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 
+import com.chips.dataclient.FoodClient;
+import com.chips.dataclientobservers.FoodClientObserver;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
 
-public class ShoppingListActivity extends AsynchronousFoodRecordListViewActivity 
+public class ShoppingListActivity extends AsynchronousDataClientActivity 
         implements HomeBar {
     private static final String SHOPPING_LIST_URL 
         = "http://cs110chips.phpfogapp.com/index.php/mobile/"
@@ -24,11 +26,18 @@ public class ShoppingListActivity extends AsynchronousFoodRecordListViewActivity
         
         //loadFoundItems(android.R.layout.simple_list_item_multiple_choice);
         setupShoppingListView();
-        client.setURL(
+        
+        FoodClient foodClient = new FoodClient();
+        FoodClientObserver foodClientObserver 
+            = new FoodClientObserver(this, foodClient);
+        
+        addClientObserverPair(foodClient, foodClientObserver);
+        
+        foodClient.setURL(
                 SHOPPING_LIST_URL, 
                 ""
         );
-        client.refreshClient();
+        foodClient.refreshClient();
     }
     
     private void setupShoppingListView() {

@@ -5,10 +5,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.chips.dataclient.FoodClient;
+import com.chips.dataclientobservers.FoodClientObserver;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
 
-public class SearchFoodActivity extends AsynchronousFoodRecordListViewActivity 
+public class SearchFoodActivity extends AsynchronousDataClientActivity 
         implements HomeBar {
     private static final String BASE_SEARCH_URL 
         = "http://cs110chips.phpfogapp.com/index.php/mobile/list_foods_in_nutrition_database_with_name/";
@@ -20,6 +22,13 @@ public class SearchFoodActivity extends AsynchronousFoodRecordListViewActivity
         HomeBarAction.inflateHomeBarView(this, R.layout.search_food);
         
         searchFoodEditText = (EditText) findViewById(R.id.searchFoodEditText);
+        
+        foodClient = new FoodClient();
+        FoodClientObserver foodClientObserver 
+            = new FoodClientObserver(this, foodClient);
+        
+        addClientObserverPair(foodClient, foodClientObserver);
+        
         foodClientObserver.loadFoundItems(
                 (ListView) findViewById(R.id.searchResultView),
                 android.R.layout.simple_list_item_1
@@ -27,11 +36,11 @@ public class SearchFoodActivity extends AsynchronousFoodRecordListViewActivity
     }
     
     public void doSearchFoodButtonClicked(View view) {
-        client.setURL(
+        foodClient.setURL(
                 BASE_SEARCH_URL, 
                 searchFoodEditText.getText().toString()
         );
-        client.refreshClient();
+        foodClient.refreshClient();
     }
     
 //    @Override
@@ -48,4 +57,5 @@ public class SearchFoodActivity extends AsynchronousFoodRecordListViewActivity
     }
     
     private EditText searchFoodEditText;
+    private FoodClient foodClient;
 }
