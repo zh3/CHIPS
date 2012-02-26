@@ -21,4 +21,10 @@
     <string name="fatTextViewTitle">Fat</string>
     <string name="proteinTextViewTitle">Protein</string>
     <string name="quantityTextViewTitle">Quantity</string>
+    <string name="childCaloriesTitle">Calories</string>
+    <string name="childCarbohydratesTitle">Carbohydrates</string>
+    <string name="childProteinTitle">Protein</string>
+    <string name="childFatTitle">Fat</string>
+    <string name="childQuantityTitle">Quantity</string>
+    <string name="childUpdateQuantityButtonTitle">Update</string>
 </resources>

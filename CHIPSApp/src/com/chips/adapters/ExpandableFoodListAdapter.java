@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.chips.R;
@@ -41,10 +42,26 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.food_child, null);
         }
-        TextView childCalories = (TextView) convertView.findViewById(R.id.childCalories);
-        childCalories.setText("   " + food.getName());
-
+        
+        setTextViewString(convertView, R.id.childCaloriesDisplay, 
+                          "" + food.getCalories());
+        setTextViewString(convertView, R.id.childCarbohydratesDisplay, 
+                "" + food.getCarbohydrates());
+        setTextViewString(convertView, R.id.childProteinDisplay, 
+                "" + food.getProtein());
+        setTextViewString(convertView, R.id.childFatDisplay, 
+                "" + food.getFat());
+        EditText quantityEditText 
+            = (EditText) convertView.findViewById(R.id.childQuantityEditText);
+        quantityEditText.setText(food.getQuantity() + "");
         return convertView;
+    }
+    
+    private void setTextViewString(View outerView, int textViewId, 
+            String newText) {
+        TextView childView 
+            = (TextView) outerView.findViewById(textViewId);
+        childView.setText(newText);
     }
 
     @Override
