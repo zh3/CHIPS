@@ -3,10 +3,11 @@ package com.chips;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ListView;
+import android.widget.ExpandableListView;
 
+import com.chips.adapters.ExpandableFoodListAdapter;
 import com.chips.dataclient.FoodClient;
-import com.chips.dataclientobservers.FoodClientObserver;
+import com.chips.dataclientobservers.ExpandableFoodClientObserver;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
 
@@ -22,14 +23,21 @@ public class InventoryActivity extends AsynchronousDataClientActivity implements
         HomeBarAction.inflateHomeBarView(this, R.layout.inventory);
         
         FoodClient foodClient = new FoodClient();
-        FoodClientObserver foodClientObserver 
-            = new FoodClientObserver(this, foodClient);
+//        FoodClientObserver foodClientObserver 
+//            = new FoodClientObserver(this, foodClient);
+        ExpandableFoodClientObserver expandableFoodClientObserver
+            = new ExpandableFoodClientObserver(this, foodClient);
         
-        addClientObserverPair(foodClient, foodClientObserver);
+        addClientObserverPair(foodClient, expandableFoodClientObserver);
         
-        foodClientObserver.loadFoundItems(
-            (ListView) findViewById(R.id.inventoryListView),
-            android.R.layout.simple_list_item_1
+//        foodClientObserver.setListViewLayout(
+//            (ListView) findViewById(R.id.inventoryListView),
+//            android.R.layout.simple_list_item_1
+//        );
+        
+        expandableFoodClientObserver.setListViewLayout(
+            (ExpandableListView) findViewById(R.id.inventoryListView), 
+            new ExpandableFoodListAdapter(this, foodClient.getFoodRecords())
         );
         
         foodClient.setURL(

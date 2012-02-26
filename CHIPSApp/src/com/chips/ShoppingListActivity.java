@@ -36,7 +36,7 @@ public class ShoppingListActivity extends AsynchronousDataClientActivity
         );
         foodClient.refreshClient();
         
-        foodClientObserver.loadFoundItems(
+        foodClientObserver.setListViewLayout(
                 (ListView) findViewById(R.id.shoppingListView),
                 android.R.layout.simple_list_item_multiple_choice
         );

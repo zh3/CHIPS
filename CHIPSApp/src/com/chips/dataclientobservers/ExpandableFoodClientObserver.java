@@ -4,22 +4,22 @@ import java.util.List;
 import java.util.Observable;
 
 import android.app.Activity;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import com.chips.dataclient.FoodClient;
-import com.chips.datarecord.FoodRecord;
 
-public class FoodClientObserver extends DataClientObserver {
-    public FoodClientObserver(Activity parentActivity, FoodClient newClient) {
+public class ExpandableFoodClientObserver extends DataClientObserver {
+    public ExpandableFoodClientObserver(Activity parentActivity, 
+            FoodClient newClient) {
         super(parentActivity);
         client = newClient;
     }
     
-    public void setListViewLayout(ListView destinationView, int layout) {
-        recordAdapter = new ArrayAdapter<FoodRecord>(parentActivity, layout, 
-                    client.getFoodRecords());
+    public void setListViewLayout(ExpandableListView destinationView, 
+            BaseExpandableListAdapter newAdapter) {
+        recordAdapter = newAdapter;
         
         destinationView.setAdapter(recordAdapter);
     }
@@ -35,6 +35,6 @@ public class FoodClientObserver extends DataClientObserver {
         }
     }
     
-    private ArrayAdapter<FoodRecord> recordAdapter;
+    private BaseExpandableListAdapter recordAdapter;
     protected FoodClient client;
 }

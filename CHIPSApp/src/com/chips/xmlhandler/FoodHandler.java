@@ -35,7 +35,8 @@ public class FoodHandler extends SAXHandler<FoodTagState> {
                     getString(FoodTagState.CALORIES),
                     getString(FoodTagState.CARBS),
                     getString(FoodTagState.FAT),
-                    getString(FoodTagState.PROTEIN));
+                    getString(FoodTagState.PROTEIN),
+                    getString(FoodTagState.QUANTITY));
 
             foodRecords.add(newFood);
 

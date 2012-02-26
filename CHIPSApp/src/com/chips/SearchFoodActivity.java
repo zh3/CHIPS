@@ -39,7 +39,7 @@ public class SearchFoodActivity extends AsynchronousDataClientActivity
                 new SearchResultOnClickListener()
         );
         
-        foodClientObserver.loadFoundItems(
+        foodClientObserver.setListViewLayout(
                 searchResultView,
                 android.R.layout.simple_list_item_1
         );
