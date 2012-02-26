@@ -87,14 +87,19 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView,
             ViewGroup parent) {
-        String group = ((FoodRecord) getGroup(groupPosition)).toString();
+        FoodRecord food = (FoodRecord) getGroup(groupPosition);
+        
+        String group = food.toString();
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.food_group, null);
         }
-        TextView tv = (TextView) convertView.findViewById(R.id.groupName);
-        tv.setText(group);
+        TextView groupName = (TextView) convertView.findViewById(R.id.groupName);
+        groupName.setText(group);
+        
+        setTextViewString(convertView, R.id.groupQuantity, 
+                food.getQuantity() + "g");
         return convertView;
     }
 

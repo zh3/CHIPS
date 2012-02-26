@@ -6,4 +6,5 @@
   android:layout_height="match_parent"
   android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft" android:minHeight="32dp">
     <TextView android:text="TextView" android:id="@+id/groupName" android:layout_width="match_parent" android:textSize="15dp" android:textStyle="bold" android:layout_height="wrap_content"></TextView>
+    <TextView android:layout_height="wrap_content" android:text="TextView" android:id="@+id/groupQuantity" android:gravity="right" android:layout_width="match_parent"></TextView>
 </LinearLayout>
