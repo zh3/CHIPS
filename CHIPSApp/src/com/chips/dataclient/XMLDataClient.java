@@ -42,7 +42,7 @@ public abstract class XMLDataClient extends Observable {
     }
     
     private URL getXMLURL() throws MalformedURLException {
-        return new URL(URL);
+        return (URL == null) ? null : new URL(URL);
     }
     
     public void setURL(String baseURL, String argumentString) {
