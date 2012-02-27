@@ -54,8 +54,6 @@ public class LoginActivity extends Activity implements Observer {
     public void update(Observable dataClient, Object data) {
         if (loginClient.lastLoginSuccessful()) {
             PersistentUser.setSessionID(loginClient.getSessionId());
-            Log.d("New session id is: ", PersistentUser.getSessionID());
-            Toast.makeText(this, "SessionID is" + PersistentUser.getSessionID(), Toast.LENGTH_SHORT).show();
             startActivity(applicationHubActivityIntent);
             finish();
         } else {
