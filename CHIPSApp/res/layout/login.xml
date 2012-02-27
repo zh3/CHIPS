@@ -59,8 +59,8 @@
 		  		android:singleLine="true"
 		  		android:password="true" android:id="@+id/passwordEditText"/>
 		  <!-- Login button -->
-		  <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/rememberPassword" android:text="@string/rememberPasswordCheckboxTitle"></CheckBox>
-		  <CheckBox android:id="@+id/loginAutomatically" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/loginAutomaticallyCheckboxTitle"></CheckBox>	
+		  <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/rememberPasswordCheckboxTitle" android:id="@+id/saveLoginDetailsCheckBox"></CheckBox>
+		  <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/loginAutomaticallyCheckboxTitle" android:id="@+id/loginAutomaticallyCheckBox"></CheckBox>	
 		  <Button android:id="@+id/btnLogin" 
 		  		android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
