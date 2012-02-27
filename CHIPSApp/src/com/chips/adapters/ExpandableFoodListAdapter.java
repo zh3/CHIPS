@@ -22,9 +22,6 @@ import com.chips.datarecord.FoodRecord;
 import com.chips.user.PersistentUser;
 
 public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
-    private Context context;
-    private List<FoodRecord> items;
-    
     public ExpandableFoodListAdapter(Context newContext, 
             List<FoodRecord> newItems) {
         context = newContext;
@@ -174,5 +171,9 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
         private int buttonGroupPosition;
         private int buttonChildPosition;
         private EditText quantityEditText;
+
     }
+    
+    private Context context;
+    private List<FoodRecord> items;
 }

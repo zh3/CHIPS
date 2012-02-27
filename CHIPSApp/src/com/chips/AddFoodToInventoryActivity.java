@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.chips.dataclient.DataPushClient;
@@ -71,9 +72,6 @@ public class AddFoodToInventoryActivity extends Activity implements HomeBar {
             FoodRecord selectedFood = (FoodRecord) extras.get("selectedFood");
             
             populateFields(selectedFood);
-            Toast toast;
-            toast = Toast.makeText(getApplicationContext(), "Result is: " + selectedFood.toString(), Toast.LENGTH_LONG);
-            toast.show();
         }
     }
     
@@ -83,7 +81,23 @@ public class AddFoodToInventoryActivity extends Activity implements HomeBar {
         carbohydratesField.setText(Double.toString(food.getCarbohydrates()));
         proteinField.setText(Double.toString(food.getProtein()));
         fatField.setText(Double.toString(food.getFat()));
-        quantityField.setText("0");
+        
+        foodToAdd = food;
+        
+        setNutritionFieldsEnabled(false);
+    }
+    
+    private void setNutritionFieldsEnabled(boolean enabled) {
+        nameField.setEnabled(enabled);
+        nameField.setFocusable(enabled);
+        caloriesField.setEnabled(enabled);
+        caloriesField.setFocusable(enabled);
+        carbohydratesField.setEnabled(enabled);
+        carbohydratesField.setFocusable(enabled);
+        proteinField.setEnabled(enabled);
+        proteinField.setFocusable(enabled);
+        fatField.setEnabled(enabled);
+        fatField.setFocusable(enabled);
     }
     
     private void handleScanResult(int requestCode, int resultCode, 
@@ -110,7 +124,27 @@ public class AddFoodToInventoryActivity extends Activity implements HomeBar {
     }
     
     public void addFoodToInventoryClicked(View view) {
+        ImageButton addFoodToInventoryButton = (ImageButton) findViewById(R.id.addButton);
+        addFoodToInventoryButton.requestFocus();
         
+        if (missingFieldValuesExist()) {
+            Toast.makeText(this, "Please fill all information for new food", 
+                    Toast.LENGTH_LONG).show();
+        } else if (foodToAdd != null) {
+            Toast.makeText(this, "Adding Existing food: " + foodToAdd.toString(), 
+                    Toast.LENGTH_LONG).show();
+        } else {
+            
+        }
+    }
+    
+    private boolean missingFieldValuesExist() {
+        return (nameField.getText().toString().equals("")
+                    || caloriesField.getText().toString().equals("")
+                    || carbohydratesField.getText().toString().equals("")
+                    || proteinField.getText().toString().equals("")
+                    || fatField.getText().toString().equals("")
+                    || quantityField.getText().toString().equals(""));
     }
     
     public void goHomeClicked(View view) {
@@ -133,4 +167,5 @@ public class AddFoodToInventoryActivity extends Activity implements HomeBar {
     private EditText fatField;
     private EditText quantityField;
     private DataPushClient pushClient;
+    private FoodRecord foodToAdd;
 }
