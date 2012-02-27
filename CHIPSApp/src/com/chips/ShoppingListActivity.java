@@ -11,6 +11,7 @@ import com.chips.dataclient.FoodClient;
 import com.chips.dataclientobservers.FoodClientObserver;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
+import com.chips.user.PersistentUser;
 
 public class ShoppingListActivity extends AsynchronousDataClientActivity 
         implements HomeBar {
@@ -30,10 +31,7 @@ public class ShoppingListActivity extends AsynchronousDataClientActivity
         
         addClientObserverPair(foodClient, foodClientObserver);
         
-        foodClient.setURL(
-                SHOPPING_LIST_URL, 
-                ""
-        );
+        foodClient.setURL(SHOPPING_LIST_URL, PersistentUser.getSessionID());
         foodClient.refreshClient();
         
         foodClientObserver.setListViewLayout(

@@ -7,6 +7,7 @@ import java.util.Observer;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -53,10 +54,12 @@ public class LoginActivity extends Activity implements Observer {
     public void update(Observable dataClient, Object data) {
         if (loginClient.lastLoginSuccessful()) {
             PersistentUser.setSessionID(loginClient.getSessionId());
+            Log.d("New session id is: ", PersistentUser.getSessionID());
+            Toast.makeText(this, "SessionID is" + PersistentUser.getSessionID(), Toast.LENGTH_SHORT).show();
             startActivity(applicationHubActivityIntent);
             finish();
         } else {
-            Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Login Failed", Toast.LENGTH_LONG).show();
         }
     }
     

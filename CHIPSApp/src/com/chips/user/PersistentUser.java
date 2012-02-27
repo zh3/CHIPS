@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 
 public class PersistentUser {
-    private static final int DEFAULT_ID = 0;
     private static final String USER_LOGIN_PREFERENCES 
         = "CHIPSUserLoginPreferences";
     private static final String LOGIN_SETTINGS_EXIST = "loginSettingsExist";
@@ -13,10 +12,6 @@ public class PersistentUser {
     // Can't instantiate
     private PersistentUser() {
         
-    }
-    
-    public static int getCurrentSessionId() {
-        return DEFAULT_ID;
     }
     
     public static boolean loginSettingsExist(Activity activity) {
@@ -29,7 +24,7 @@ public class PersistentUser {
         sessionID = newSessionID.trim();
     }
     
-    public String getSessionID() {
+    public static String getSessionID() {
         return sessionID;
     }
     

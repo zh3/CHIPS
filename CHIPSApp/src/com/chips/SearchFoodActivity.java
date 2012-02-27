@@ -1,5 +1,7 @@
 package com.chips;
 
+import java.util.ArrayList;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +15,7 @@ import com.chips.dataclientobservers.FoodClientObserver;
 import com.chips.datarecord.FoodRecord;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
+import com.chips.user.PersistentUser;
 
 public class SearchFoodActivity extends AsynchronousDataClientActivity 
         implements HomeBar {
@@ -46,10 +49,11 @@ public class SearchFoodActivity extends AsynchronousDataClientActivity
     }
     
     public void doSearchFoodButtonClicked(View view) {
-        foodClient.setURL(
-                BASE_SEARCH_URL, 
-                searchFoodEditText.getText().toString()
-        );
+        ArrayList<String> searchArguments = new ArrayList<String>();
+        searchArguments.add(PersistentUser.getSessionID());
+        searchArguments.add(searchFoodEditText.getText().toString());
+        
+        foodClient.setURL(BASE_SEARCH_URL, searchArguments);
         foodClient.refreshClient();
     }
     

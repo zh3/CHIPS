@@ -10,6 +10,7 @@ import com.chips.dataclient.FoodClient;
 import com.chips.dataclientobservers.ExpandableFoodClientObserver;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
+import com.chips.user.PersistentUser;
 
 public class InventoryActivity extends AsynchronousDataClientActivity implements HomeBar {
     private static final String INVENTORY_LIST_URL 
@@ -40,7 +41,7 @@ public class InventoryActivity extends AsynchronousDataClientActivity implements
             new ExpandableFoodListAdapter(this, foodClient.getFoodRecords())
         );
         
-        foodClient.setURL(INVENTORY_LIST_URL, "");
+        foodClient.setURL(INVENTORY_LIST_URL, PersistentUser.getSessionID());
 
         foodClient.refreshClient();
         setupIntents();
