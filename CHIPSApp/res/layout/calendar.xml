@@ -4,5 +4,82 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/header_calendar"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/header_background"
+    >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="left"
+    >
+
+<TextView  
+	android:id="@+id/previous_calendar" 
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:padding="5dp"
+    android:paddingLeft="5dp"
+    android:textSize="14sp"
+    android:textStyle="bold"
+    android:textColor="#000000"
+    android:gravity="center_horizontal"
+    android:text="&lt;&lt;" 
+    android:clickable="true"   
+    />
+</LinearLayout>
+<TextView  
+	android:id="@+id/title_calendar" 
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:padding="5dp"
+    android:paddingLeft="5dp"
+    android:textSize="14sp"
+    android:textStyle="bold"
+    android:textColor="#ffffff"
+    android:gravity="center_horizontal"
+    android:layout_toRightOf="@+id/previous_calendar"
     
+    />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="right"
+    android:layout_toRightOf="@+id/title_calendar"
+    >
+<TextView  
+	android:id="@+id/next_calendar" 
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:padding="5dp"
+    android:paddingLeft="5dp"
+    android:textSize="14sp"
+    android:textStyle="bold"
+    android:textColor="#000000"
+    android:gravity="center_horizontal"
+    android:text=">>"
+    android:clickable="true"
+    />
+</LinearLayout>
+
+</RelativeLayout>
+
+<GridView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gridview"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:horizontalSpacing="2dp"
+    android:numColumns="7"
+    android:stretchMode="columnWidth"
+    android:verticalSpacing="2dp" >
+</GridView>
+
 </LinearLayout>
