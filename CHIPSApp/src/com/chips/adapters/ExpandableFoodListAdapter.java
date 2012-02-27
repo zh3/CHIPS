@@ -1,5 +1,6 @@
 package com.chips.adapters;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -7,8 +8,8 @@ import java.util.Observer;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.chips.R;
 import com.chips.dataclient.DataPushClient;
 import com.chips.datarecord.FoodRecord;
+import com.chips.user.PersistentUser;
 
 public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
     private Context context;
@@ -127,6 +129,10 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
     
     private class InventoryFoodUpdateOnClickListener 
             implements OnClickListener, Observer {
+        private static final String QUANTITY_UPDATE_URL 
+            = "http://cs110chips.phpfogapp.com/index.php/mobile/"
+              + "set_quantity_of_food_in_inventory";
+        
         public InventoryFoodUpdateOnClickListener(int groupPosition, 
                 int childPosition, EditText associatedQuantityEditText) {
             buttonGroupPosition = groupPosition;
@@ -143,14 +149,24 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
                     buttonChildPosition);
             food.setQuantity(Integer.parseInt(
                     quantityEditText.getText().toString().trim()));
-            // TODO do the actual push to the website
+            
+            ArrayList<String> quantityUpdateArguments = new ArrayList<String>();
+            quantityUpdateArguments.add(PersistentUser.getSessionID());
+            quantityUpdateArguments.add(food.getId() + "");
+            quantityUpdateArguments.add(food.getQuantity() + "");
+            
+            pushClient.setURL(QUANTITY_UPDATE_URL, quantityUpdateArguments);
+            pushClient.refreshClient();
             
             notifyDataSetChanged();
         }
         
         @Override
         public void update(Observable observable, Object data) {
-            Toast.makeText(context, "Returned from push", Toast.LENGTH_LONG);
+            if (!pushClient.lastCompletedPushSuccessful()) {
+                Toast.makeText(context, "Update Error", 
+                               Toast.LENGTH_LONG).show();
+            }
         }
         
         private DataPushClient pushClient;

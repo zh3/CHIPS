@@ -24,13 +24,11 @@ public class DataPushHandler extends SAXHandler<SuccessTagState> {
     
     public void endElement(String namespaceURI, String localName, String qName)
             throws SAXException {
-        if (localName.equals("food")) {
-            String pushSuccessfulString = getString(SuccessTagState.SUCCESS);
+        String pushSuccessfulString = getString(SuccessTagState.SUCCESS);
 
-            pushSuccessful = pushSuccessfulString.equals("1");
+        pushSuccessful = pushSuccessfulString.equals("1");
 
-            clearTagBuffers();
-        }
+        clearTagBuffers();
     }
  
     public boolean lastPushSuccessful() {
