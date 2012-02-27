@@ -1,6 +1,8 @@
 package com.chips.adapters;
 
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,8 +13,10 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chips.R;
+import com.chips.dataclient.DataPushClient;
 import com.chips.datarecord.FoodRecord;
 
 public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
@@ -122,12 +126,15 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
     }
     
     private class InventoryFoodUpdateOnClickListener 
-            implements OnClickListener {
+            implements OnClickListener, Observer {
         public InventoryFoodUpdateOnClickListener(int groupPosition, 
                 int childPosition, EditText associatedQuantityEditText) {
             buttonGroupPosition = groupPosition;
             buttonChildPosition = childPosition;
             quantityEditText = associatedQuantityEditText;
+            
+            pushClient = new DataPushClient();
+            pushClient.addObserver(this);
         }
 
         @Override
@@ -137,9 +144,16 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
             food.setQuantity(Integer.parseInt(
                     quantityEditText.getText().toString().trim()));
             // TODO do the actual push to the website
+            
             notifyDataSetChanged();
         }
         
+        @Override
+        public void update(Observable observable, Object data) {
+            Toast.makeText(context, "Returned from push", Toast.LENGTH_LONG);
+        }
+        
+        private DataPushClient pushClient;
         private int buttonGroupPosition;
         private int buttonChildPosition;
         private EditText quantityEditText;

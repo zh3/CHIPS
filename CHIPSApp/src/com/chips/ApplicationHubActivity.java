@@ -59,13 +59,13 @@ public class ApplicationHubActivity extends Activity {
     public void logoutClicked(View v) {
         startActivity(loginActivityIntent);
         PersistentUser.setLoginAutomaticallyEnabled(this, false);
+        // TODO implement actual logout calling website
         finish();
     }
     
     public void addFavoriteClicked(View view) {
       Intent favoriteActivityIntent 
           = new Intent(this, FavoritesActivity.class);
-      favoriteActivityIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
       startActivity(favoriteActivityIntent);
   }
     
