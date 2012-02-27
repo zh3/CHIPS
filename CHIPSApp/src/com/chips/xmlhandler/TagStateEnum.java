@@ -8,4 +8,8 @@ public interface TagStateEnum {
 	enum SuccessTagState implements TagStateEnum {
 	    SUCCESS
     }   
+	
+	enum LoginTagState implements TagStateEnum {
+	    SUCCESS, SESSIONID
+	}
 }

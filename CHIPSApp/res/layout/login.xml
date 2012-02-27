@@ -43,13 +43,12 @@
 		  <!--  Email Label -->
 		  <TextView android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
-		  		android:textColor="#372c24"
-		  		android:text="Email"/>
+		  		android:textColor="#372c24" android:text="@string/usernameEditTextTitle"/>
 		  <EditText android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
 		  		android:layout_marginTop="5dip"
 		  		android:layout_marginBottom="20dip"
-		  		android:singleLine="true"/>
+		  		android:singleLine="true" android:id="@+id/usernameEditText"/>
 		  <!--  Password Label -->
 		  <TextView android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
@@ -59,13 +58,13 @@
 		  		android:layout_height="wrap_content"
 		  		android:layout_marginTop="5dip"
 		  		android:singleLine="true"
-		  		android:password="true"/>
+		  		android:password="true" android:id="@+id/passwordEditText"/>
 		  <!-- Login button -->	
 		  <Button android:id="@+id/btnLogin" 
 		  		android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
 		  		android:layout_marginTop="10dip"
-		  		android:text="Login"/>
+		  		android:text="Login" android:onClick="loginClicked"/>
 		  <!-- Link to Registration Screen -->		
 		  <TextView android:id="@+id/link_to_register" 
 		  		android:layout_width="fill_parent"
@@ -75,7 +74,8 @@
 		  		android:text="New to CHIPS? Register here"
 		  		android:gravity="center"
 		  		android:textSize="20dip"
-		  		android:textColor="#0b84aa"/>
+		  		android:textColor="#0b84aa" android:onClick="registerClicked"
+		  		android:clickable="true"/>
 		    
 		</LinearLayout>
   		<!-- Login Form Ends --> 		

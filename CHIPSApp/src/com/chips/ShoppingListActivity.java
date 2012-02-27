@@ -40,9 +40,8 @@ public class ShoppingListActivity extends AsynchronousDataClientActivity
                 (ListView) findViewById(R.id.shoppingListView),
                 android.R.layout.simple_list_item_multiple_choice
         );
+        
         setupShoppingListView();
-        
-        
     }
     
     private void setupShoppingListView() {

@@ -40,10 +40,7 @@ public class InventoryActivity extends AsynchronousDataClientActivity implements
             new ExpandableFoodListAdapter(this, foodClient.getFoodRecords())
         );
         
-        foodClient.setURL(
-                INVENTORY_LIST_URL, 
-                ""
-        );
+        foodClient.setURL(INVENTORY_LIST_URL, "");
 
         foodClient.refreshClient();
         setupIntents();

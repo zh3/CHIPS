@@ -54,9 +54,12 @@ public abstract class XMLDataClient extends Observable {
     public void setURL(String baseURL, List<String> arguments) {
         try {
             URL = baseURL.trim();
+            if (URL.length() > 0 && URL.charAt(URL.length() - 1) != '/') {
+                URL = URL + "/";
+            }
             
             for (String arg : arguments) {
-                URL += URLEncoder.encode(arg.trim(), "UTF-8");
+                URL += URLEncoder.encode(arg.trim(), "UTF-8") + "/";
             }
             
             xmlURL = getXMLURL();
