@@ -62,6 +62,10 @@ public class FavoritesActivity extends AsynchronousDataClientActivity implements
         startActivity(addFoodToFavoriteIntent);
     }
     
+    public void saveFavoriteClicked(View view) {
+    	// TODO push the new favorite meal to the website here.
+    }
+    
     public void goHomeClicked(View view) {
         HomeBarAction.goHomeClicked(this, view);
     }
