@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Observable;
 
 import android.app.Activity;
+import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ public class ExpandableFoodClientObserver extends DataClientObserver {
             BaseExpandableListAdapter newAdapter) {
         recordAdapter = newAdapter;
         
+        destinationView.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
         destinationView.setAdapter(recordAdapter);
     }
     

@@ -23,8 +23,8 @@
         </TableRow>
         <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/childQuantityRow">
             <TextView android:layout_height="wrap_content" android:textStyle="bold" android:layout_width="wrap_content" android:text="@string/childQuantityTitle" android:id="@+id/childQuantityTitle"></TextView>
-            <EditText android:layout_width="match_parent" android:inputType="number" android:layout_height="wrap_content" android:layout_weight="1" android:id="@+id/childQuantityEditText" android:gravity="right">
-                <requestFocus></requestFocus>
+            <EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1" android:id="@+id/childQuantityEditText" android:gravity="right" android:inputType="number|numberDecimal">
+                <!--  <requestFocus></requestFocus> -->
             </EditText>
             <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/childUpdateQuantityButtonTitle" android:id="@+id/childUpdateButton"></Button>
         </TableRow>

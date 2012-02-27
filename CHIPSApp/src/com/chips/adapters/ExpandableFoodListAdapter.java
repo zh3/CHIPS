@@ -64,6 +64,7 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
         quantityEditText.setText(food.getQuantity() + "");
         Button updateButton 
             = (Button) convertView.findViewById(R.id.childUpdateButton);
+        updateButton.setFocusable(false);
         updateButton.setOnClickListener(
                 new InventoryFoodUpdateOnClickListener(
                         groupPosition, childPosition, quantityEditText));
