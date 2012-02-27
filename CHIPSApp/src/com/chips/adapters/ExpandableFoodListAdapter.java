@@ -6,7 +6,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -54,6 +56,12 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
         EditText quantityEditText 
             = (EditText) convertView.findViewById(R.id.childQuantityEditText);
         quantityEditText.setText(food.getQuantity() + "");
+        Button updateButton 
+            = (Button) convertView.findViewById(R.id.childUpdateButton);
+        updateButton.setOnClickListener(
+                new InventoryFoodUpdateOnClickListener(
+                        groupPosition, childPosition, quantityEditText));
+        
         return convertView;
     }
     
@@ -112,5 +120,28 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int arg0, int arg1) {
         return true;
     }
+    
+    private class InventoryFoodUpdateOnClickListener 
+            implements OnClickListener {
+        public InventoryFoodUpdateOnClickListener(int groupPosition, 
+                int childPosition, EditText associatedQuantityEditText) {
+            buttonGroupPosition = groupPosition;
+            buttonChildPosition = childPosition;
+            quantityEditText = associatedQuantityEditText;
+        }
 
+        @Override
+        public void onClick(View v) {
+            FoodRecord food = (FoodRecord) getChild(buttonGroupPosition, 
+                    buttonChildPosition);
+            food.setQuantity(Integer.parseInt(
+                    quantityEditText.getText().toString().trim()));
+            // TODO do the actual push to the website
+            notifyDataSetChanged();
+        }
+        
+        private int buttonGroupPosition;
+        private int buttonChildPosition;
+        private EditText quantityEditText;
+    }
 }

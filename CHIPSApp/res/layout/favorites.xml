@@ -63,18 +63,17 @@ android:layout_weight="1">
         android:background="@android:color/transparent"
         android:src="@drawable/add_button" />
 
-    <ListView
-        android:id="@+id/listView1"
+    <ExpandableListView
+        android:id="@+id/favoriteMealListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
-    </ListView>
+    </ExpandableListView>
 
         
     </LinearLayout>
 </ScrollView>
  
     <LinearLayout
-    	android:id="@+id/buttons"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

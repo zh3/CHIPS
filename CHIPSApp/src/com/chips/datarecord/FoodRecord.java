@@ -41,6 +41,10 @@ public class FoodRecord extends DataRecord {
         return quantity;
     }
     
+    public void setQuantity(int newQuantity) {
+        quantity = newQuantity;
+    }
+    
     public String toString() {
         return name;
     }
