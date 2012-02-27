@@ -3,11 +3,7 @@ package com.chips;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ExpandableListView;
 
-import com.chips.adapters.ExpandableFoodListAdapter;
-import com.chips.dataclient.FoodClient;
-import com.chips.dataclientobservers.ExpandableFoodClientObserver;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
 
