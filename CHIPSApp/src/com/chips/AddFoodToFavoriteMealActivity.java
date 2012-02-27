@@ -32,8 +32,13 @@ public class AddFoodToFavoriteMealActivity extends AsynchronousDataClientActivit
         //  a favorite meal. They'd just need to be reminded that they're looking
         //  at all foods, not just their inventory.)
         
+        // -- The Search button --
+        
         searchFoodIntent = new Intent(this, SearchFoodActivity.class);
-//        setupEditTexts();
+        
+        // -----------------------
+        
+        // -- The Inventory List --
         
         FoodClient foodClient = new FoodClient();
 //      FoodClientObserver foodClientObserver 
@@ -60,6 +65,8 @@ public class AddFoodToFavoriteMealActivity extends AsynchronousDataClientActivit
 
       foodClient.refreshClient();
 
+      // --------------------- (end inventory list)
+      
     }
 
 /*    
