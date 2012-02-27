@@ -1,5 +1,8 @@
 package com.chips.xmlhandler;
 
+import java.util.Arrays;
+import java.util.EnumMap;
+
 import org.xml.sax.SAXException;
 
 import com.chips.xmlhandler.TagStateEnum.SuccessTagState;
@@ -8,6 +11,10 @@ public class DataPushHandler extends SAXHandler<SuccessTagState> {
 
     public DataPushHandler() {
         pushSuccessful = false;
+        
+        buffers = new EnumMap<SuccessTagState, StringBuilder>(
+                SuccessTagState.class);
+        values = Arrays.asList(SuccessTagState.values());
     }
     
     @Override
