@@ -6,7 +6,7 @@
   android:fillViewport="true">
   <RelativeLayout 
   		android:layout_width="fill_parent"
-  		android:layout_height="wrap_content" android:background="#ffffff">
+  		android:layout_height="wrap_content" android:background="#000000">
   		
   		<!--  Header  Starts-->
   		<LinearLayout android:id="@+id/header"
@@ -26,7 +26,7 @@
   		<!-- Footer Start -->
   		<LinearLayout android:id="@+id/footer"
   				android:layout_width="fill_parent"
-  				android:layout_height="90dip"
+  				android:layout_height="72dip"
   				android:background="@layout/footer_repeat"
   				android:layout_alignParentBottom="true">
   		</LinearLayout>
@@ -43,7 +43,7 @@
 		  <!--  Email Label -->
 		  <TextView android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
-		  		android:textColor="#372c24" android:text="@string/usernameEditTextTitle"/>
+		  		android:textColor="#ffffff" android:text="@string/usernameEditTextTitle"/>
 		  <EditText android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
 		  		android:layout_marginTop="5dip"
@@ -52,7 +52,7 @@
 		  <!--  Password Label -->
 		  <TextView android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
-		  		android:textColor="#372c24"
+		  		android:textColor="#ffffff"
 		  		android:text="Password"/>
 		  <EditText android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
 		  		android:text="New to CHIPS? Register here"
 		  		android:gravity="center"
 		  		android:textSize="20dip"
-		  		android:textColor="#0b84aa" android:onClick="registerClicked"
+		  		android:textColor="#ffffff" android:onClick="registerClicked"
 		  		android:clickable="true"/>
 		    
 		</LinearLayout>
