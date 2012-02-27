@@ -28,4 +28,6 @@
     <string name="childQuantityTitle">Quantity</string>
     <string name="childUpdateQuantityButtonTitle">Update</string>
     <string name="usernameEditTextTitle">Username</string>
+    <string name="rememberPasswordCheckboxTitle">Remember Login Details</string>
+    <string name="loginAutomaticallyCheckboxTitle">Login Automatically</string>
 </resources>

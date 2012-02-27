@@ -58,7 +58,9 @@
 		  		android:layout_marginTop="5dip"
 		  		android:singleLine="true"
 		  		android:password="true" android:id="@+id/passwordEditText"/>
-		  <!-- Login button -->	
+		  <!-- Login button -->
+		  <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/rememberPassword" android:text="@string/rememberPasswordCheckboxTitle"></CheckBox>
+		  <CheckBox android:id="@+id/loginAutomatically" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/loginAutomaticallyCheckboxTitle"></CheckBox>	
 		  <Button android:id="@+id/btnLogin" 
 		  		android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
