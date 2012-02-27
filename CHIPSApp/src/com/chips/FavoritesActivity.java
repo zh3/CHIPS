@@ -12,16 +12,19 @@ import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
 
 public class FavoritesActivity extends AsynchronousDataClientActivity implements HomeBar {
-    private static final String INVENTORY_LIST_URL 
+/*
+	private static final String INVENTORY_LIST_URL 
         = "http://cs110chips.phpfogapp.com/index.php/mobile/"
           + "list_foods_in_inventory";
+*/    
     
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         HomeBarAction.inflateHomeBarView(this, R.layout.favorites);
-        
+
+/*        
         FoodClient foodClient = new FoodClient();
 //        FoodClientObserver foodClientObserver 
 //            = new FoodClientObserver(this, foodClient);
@@ -39,22 +42,24 @@ public class FavoritesActivity extends AsynchronousDataClientActivity implements
             (ExpandableListView) findViewById(R.id.favoriteMealListView), 
             new ExpandableFoodListAdapter(this, foodClient.getFoodRecords())
         );
-        
+*/    
+/*        
         foodClient.setURL(
                 INVENTORY_LIST_URL, 
                 ""
         );
+*/
 
-        foodClient.refreshClient();
+//        foodClient.refreshClient();
         setupIntents();
     }
     
     private void setupIntents() {
-        addFoodToFavoriteMealsIntent = new Intent(this, AddFoodToFavoriteMealActivity.class);
+        addFoodToFavoriteIntent = new Intent(this, AddFoodToFavoriteMealActivity.class);
     }
     
-    public void addFoodToFavoriteMealsClicked(View view) {
-        startActivity(addFoodToFavoriteMealsIntent);
+    public void addFoodToFavoriteClicked(View view) {
+        startActivity(addFoodToFavoriteIntent);
     }
     
     public void goHomeClicked(View view) {
@@ -65,5 +70,5 @@ public class FavoritesActivity extends AsynchronousDataClientActivity implements
         HomeBarAction.addFavoriteClicked(this, view);
     }
     
-    private Intent addFoodToFavoriteMealsIntent;
+    private Intent addFoodToFavoriteIntent;
 }
