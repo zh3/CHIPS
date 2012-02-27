@@ -26,9 +26,8 @@
   		<!-- Footer Start -->
   		<LinearLayout android:id="@+id/footer"
   				android:layout_width="fill_parent"
-  				android:layout_height="72dip"
   				android:background="@layout/footer_repeat"
-  				android:layout_alignParentBottom="true">
+  				android:layout_alignParentBottom="true" android:layout_height="wrap_content">
   		</LinearLayout>
   		<!-- Footer Ends -->
   		
