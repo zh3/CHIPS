@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Gallery;
 
 import com.chips.adapters.MealDisplayAdapter;
+import com.chips.user.PersistentUser;
 
 public class ApplicationHubActivity extends Activity {
     /** Called when the activity is first created. */
@@ -28,6 +29,7 @@ public class ApplicationHubActivity extends Activity {
         inventoryActivityIntent = new Intent(this, InventoryActivity.class);
         preferencesActivityIntent = new Intent(this, PreferencesActivity.class);
         statisticsActivityIntent = new Intent(this, StatisticsActivity.class);
+        loginActivityIntent = new Intent(this, LoginActivity.class);
     }
 
     public void searchFoodClicked(View v) {
@@ -54,6 +56,12 @@ public class ApplicationHubActivity extends Activity {
         startActivity(statisticsActivityIntent);
     }
     
+    public void logoutClicked(View v) {
+        startActivity(loginActivityIntent);
+        PersistentUser.setLoginAutomaticallyEnabled(this, false);
+        finish();
+    }
+    
     public void addFavoriteClicked(View view) {
       Intent favoriteActivityIntent 
           = new Intent(this, FavoritesActivity.class);
@@ -67,4 +75,5 @@ public class ApplicationHubActivity extends Activity {
     private Intent inventoryActivityIntent;
     private Intent preferencesActivityIntent;
     private Intent statisticsActivityIntent;
+    private Intent loginActivityIntent;
 }
