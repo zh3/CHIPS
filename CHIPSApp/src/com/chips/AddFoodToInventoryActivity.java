@@ -20,9 +20,12 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class AddFoodToInventoryActivity extends Activity implements HomeBar {
     private static final int SEARCH_REQUEST_CODE = 0;
+    private static final String BASE_URL 
+        = "http://cs110chips.phpfogapp.com/index.php/mobile/";
     private static final String ASSIGN_BARCODE_TO_FOOD_URL
-    = "http://cs110chips.phpfogapp.com/index.php/mobile/" 
-            + "assign_barcode_to_food/";
+        = BASE_URL + "assign_barcode_to_food/";
+    private static final String ADD_FOOD_TO_SHOPPING_LIST_URL
+        = BASE_URL + "add_food_to_shopping_list/";
     
     /** Called when the activity is first created. */
     @Override
@@ -131,6 +134,7 @@ public class AddFoodToInventoryActivity extends Activity implements HomeBar {
             Toast.makeText(this, "Please fill all information for new food", 
                     Toast.LENGTH_LONG).show();
         } else if (foodToAdd != null) {
+            
             Toast.makeText(this, "Adding Existing food: " + foodToAdd.toString(), 
                     Toast.LENGTH_LONG).show();
         } else {
