@@ -7,19 +7,23 @@ import java.util.Observable;
 import android.app.Activity;
 
 import com.chips.dataclient.XMLDataClient;
+import com.chips.dataclientactions.OnUpdateAction;
 
 public class UpdateActionDataClientObserver extends DataClientObserver {
     public UpdateActionDataClientObserver(Activity activity, 
-            XMLDataClient client) {
+            XMLDataClient newClient) {
         super(activity);
         
         actions = new ArrayList<OnUpdateAction>();
+        client = newClient;
     }
     
     @Override
     public void update(Observable observable, Object data) {
-        for (OnUpdateAction action : actions) {
-            action.doUpdateAction(observable, data, client);
+        if (client != null && client.hasLoadedOnce()) {
+            for (OnUpdateAction action : actions) {
+                action.doUpdateAction(observable, data, client);
+            }
         }
     }
     

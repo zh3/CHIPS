@@ -36,9 +36,12 @@ public class InventoryActivity extends AsynchronousDataClientActivity implements
 //            android.R.layout.simple_list_item_1
 //        );
         
+        ExpandableListView inventoryView 
+            = (ExpandableListView) findViewById(R.id.inventoryListView);
         expandableFoodClientObserver.setListViewLayout(
-            (ExpandableListView) findViewById(R.id.inventoryListView), 
-            new ExpandableFoodListAdapter(this, foodClient.getFoodRecords())
+            inventoryView, 
+            new ExpandableFoodListAdapter(this, foodClient.getFoodRecords(), 
+                    inventoryView)
         );
         
         foodClient.setURL(INVENTORY_LIST_URL, PersistentUser.getSessionID());
@@ -48,7 +51,8 @@ public class InventoryActivity extends AsynchronousDataClientActivity implements
     }
     
     private void setupIntents() {
-        addFoodToInventoryIntent = new Intent(this, AddFoodToInventoryActivity.class);
+        addFoodToInventoryIntent 
+            = new Intent(this, AddFoodToInventoryActivity.class);
     }
     
     public void addFoodToInventoryClicked(View view) {

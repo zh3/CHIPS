@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout android:layout_width="0px" android:layout_height="0px" android:orientation="vertical" android:id="@+id/focusDummy"
+                  android:focusable="true" android:focusableInTouchMode="true"></LinearLayout>
     
     <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/inventoryItemGroup" android:layout_weight="1">
         <ExpandableListView
@@ -25,5 +27,4 @@
             android:background="@android:color/transparent" android:onClick="addFoodToInventoryClicked"/>
 
     </LinearLayout>
-
 </LinearLayout>

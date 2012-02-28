@@ -42,9 +42,12 @@ public class AddFoodToFavoriteMealActivity extends AsynchronousDataClientActivit
       
       addClientObserverPair(foodClient, expandableFoodClientObserver);
       
+      ExpandableListView favoriteMealView 
+          = (ExpandableListView) findViewById(R.id.addFavoriteMealListView);
       expandableFoodClientObserver.setListViewLayout(
-          (ExpandableListView) findViewById(R.id.addFavoriteMealListView), 
-          new ExpandableFoodListAdapter(this, foodClient.getFoodRecords())
+          favoriteMealView, 
+          new ExpandableFoodListAdapter(this, foodClient.getFoodRecords(), 
+                                        favoriteMealView)
       );
       
       foodClient.setURL(

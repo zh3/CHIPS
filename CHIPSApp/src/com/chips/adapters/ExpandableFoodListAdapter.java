@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,9 +24,11 @@ import com.chips.user.PersistentUser;
 
 public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
     public ExpandableFoodListAdapter(Context newContext, 
-            List<FoodRecord> newItems) {
+            List<FoodRecord> newItems, 
+            ExpandableListView newAssociatedView) {
         context = newContext;
         items = newItems;
+        associatedView = newAssociatedView;
     }
     
     @Override
@@ -156,6 +159,10 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
             pushClient.setURL(QUANTITY_UPDATE_URL, quantityUpdateArguments);
             pushClient.refreshClient();
             
+            if (food.getQuantity() == 0) {
+                associatedView.collapseGroup(buttonGroupPosition);
+                items.remove(food);
+            }
             notifyDataSetChanged();
         }
         
@@ -176,4 +183,5 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
     
     private Context context;
     private List<FoodRecord> items;
+    private ExpandableListView associatedView;
 }

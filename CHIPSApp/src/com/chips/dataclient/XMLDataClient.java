@@ -18,6 +18,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.chips.xmlhandler.SAXHandler;
 
@@ -123,11 +124,15 @@ public abstract class XMLDataClient extends Observable {
         notifyObservers();
     }
     
+    public void logURL() {
+        Log.d("XML client URL was: ", URL);
+    }
+    
     // Parsing
     private XMLReader xr;
     private SAXParser sp;
     private SAXParserFactory spf;
-    private String URL;
+    protected String URL;
     protected URL xmlURL;
     private boolean dataLoadedOnce;
     // Asynchronous task

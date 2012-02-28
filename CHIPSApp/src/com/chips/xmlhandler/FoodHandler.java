@@ -11,7 +11,7 @@ import com.chips.datarecord.FoodRecord;
 import com.chips.xmlhandler.TagStateEnum.FoodTagState;
 
 public class FoodHandler extends SAXHandler<FoodTagState> {
-    private static final int MAX_RESULTS = 30;
+    private static final int MAX_RESULTS = 80;
     
     public FoodHandler() {
         foodRecords = new ArrayList<FoodRecord>();

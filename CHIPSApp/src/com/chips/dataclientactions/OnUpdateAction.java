@@ -1,4 +1,4 @@
-package com.chips.dataclientobservers;
+package com.chips.dataclientactions;
 
 import java.util.Observable;
 
