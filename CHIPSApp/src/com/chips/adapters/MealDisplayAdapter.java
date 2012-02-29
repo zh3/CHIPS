@@ -61,31 +61,6 @@ public class MealDisplayAdapter extends BaseAdapter {
         TextView textView = new TextView(mContext);
         textView.setText(mTitleStrings[position]);
         textView.setBackgroundResource(mImageIds[position]);
-//        textView.setLayoutParams(
-//            new FrameLayout.LayoutParams(
-//                FrameLayout.LayoutParams.MATCH_PARENT, 
-//                FrameLayout.LayoutParams.WRAP_CONTENT,
-//                Gravity.CENTER_HORIZONTAL
-//            )
-//        );
-//        
-//        textView.setBackgroundResource(R.drawable.bubble_today);
-        
-//        ImageView imageView = new ImageView(mContext);
-//
-//        imageView.setImageResource(mImageIds[position]);
-//        imageView.setLayoutParams(
-//            new FrameLayout.LayoutParams(
-//                FrameLayout.LayoutParams.WRAP_CONTENT, 
-//                FrameLayout.LayoutParams.WRAP_CONTENT,
-//                Gravity.CENTER_VERTICAL
-//            )
-//        );
-//        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-//        imageView.setBackgroundResource(android.R.color.transparent);
-//
-//
-//        frameLayout.addView(imageView);
         linearLayout.addView(textView);
         
         return linearLayout;

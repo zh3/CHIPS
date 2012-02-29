@@ -1,7 +1,11 @@
 package com.chips;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.chips.dataclient.DataPushClient;
+import com.chips.dataclient.FoodClient;
 import com.chips.dataclientactions.PushClientToastOnFailureAction;
 import com.chips.dataclientobservers.UpdateActionDataClientObserver;
 import com.chips.datarecord.FoodRecord;
@@ -19,7 +24,7 @@ import com.chips.user.PersistentUser;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-public class AddFoodToInventoryActivity extends AsynchronousDataClientActivity
+public class AddFoodToInventoryActivity extends DataClientActivity
         implements HomeBar {
     private static final int SEARCH_REQUEST_CODE = 0;
     private static final String BASE_URL 
@@ -28,6 +33,8 @@ public class AddFoodToInventoryActivity extends AsynchronousDataClientActivity
         = BASE_URL + "assign_barcode_to_food/";
     private static final String ADD_FOOD_TO_INVENTORY_URL
         = BASE_URL + "add_food_to_inventory/";
+    private static final String GET_FOOD_WITH_BARCODE_URL
+        = BASE_URL + "get_food_with_barcode/";
     
     /** Called when the activity is first created. */
     @Override
@@ -110,13 +117,15 @@ public class AddFoodToInventoryActivity extends AsynchronousDataClientActivity
     }
     
     private void populateFields(FoodRecord food) {
-        nameField.setText(food.getName());
-        caloriesField.setText(Double.toString(food.getCalories()));
-        carbohydratesField.setText(Double.toString(food.getCarbohydrates()));
-        proteinField.setText(Double.toString(food.getProtein()));
-        fatField.setText(Double.toString(food.getFat()));
-        
-        setNutritionFieldsEnabled(false);
+        if (food != null) {
+            nameField.setText(food.getName());
+            caloriesField.setText(Double.toString(food.getCalories()));
+            carbohydratesField.setText(Double.toString(food.getCarbohydrates()));
+            proteinField.setText(Double.toString(food.getProtein()));
+            fatField.setText(Double.toString(food.getFat()));
+            
+            setNutritionFieldsEnabled(false);
+        }
     }
     
     private void setNutritionFieldsEnabled(boolean enabled) {
@@ -139,11 +148,61 @@ public class AddFoodToInventoryActivity extends AsynchronousDataClientActivity
         
         if (scanResult == null) return;
         
-        if (handleLinkBarcode) {
-            barcodeField.setText(scanResult.getContents());
-            barcodeFormatField.setText(scanResult.getFormatName());
+        if (!handleLinkBarcode)  {
+            // handle barcode lookup
+            List<FoodRecord> foods = synchronousLookupFoodsWithBarcode(scanResult.getContents(), 
+                    scanResult.getFormatName());
+            if (foods.size() > 0) {
+                getUserFoodChoice(foods);
+            } else {
+                Toast.makeText(this, "No foods with that barcode found." 
+                        + "Please enter nutritional information manually", 
+                        Toast.LENGTH_LONG);
+            }
+        }
+
+        barcodeField.setText(scanResult.getContents());
+        barcodeFormatField.setText(scanResult.getFormatName());
+    }
+    
+    private List<FoodRecord> synchronousLookupFoodsWithBarcode(String barcode,
+            String format) {
+        ProgressDialog dialog = ProgressDialog.show(this, "", 
+                "Loading. Please wait...", true);
+        
+        ArrayList<String> assignBarcodeArguments = new ArrayList<String>();
+        assignBarcodeArguments.add(PersistentUser.getSessionID());
+        assignBarcodeArguments.add(barcode);
+        assignBarcodeArguments.add(format);
+        
+        
+        FoodClient foodClient = new FoodClient();
+        foodClient.setURL(GET_FOOD_WITH_BARCODE_URL, 
+                  assignBarcodeArguments);
+        foodClient.logURL();
+        foodClient.synchronousLoadClientData();
+        dialog.hide();
+        
+        return foodClient.getFoodRecords();
+    }
+    
+    private void getUserFoodChoice(List<FoodRecord> foods) {
+        String[] foodNames = new String[foods.size()];
+        
+        for (int i = 0; i < foods.size(); i++) {
+            foodNames[i] = foods.get(i).toString();
+        }
+
+        if (foods.size() > 1) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Multiple foods with given barcode found:");
+            builder.setItems(foodNames, 
+                    new SelectFoodWithBarcodeListener(foods));
+            AlertDialog alert = builder.create();
+            alert.show();
         } else {
-            
+            foodToAdd = foods.get(0);
+            populateFields(foodToAdd);
         }
     }
     
@@ -162,7 +221,7 @@ public class AddFoodToInventoryActivity extends AsynchronousDataClientActivity
             addFoodArguments.add(foodToAdd.getId() + "");
             addFoodArguments.add(quantityField.getText().toString());
             pushClient.setURL(ADD_FOOD_TO_INVENTORY_URL, addFoodArguments);
-            pushClient.asynchronousLoadClientData();
+            pushClient.synchronousLoadClientData();
             
             assignBarcodeToFood(barcodeField.getText().toString(), 
                     barcodeFormatField.getText().toString(), 
@@ -184,7 +243,7 @@ public class AddFoodToInventoryActivity extends AsynchronousDataClientActivity
           
         pushClient.setURL(ASSIGN_BARCODE_TO_FOOD_URL, 
                   assignBarcodeArguments);
-        pushClient.asynchronousLoadClientData();
+        pushClient.synchronousLoadClientData();
     }
     
     private boolean missingFoodFieldValuesExist() {
@@ -206,6 +265,22 @@ public class AddFoodToInventoryActivity extends AsynchronousDataClientActivity
     
     public void searchFoodClicked(View view) {
         startActivityForResult(searchFoodIntent, SEARCH_REQUEST_CODE);
+    }
+    
+    private class SelectFoodWithBarcodeListener 
+            implements DialogInterface.OnClickListener {
+        public SelectFoodWithBarcodeListener(List<FoodRecord> selectableFoods) {
+            this.selectableFoods = selectableFoods;
+        }
+        
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            foodToAdd = selectableFoods.get(which);
+            populateFields(foodToAdd);
+        }
+        
+        private List<FoodRecord> selectableFoods;
+        
     }
     
     private Intent searchFoodIntent;
