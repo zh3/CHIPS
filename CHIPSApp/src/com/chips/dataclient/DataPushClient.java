@@ -20,5 +20,7 @@ public class DataPushClient extends XMLDataClient {
         return pushSuccessful;
     }
     
+    
+    
     private boolean pushSuccessful;
 }

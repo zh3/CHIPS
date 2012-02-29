@@ -162,7 +162,7 @@ public class AddFoodToInventoryActivity extends AsynchronousDataClientActivity
             addFoodArguments.add(foodToAdd.getId() + "");
             addFoodArguments.add(quantityField.getText().toString());
             pushClient.setURL(ADD_FOOD_TO_INVENTORY_URL, addFoodArguments);
-            pushClient.refreshClient();
+            pushClient.asynchronousLoadClientData();
             
             assignBarcodeToFood(barcodeField.getText().toString(), 
                     barcodeFormatField.getText().toString(), 
@@ -184,7 +184,7 @@ public class AddFoodToInventoryActivity extends AsynchronousDataClientActivity
           
         pushClient.setURL(ASSIGN_BARCODE_TO_FOOD_URL, 
                   assignBarcodeArguments);
-        pushClient.refreshClient();
+        pushClient.asynchronousLoadClientData();
     }
     
     private boolean missingFoodFieldValuesExist() {

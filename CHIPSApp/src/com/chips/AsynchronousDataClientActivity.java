@@ -35,7 +35,7 @@ public abstract class AsynchronousDataClientActivity
         for (int i = 0; i < dataClients.size(); i++) {
             dataClients.get(i).addObserver(dataClientObservers.get(i));
             dataClientObservers.get(i).update(null,null);
-            dataClients.get(i).refreshClient();
+            dataClients.get(i).asynchronousLoadClientData();
         }
     }
     

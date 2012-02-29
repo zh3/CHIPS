@@ -97,7 +97,7 @@ public abstract class XMLDataClient extends Observable {
     protected abstract void reloadData();
     
     // Force client to reload the data asynchronously
-    public void refreshClient() {
+    public void asynchronousLoadClientData() {
         //long now = SystemClock.uptimeMillis();
         if (getDataTask == null && URL != null/* && (now > nextRunTime || now < lastRunTime)*/) {
             // 2nd check is in case the clock's been reset.
@@ -126,6 +126,11 @@ public abstract class XMLDataClient extends Observable {
     
     public void logURL() {
         Log.d("XML client URL was: ", URL);
+    }
+    
+    public void synchronousLoadClientData() {
+        reloadData();
+        clientNotifyObservers();
     }
     
     // Parsing

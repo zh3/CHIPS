@@ -54,7 +54,7 @@ public class SearchFoodActivity extends AsynchronousDataClientActivity
         searchArguments.add(searchFoodEditText.getText().toString());
         
         foodClient.setURL(BASE_SEARCH_URL, searchArguments);
-        foodClient.refreshClient();
+        foodClient.asynchronousLoadClientData();
     }
     
     public void goHomeClicked(View view) {

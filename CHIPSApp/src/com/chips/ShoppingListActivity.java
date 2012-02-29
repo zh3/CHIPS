@@ -32,7 +32,7 @@ public class ShoppingListActivity extends AsynchronousDataClientActivity
         addClientObserverPair(foodClient, foodClientObserver);
         
         foodClient.setURL(SHOPPING_LIST_URL, PersistentUser.getSessionID());
-        foodClient.refreshClient();
+        foodClient.asynchronousLoadClientData();
         
         foodClientObserver.setListViewLayout(
                 (ListView) findViewById(R.id.shoppingListView),

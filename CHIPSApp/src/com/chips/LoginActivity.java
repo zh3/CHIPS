@@ -64,7 +64,7 @@ public class LoginActivity extends Activity implements Observer {
             loginArguments.add(passwordEditText.getText().toString());
             loginClient.setURL(LOGIN_URL, loginArguments);
             
-            loginClient.refreshClient();
+            loginClient.asynchronousLoadClientData();
         } else {
             Toast.makeText(this, "Please enter a username and password", 
                     Toast.LENGTH_LONG).show();

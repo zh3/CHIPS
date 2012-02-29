@@ -157,7 +157,7 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
             quantityUpdateArguments.add(food.getQuantity() + "");
             
             pushClient.setURL(QUANTITY_UPDATE_URL, quantityUpdateArguments);
-            pushClient.refreshClient();
+            pushClient.asynchronousLoadClientData();
             
             if (food.getQuantity() == 0) {
                 associatedView.collapseGroup(buttonGroupPosition);

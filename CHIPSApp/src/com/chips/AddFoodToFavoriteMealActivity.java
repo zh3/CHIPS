@@ -55,7 +55,7 @@ public class AddFoodToFavoriteMealActivity extends AsynchronousDataClientActivit
               ""
       );
 
-      foodClient.refreshClient();
+      foodClient.asynchronousLoadClientData();
 
       // --------------------- (end inventory list)
       

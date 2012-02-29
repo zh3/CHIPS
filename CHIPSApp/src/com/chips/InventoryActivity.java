@@ -24,17 +24,10 @@ public class InventoryActivity extends AsynchronousDataClientActivity implements
         HomeBarAction.inflateHomeBarView(this, R.layout.inventory);
         
         FoodClient foodClient = new FoodClient();
-//        FoodClientObserver foodClientObserver 
-//            = new FoodClientObserver(this, foodClient);
         ExpandableFoodClientObserver expandableFoodClientObserver
             = new ExpandableFoodClientObserver(this, foodClient);
         
         addClientObserverPair(foodClient, expandableFoodClientObserver);
-        
-//        foodClientObserver.setListViewLayout(
-//            (ListView) findViewById(R.id.inventoryListView),
-//            android.R.layout.simple_list_item_1
-//        );
         
         ExpandableListView inventoryView 
             = (ExpandableListView) findViewById(R.id.inventoryListView);
@@ -46,7 +39,7 @@ public class InventoryActivity extends AsynchronousDataClientActivity implements
         
         foodClient.setURL(INVENTORY_LIST_URL, PersistentUser.getSessionID());
 
-        foodClient.refreshClient();
+        foodClient.asynchronousLoadClientData();
         setupIntents();
     }
     

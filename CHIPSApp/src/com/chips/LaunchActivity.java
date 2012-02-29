@@ -36,7 +36,7 @@ public class LaunchActivity extends Activity implements Observer {
            loginArguments.add(PersistentUser.getSavedPassword(this));
            loginClient.setURL(LOGIN_URL, loginArguments);
            
-           loginClient.refreshClient();
+           loginClient.asynchronousLoadClientData();
        } else {
            startActivity(loginActivityIntent);
        }
