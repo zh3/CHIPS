@@ -38,6 +38,7 @@ public class AddFoodToInventoryActivity extends AsynchronousDataClientActivity
         setupWebsiteCommunication();
         
         searchFoodIntent = new Intent(this, SearchFoodActivity.class);
+        handleLinkBarcode = false;
         setupEditTexts();
     }
     
@@ -62,12 +63,26 @@ public class AddFoodToInventoryActivity extends AsynchronousDataClientActivity
         proteinField = (EditText) findViewById(R.id.proteinEditText);
         fatField = (EditText) findViewById(R.id.fatEditText);
         quantityField = (EditText) findViewById(R.id.quantityEditText);
+        barcodeFormatField 
+            = (EditText) findViewById(R.id.barcodeFormatEditText);
+        barcodeField 
+            = (EditText) findViewById(R.id.barcodeEditText);
     }
     
     /*
      * Callback function for when 'Scan Barcode' is clicked
      */
     public void scanBarcodeClicked(View view) {
+        startBarcodeScanner();
+        handleLinkBarcode = false;
+    }
+    
+    public void linkBarcodeClicked(View view) {
+        startBarcodeScanner();
+        handleLinkBarcode = true;
+    }
+    
+    private void startBarcodeScanner() {
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.initiateScan();
     }
@@ -119,33 +134,27 @@ public class AddFoodToInventoryActivity extends AsynchronousDataClientActivity
     
     private void handleScanResult(int requestCode, int resultCode, 
             Intent intent) {
-        Toast toast;
         IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-        ArrayList<String> assignBarcodeArguments = new ArrayList<String>();
+//        ArrayList<String> assignBarcodeArguments = new ArrayList<String>();
         
-        if (scanResult != null) {
-            toast = Toast.makeText(getApplicationContext(), scanResult.toString(), Toast.LENGTH_LONG);
-            
-            assignBarcodeArguments.add(PersistentUser.getSessionID());
-            assignBarcodeArguments.add(scanResult.getContents());
-            assignBarcodeArguments.add(scanResult.getFormatName());
-            assignBarcodeArguments.add("1001");
-            
-            pushClient.setURL(ASSIGN_BARCODE_TO_FOOD_URL, assignBarcodeArguments);
-            pushClient.refreshClient();
+        if (scanResult == null) return;
+        
+        if (handleLinkBarcode) {
+            barcodeField.setText(scanResult.getContents());
+            barcodeFormatField.setText(scanResult.getFormatName());
         } else {
-            toast = Toast.makeText(getApplicationContext(), "no result", Toast.LENGTH_LONG);
+            
         }
-        
-        toast.show();
     }
     
     public void addFoodToInventoryClicked(View view) {
         ImageButton addFoodToInventoryButton = (ImageButton) findViewById(R.id.addButton);
         addFoodToInventoryButton.requestFocus();
         
-        if (missingFieldValuesExist()) {
-            Toast.makeText(this, "Please fill all information for new food", 
+        if (missingFoodFieldValuesExist()) {
+            Toast.makeText(this, 
+                    "Please fill name and all nutritional information for "
+                    + "new food", 
                     Toast.LENGTH_LONG).show();
         } else if (foodToAdd != null) {
             ArrayList<String> addFoodArguments = new ArrayList<String>();
@@ -155,14 +164,30 @@ public class AddFoodToInventoryActivity extends AsynchronousDataClientActivity
             pushClient.setURL(ADD_FOOD_TO_INVENTORY_URL, addFoodArguments);
             pushClient.refreshClient();
             
-            pushClient.logURL();
+            assignBarcodeToFood(barcodeField.getText().toString(), 
+                    barcodeFormatField.getText().toString(), 
+                    foodToAdd.getId() + "");
+            
             finish();
         } else {
             
         }
     }
     
-    private boolean missingFieldValuesExist() {
+    private void assignBarcodeToFood(String barcode, String barcodeFormat, 
+            String foodID) {
+        ArrayList<String> assignBarcodeArguments = new ArrayList<String>();
+        assignBarcodeArguments.add(PersistentUser.getSessionID());
+        assignBarcodeArguments.add(barcode);
+        assignBarcodeArguments.add(barcodeFormat);
+        assignBarcodeArguments.add(foodID);
+          
+        pushClient.setURL(ASSIGN_BARCODE_TO_FOOD_URL, 
+                  assignBarcodeArguments);
+        pushClient.refreshClient();
+    }
+    
+    private boolean missingFoodFieldValuesExist() {
         return (nameField.getText().toString().equals("")
                     || caloriesField.getText().toString().equals("")
                     || carbohydratesField.getText().toString().equals("")
@@ -190,6 +215,9 @@ public class AddFoodToInventoryActivity extends AsynchronousDataClientActivity
     private EditText proteinField;
     private EditText fatField;
     private EditText quantityField;
+    private EditText barcodeField;
+    private EditText barcodeFormatField;
     private DataPushClient pushClient;
     private FoodRecord foodToAdd;
+    private boolean handleLinkBarcode;
 }

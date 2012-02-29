@@ -19,15 +19,22 @@
 	        <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_weight="0" android:id="@+id/carbohydratesTextView" android:text="@string/carbohydratesTextViewTitle"></TextView>
 	        <EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0" android:inputType="numberDecimal" android:id="@+id/carbohydratesEditText"></EditText>
 	        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0" android:id="@+id/proteinTextView" android:text="@string/proteinTextViewTitle"></TextView>
-	        <EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0" android:inputType="numberDecimal" android:id="@+id/proteinEditText"></EditText>
+	        <EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0" android:inputType="numberDecimal" android:id="@+id/proteinEditText" android:enabled="true"></EditText>
 	        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0" android:id="@+id/fatTextView" android:text="@string/fatTextViewTitle"></TextView>
 	       
 	        
-	        <EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0" android:inputType="numberDecimal" android:id="@+id/fatEditText"></EditText>
+	        <EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0" android:inputType="numberDecimal" android:id="@+id/fatEditText" android:focusable="false"></EditText>
 	        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0" android:id="@+id/quantityTextView" android:text="@string/quantityTextViewTitle"></TextView>
 	        <EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0" android:id="@+id/quantityEditText" android:inputType="number|numberSigned"></EditText>
+	        <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="0" android:id="@+id/barcodeTextView" android:text="@string/barcodeTextViewTitle"></TextView>
+	        <EditText android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_weight="0" android:id="@+id/barcodeEditText" android:enabled="false" android:focusable="false">
+	        </EditText>
+	        <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="0" android:id="@+id/barcodeFormatTextView" android:text="@string/barcodeFormatTextViewTitle"></TextView>
+	        <EditText android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_weight="0" android:id="@+id/barcodeFormatEditText" android:enabled="false" android:focusable="false">
+	        </EditText>
 	        <LinearLayout android:layout_weight="0" android:id="@+id/addFoodToInventoryBottomButtonGroup" android:layout_width="match_parent" android:orientation="horizontal" android:layout_height="wrap_content" android:gravity="center">
 	            <ImageButton android:src="@drawable/add_button" android:onClick="addFoodToInventoryClicked" android:background="@android:color/transparent" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/addButton" android:layout_weight="1"></ImageButton>
+	            <ImageButton android:layout_width="wrap_content" android:id="@+id/linkBarcodeButton" android:src="@drawable/link_barcode_button" android:layout_weight="1" android:onClick="linkBarcodeClicked" android:background="@android:color/transparent" android:layout_height="wrap_content"></ImageButton>
 	        </LinearLayout>
 	    
 	    </LinearLayout>

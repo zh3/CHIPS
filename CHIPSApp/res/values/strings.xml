@@ -30,4 +30,6 @@
     <string name="usernameEditTextTitle">Username</string>
     <string name="rememberPasswordCheckboxTitle">Remember Login Details</string>
     <string name="loginAutomaticallyCheckboxTitle">Login Automatically</string>
+    <string name="barcodeTextViewTitle">Barcode</string>
+    <string name="barcodeFormatTextViewTitle">Barcode Format</string>
 </resources>
