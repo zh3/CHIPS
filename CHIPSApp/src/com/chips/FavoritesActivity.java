@@ -7,7 +7,7 @@ import android.view.View;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
 
-public class FavoritesActivity extends AsynchronousDataClientActivity implements HomeBar {
+public class FavoritesActivity extends DataClientActivity implements HomeBar {
 /*
 	private static final String INVENTORY_LIST_URL 
         = "http://cs110chips.phpfogapp.com/index.php/mobile/"

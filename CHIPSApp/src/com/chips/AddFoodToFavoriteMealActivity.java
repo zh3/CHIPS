@@ -17,7 +17,7 @@ import com.chips.datarecord.FoodRecord;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
 
-public class AddFoodToFavoriteMealActivity extends AsynchronousDataClientActivity implements HomeBar {
+public class AddFoodToFavoriteMealActivity extends DataClientActivity implements HomeBar {
     private static final int SEARCH_REQUEST_CODE = 0;
     private static final String INVENTORY_LIST_URL 
     = "http://cs110chips.phpfogapp.com/index.php/mobile/"

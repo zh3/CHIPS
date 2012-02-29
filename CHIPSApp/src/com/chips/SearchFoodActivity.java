@@ -17,7 +17,7 @@ import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
 import com.chips.user.PersistentUser;
 
-public class SearchFoodActivity extends AsynchronousDataClientActivity 
+public class SearchFoodActivity extends DataClientActivity 
         implements HomeBar {
     private static final String BASE_SEARCH_URL 
         = "http://cs110chips.phpfogapp.com/index.php/mobile/list_foods_in_nutrition_database_with_name/";

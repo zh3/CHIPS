@@ -9,7 +9,7 @@ import android.os.Bundle;
 import com.chips.dataclient.XMLDataClient;
 import com.chips.dataclientobservers.DataClientObserver;
 
-public abstract class AsynchronousDataClientActivity 
+public abstract class DataClientActivity 
         extends Activity {
     /** Called when the activity is first created. */
     @Override

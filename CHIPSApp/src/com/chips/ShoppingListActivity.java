@@ -13,7 +13,7 @@ import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
 import com.chips.user.PersistentUser;
 
-public class ShoppingListActivity extends AsynchronousDataClientActivity 
+public class ShoppingListActivity extends DataClientActivity 
         implements HomeBar {
     private static final String SHOPPING_LIST_URL 
         = "http://cs110chips.phpfogapp.com/index.php/mobile/"
