@@ -23,7 +23,7 @@
 	        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0" android:id="@+id/fatTextView" android:text="@string/fatTextViewTitle"></TextView>
 	       
 	        
-	        <EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0" android:inputType="numberDecimal" android:id="@+id/fatEditText" android:focusable="false"></EditText>
+	        <EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0" android:inputType="numberDecimal" android:id="@+id/fatEditText" android:focusable="true"></EditText>
 	        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0" android:id="@+id/quantityTextView" android:text="@string/quantityTextViewTitle"></TextView>
 	        <EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0" android:id="@+id/quantityEditText" android:inputType="number|numberSigned"></EditText>
 	        <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="0" android:id="@+id/barcodeTextView" android:text="@string/barcodeTextViewTitle"></TextView>
