@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft" android:minHeight="32dp">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/linearLayout1">
+        <TextView android:textSize="15dp" android:text="TextView" android:textStyle="bold" android:layout_height="wrap_content" android:id="@+id/groupName" android:layout_width="wrap_content" android:layout_weight="1"></TextView>
+        <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/shopping_group_checkbox_text" android:focusable="false" android:id="@+id/shoppingGroupCheckbox"></CheckBox>
+    </LinearLayout>
+    <TextView android:layout_height="wrap_content" android:text="TextView" android:id="@+id/groupQuantity" android:gravity="right" android:layout_width="match_parent"></TextView>
+</LinearLayout>

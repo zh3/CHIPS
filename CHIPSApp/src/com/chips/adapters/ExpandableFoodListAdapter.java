@@ -23,9 +23,12 @@ import com.chips.datarecord.FoodRecord;
 import com.chips.user.PersistentUser;
 
 public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
+    private static final String QUANTITY_UPDATE_URL 
+        = "http://cs110chips.phpfogapp.com/index.php/mobile/"
+          + "set_quantity_of_food_in_inventory";
+    
     public ExpandableFoodListAdapter(Context newContext, 
-            List<FoodRecord> newItems, 
-            ExpandableListView newAssociatedView) {
+            List<FoodRecord> newItems, ExpandableListView newAssociatedView) {
         context = newContext;
         items = newItems;
         associatedView = newAssociatedView;
@@ -66,13 +69,14 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
             = (Button) convertView.findViewById(R.id.childUpdateButton);
         updateButton.setFocusable(false);
         updateButton.setOnClickListener(
-                new InventoryFoodUpdateOnClickListener(
-                        groupPosition, childPosition, quantityEditText));
+                new FoodUpdateOnClickListener(
+                        groupPosition, childPosition, quantityEditText,
+                        QUANTITY_UPDATE_URL));
         
         return convertView;
     }
     
-    private void setTextViewString(View outerView, int textViewId, 
+    protected void setTextViewString(View outerView, int textViewId, 
             String newText) {
         TextView childView 
             = (TextView) outerView.findViewById(textViewId);
@@ -110,7 +114,8 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.food_group, null);
         }
-        TextView groupName = (TextView) convertView.findViewById(R.id.groupName);
+        TextView groupName 
+            = (TextView) convertView.findViewById(R.id.groupName);
         groupName.setText(group);
         
         setTextViewString(convertView, R.id.groupQuantity, 
@@ -128,17 +133,16 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
         return true;
     }
     
-    private class InventoryFoodUpdateOnClickListener 
+    protected class FoodUpdateOnClickListener 
             implements OnClickListener, Observer {
-        private static final String QUANTITY_UPDATE_URL 
-            = "http://cs110chips.phpfogapp.com/index.php/mobile/"
-              + "set_quantity_of_food_in_inventory";
         
-        public InventoryFoodUpdateOnClickListener(int groupPosition, 
-                int childPosition, EditText associatedQuantityEditText) {
+        public FoodUpdateOnClickListener(int groupPosition, 
+                int childPosition, EditText associatedQuantityEditText,
+                String newUpdateURL) {
             buttonGroupPosition = groupPosition;
             buttonChildPosition = childPosition;
             quantityEditText = associatedQuantityEditText;
+            updateURL = newUpdateURL;
             
             pushClient = new DataPushClient();
             pushClient.addObserver(this);
@@ -156,8 +160,9 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
             quantityUpdateArguments.add(food.getId() + "");
             quantityUpdateArguments.add(food.getQuantity() + "");
             
-            pushClient.setURL(QUANTITY_UPDATE_URL, quantityUpdateArguments);
+            pushClient.setURL(updateURL, quantityUpdateArguments);
             pushClient.asynchronousLoadClientData();
+            pushClient.logURL();
             
             if (food.getQuantity() == 0) {
                 associatedView.collapseGroup(buttonGroupPosition);
@@ -177,11 +182,12 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
         private DataPushClient pushClient;
         private int buttonGroupPosition;
         private int buttonChildPosition;
-        private EditText quantityEditText;
 
+        private EditText quantityEditText;
+        private String updateURL;
     }
     
-    private Context context;
-    private List<FoodRecord> items;
+    protected Context context;
+    protected List<FoodRecord> items;
     private ExpandableListView associatedView;
 }

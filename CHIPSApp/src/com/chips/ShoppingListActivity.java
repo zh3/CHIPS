@@ -2,13 +2,11 @@ package com.chips;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.CheckedTextView;
-import android.widget.ListView;
+import android.widget.ExpandableListView;
 
+import com.chips.adapters.ExpandableCheckableFoodListAdapter;
 import com.chips.dataclient.FoodClient;
-import com.chips.dataclientobservers.FoodClientObserver;
+import com.chips.dataclientobservers.ExpandableFoodClientObserver;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
 import com.chips.user.PersistentUser;
@@ -26,37 +24,39 @@ public class ShoppingListActivity extends DataClientActivity
         HomeBarAction.inflateHomeBarView(this, R.layout.shopping_list);
         
         FoodClient foodClient = new FoodClient();
-        FoodClientObserver foodClientObserver 
-            = new FoodClientObserver(this, foodClient);
-        
-        addClientObserverPair(foodClient, foodClientObserver);
+        ExpandableFoodClientObserver expandableFoodClientObserver 
+            = new ExpandableFoodClientObserver(this, foodClient);
         
         foodClient.setURL(SHOPPING_LIST_URL, PersistentUser.getSessionID());
+
+        foodClient.logURL();
         foodClient.asynchronousLoadClientData();
         
-        foodClientObserver.setListViewLayout(
-                (ListView) findViewById(R.id.shoppingListView),
-                android.R.layout.simple_list_item_multiple_choice
+        final ExpandableListView shoppingListView 
+            = (ExpandableListView) findViewById(R.id.shoppingListView);
+        shoppingListView.setChoiceMode(ExpandableListView.CHOICE_MODE_MULTIPLE);
+        expandableFoodClientObserver.setListViewLayout(
+            shoppingListView, 
+            new ExpandableCheckableFoodListAdapter(this, 
+                    foodClient.getFoodRecords(), shoppingListView)
         );
-        
-        setupShoppingListView();
+
+        addClientObserverPair(foodClient, expandableFoodClientObserver);
     }
     
-    private void setupShoppingListView() {
-        final ListView lv = (ListView) findViewById(R.id.shoppingListView);
-        
+//    private void setupShoppingListView() {
         // Make items not focusable to avoid listitem / button conflicts
-        lv.setItemsCanFocus(false);
-        lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-
-        // Listen for checked items
-        lv.setOnItemClickListener(new OnItemClickListener() {
-            public void onItemClick(AdapterView<?> arg0, View v, int arg2,
-                    long arg3) {
-                ((CheckedTextView)v).toggle();
-            }
-        });
-    }
+//        lv.setItemsCanFocus(false);
+//        lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+//
+//        // Listen for checked items
+//        lv.setOnItemClickListener(new OnItemClickListener() {
+//            public void onItemClick(AdapterView<?> arg0, View v, int arg2,
+//                    long arg3) {
+//                ((CheckedTextView)v).toggle();
+//            }
+//        });
+//    }
     
     public void goHomeClicked(View view) {
         HomeBarAction.goHomeClicked(this, view);
