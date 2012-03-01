@@ -148,7 +148,7 @@ public class AddFoodToInventoryActivity extends DataClientActivity
         IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
 //        ArrayList<String> assignBarcodeArguments = new ArrayList<String>();
         
-        if (scanResult == null) return;
+        if (scanResult == null || scanResult.getContents() == null) return;
         
         if (!handleLinkBarcode)  {
             // handle barcode lookup
