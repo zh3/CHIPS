@@ -12,4 +12,8 @@ public interface TagStateEnum {
 	enum LoginTagState implements TagStateEnum {
 	    SUCCESS, SESSIONID
 	}
+	
+	enum MealTagState implements TagStateEnum {
+	    MEALID, MEALTYPE, SCHEDULEDDATE, CONFIRMEDEATEN, FOODS
+	}
 }

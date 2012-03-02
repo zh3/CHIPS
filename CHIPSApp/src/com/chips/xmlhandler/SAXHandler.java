@@ -65,5 +65,4 @@ public abstract class SAXHandler<T extends Enum<T> & TagStateEnum> extends Defau
 		    
 		}
 	}
-
 }

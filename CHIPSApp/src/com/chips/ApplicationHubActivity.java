@@ -1,15 +1,18 @@
 package com.chips;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Gallery;
 
-import com.chips.adapters.MealDisplayAdapter;
+import com.chips.dataclient.MealClient;
+import com.chips.dataclientobservers.MealClientObserver;
 import com.chips.user.PersistentUser;
 
-public class ApplicationHubActivity extends Activity {
+public class ApplicationHubActivity extends DataClientActivity {
+    private static final String LIST_MEALS_URL 
+        = "http://cs110chips.phpfogapp.com/index.php/mobile/list_meals/";
+    
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -17,7 +20,17 @@ public class ApplicationHubActivity extends Activity {
         setContentView(R.layout.application_hub);
         
         Gallery gallery = (Gallery) findViewById(R.id.gallery);        
-        gallery.setAdapter(new MealDisplayAdapter(this));
+//        gallery.setAdapter(new MealDisplayAdapter(this));
+        
+        MealClient client = new MealClient();
+        MealClientObserver observer 
+            = new MealClientObserver(this, gallery, client);
+        
+        addClientObserverPair(client, observer);
+        
+        client.setURL(LIST_MEALS_URL, PersistentUser.getSessionID());
+        client.logURL();
+        client.asynchronousLoadClientData();
         
         setupIntents();
     }
