@@ -9,9 +9,9 @@ public class MealRecord extends DataRecord {
     public MealRecord(String newId, String newMealType, String newScheduledDate, 
             String newConfirmedEatenValue) {
         super(newId);
-        scheduledDate = newScheduledDate;
-        confirmedEaten = newConfirmedEatenValue;
-        mealType = newMealType;
+        scheduledDate = newScheduledDate.trim();
+        confirmedEaten = newConfirmedEatenValue.trim();
+        mealType = newMealType.trim();
         foods = new ArrayList<FoodRecord>();
     }
     
@@ -36,7 +36,7 @@ public class MealRecord extends DataRecord {
     }
     
     public String toString() {
-        String mealDescription = "food id is: " + id + ", foods are:\n";
+        String mealDescription = "Today's " + mealType + ":\n";
         
         for (FoodRecord food : foods) {
             mealDescription += food.toString() + "\n";
