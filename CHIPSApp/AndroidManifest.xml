@@ -37,7 +37,7 @@
         <activity android:name=".StatisticsActivity"
                   android:theme="@android:style/Theme.NoTitleBar">
         </activity>
-        <activity android:name="AddFoodToInventoryActivity"
+        <activity android:name=".AddFoodActivity"
                   android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity android:name="AddFoodToFavoriteMealActivity"
                   android:theme="@android:style/Theme.NoTitleBar"></activity>

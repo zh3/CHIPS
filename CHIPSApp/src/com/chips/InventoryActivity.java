@@ -13,9 +13,12 @@ import com.chips.homebar.HomeBarAction;
 import com.chips.user.PersistentUser;
 
 public class InventoryActivity extends DataClientActivity implements HomeBar {
+    private static final String BASE_URL 
+        = "http://cs110chips.phpfogapp.com/index.php/mobile/";
     private static final String INVENTORY_LIST_URL 
-        = "http://cs110chips.phpfogapp.com/index.php/mobile/"
-          + "list_foods_in_inventory";
+        = BASE_URL + "list_foods_in_inventory";
+    private static final String ADD_FOOD_TO_INVENTORY_URL
+        = BASE_URL + "add_food_to_inventory/";
     
     /** Called when the activity is first created. */
     @Override
@@ -44,8 +47,13 @@ public class InventoryActivity extends DataClientActivity implements HomeBar {
     }
     
     private void setupIntents() {
+        Bundle b = new Bundle();
+        b.putString(AddFoodActivity.BUNDLE_ADD_KEY, 
+                ADD_FOOD_TO_INVENTORY_URL);
+
         addFoodToInventoryIntent 
-            = new Intent(this, AddFoodToInventoryActivity.class);
+            = new Intent(this, AddFoodActivity.class);
+        addFoodToInventoryIntent.putExtras(b);
     }
     
     public void addFoodToInventoryClicked(View view) {

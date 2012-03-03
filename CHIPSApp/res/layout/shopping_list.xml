@@ -17,6 +17,14 @@
         android:layout_height="wrap_content" android:id="@+id/shoppingListBottomButtonGroup">
 
         <ImageButton
+            android:id="@+id/addButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/add_button" android:layout_weight="1"
+            android:background="@android:color/transparent" 
+            android:onClick="addFoodToShoppingListClicked"/>
+
+        <ImageButton
             android:id="@+id/imagePurchase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
