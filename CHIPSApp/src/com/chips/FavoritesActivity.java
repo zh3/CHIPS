@@ -13,7 +13,8 @@ public class FavoritesActivity extends DataClientActivity implements HomeBar {
         = "http://cs110chips.phpfogapp.com/index.php/mobile/"
           + "list_foods_in_inventory";
 */    
-    
+	private static final int SEARCH_REQUEST_CODE = 0;
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class FavoritesActivity extends DataClientActivity implements HomeBar {
     }
     
     public void addFoodToFavoriteClicked(View view) {
-        startActivity(addFoodToFavoriteIntent);
+        startActivityForResult(addFoodToFavoriteIntent, SEARCH_REQUEST_CODE);
     }
     
     public void saveFavoriteClicked(View view) {

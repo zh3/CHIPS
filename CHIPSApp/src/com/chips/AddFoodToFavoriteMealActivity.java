@@ -5,17 +5,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.BaseExpandableListAdapter;
-import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.chips.dataclient.FoodClient;
-import com.chips.dataclientobservers.ExpandableFoodClientObserver;
 import com.chips.dataclientobservers.FoodClientObserver;
 import com.chips.datarecord.FoodRecord;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
+import com.chips.user.PersistentUser;
 
 public class AddFoodToFavoriteMealActivity extends DataClientActivity implements HomeBar {
     private static final int SEARCH_REQUEST_CODE = 0;
@@ -64,10 +62,7 @@ public class AddFoodToFavoriteMealActivity extends DataClientActivity implements
               new favoriteItemOnClickListener()
       );
       
-      foodClient.setURL(
-              INVENTORY_LIST_URL, 
-              ""
-      );
+      foodClient.setURL(INVENTORY_LIST_URL, PersistentUser.getSessionID());
 
       foodClient.asynchronousLoadClientData();
 
@@ -80,16 +75,6 @@ public class AddFoodToFavoriteMealActivity extends DataClientActivity implements
         
     }
     
-    /* EXPERIMENTAL ---
-    protected void onExpandableListItemClick(ListView l, View v, int position, long id) {
-  	  super.onExpandableListItemClick(l, v, position, id);
-  	  Object obj = this.getExpandableListAdapter().getItem(position);
-  	  String value= obj.toString();
-  	  Intent giveBack= new Intent(this,FavoritesActivity.class);
-  	  giveBack.putExtra("value", value);                    
-  	  startActivity(giveBack);    
-  	  }
-    */
     
     private class favoriteItemOnClickListener implements OnItemClickListener {
         public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -105,7 +90,7 @@ public class AddFoodToFavoriteMealActivity extends DataClientActivity implements
                 
                 if (selectedFood != null) {
                     setResult(RESULT_OK, intent);
-                    Toast.makeText(AddFoodToFavoriteMealActivity.this, "Beep Bop", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddFoodToFavoriteMealActivity.this, "made it!", Toast.LENGTH_SHORT).show();
                 }
                 
                 finish();
