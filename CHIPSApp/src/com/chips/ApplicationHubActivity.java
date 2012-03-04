@@ -8,6 +8,7 @@ import android.widget.Gallery;
 import com.chips.dataclient.MealClient;
 import com.chips.dataclientobservers.MealClientObserver;
 import com.chips.user.PersistentUser;
+import com.chips.R;
 
 public class ApplicationHubActivity extends DataClientActivity {
     private static final String LIST_MEALS_URL 
@@ -80,7 +81,7 @@ public class ApplicationHubActivity extends DataClientActivity {
       Intent favoriteActivityIntent 
           = new Intent(this, FavoritesActivity.class);
       startActivity(favoriteActivityIntent);
-  }
+    }
     
     private Intent searchFoodActivityIntent;
     private Intent shoppingListActivityIntent;
