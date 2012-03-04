@@ -23,8 +23,8 @@ public class gsCalendar extends Activity
 	final static int ROWS = 7 ; 
 	final static int COLS = 7 ; 
 	
-//	final static int ROWS = 4 ; /// 줄/행수
-//	final static int COLS = 14 ; /// 칸/열수
+//	final static int ROWS = 4 ; 
+//	final static int COLS = 14 ; 
 //	
 	
 	Context m_context ;					
@@ -639,11 +639,6 @@ public class gsCalendar extends Activity
 	{
 		m_displayScale = m_context.getResources( ).getDisplayMetrics( ).density ;
 		return (int) ( arg * m_displayScale ) ;
-	}
-	
-	public gsCalendarColorParam getBasicColorParam( )
-	{
-		return new gsCalendarColorParam( ) ;
 	}
 }
 

@@ -3,6 +3,7 @@ package com.chips;
 import com.chips.gsCalendar.gsCalendarColorParam;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
+import com.chips.gsCalendarDlg;
 
 import android.app.Activity;
 import android.content.Context;
@@ -20,7 +21,7 @@ public class CalendarActivity extends Activity implements OnClickListener
 	 
 	TextView tvs[] ;
 	Button btns[] ;
-    
+	Context con;   
 
 	class myGsCalendar extends gsCalendar
 	{
@@ -28,6 +29,7 @@ public class CalendarActivity extends Activity implements OnClickListener
 		public myGsCalendar(Context context, LinearLayout layout) 
 		{
 			super(context, layout);
+			con = context;
 			// TODO Auto-generated constructor stub
 		}
 		
@@ -43,6 +45,10 @@ public class CalendarActivity extends Activity implements OnClickListener
 	        cal.setSelectedDay( CalendarActivity.this.getResources( ).getDrawable( R.drawable.icon ) ) ;
 	        
 	        cal.setSelectedDayTextColor( 0xff009999 ) ;
+	        
+			//activity new window.
+			gsCalendarDlg dlg = new gsCalendarDlg( con ) ; 
+			dlg.show( ) ;
 			
 			super.myClickEvent(yyyy, MM, dd);
 		}
@@ -57,6 +63,8 @@ public class CalendarActivity extends Activity implements OnClickListener
     {
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar);
+        
+        //here is error.
         //HomeBarAction.inflateHomeBarView(this, R.layout.inventory);
         
         LinearLayout lv = (LinearLayout)findViewById( R.id.calendar_lLayout ) ;
@@ -115,6 +123,5 @@ public class CalendarActivity extends Activity implements OnClickListener
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		
 	}
 }
