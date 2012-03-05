@@ -35,19 +35,23 @@ public class ExpandableCheckableFoodListAdapter
         FoodRecord food = (FoodRecord) getGroup(groupPosition);
         
         String group = food.toString();
+        
+        
+        
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.shopping_food_group, 
                     null);
-            
-            CheckBox shoppingGroupCheckBox 
-                = (CheckBox) convertView.findViewById(
-                        R.id.shoppingGroupCheckbox);
-            shoppingGroupCheckBox.setOnClickListener(
-                    new ShoppingGroupCheckboxOnClickListener(
-                            shoppingGroupCheckBox, groupPosition));
         }
+        
+        CheckBox shoppingGroupCheckBox 
+            = (CheckBox) convertView.findViewById(
+                    R.id.shoppingGroupCheckbox);
+        shoppingGroupCheckBox.setChecked(false);
+        shoppingGroupCheckBox.setOnClickListener(
+                new ShoppingGroupCheckboxOnClickListener(
+                        shoppingGroupCheckBox, groupPosition));
         
         TextView groupName 
             = (TextView) convertView.findViewById(R.id.groupName);
@@ -66,6 +70,15 @@ public class ExpandableCheckableFoodListAdapter
         }
         
         return checkedRecords;
+    }
+    
+    public void removeCheckedFoods() {
+        for (Integer i : checkedPositions) {
+            items.remove(i.intValue());
+        }
+        
+        checkedPositions.clear();
+        notifyDataSetChanged();
     }
     
     @Override
