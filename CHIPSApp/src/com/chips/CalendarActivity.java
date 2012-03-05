@@ -1,10 +1,5 @@
 package com.chips;
 
-import com.chips.gsCalendar.gsCalendarColorParam;
-import com.chips.homebar.HomeBar;
-import com.chips.homebar.HomeBarAction;
-import com.chips.gsCalendarDlg;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -14,9 +9,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.chips.gsCalendar.gsCalendarColorParam;
+import com.chips.homebar.HomeBar;
+import com.chips.homebar.HomeBarAction;
 		
 
-public class CalendarActivity extends Activity implements OnClickListener 
+public class CalendarActivity extends Activity 
+    implements OnClickListener, HomeBar
 {
 	 
 	TextView tvs[] ;
@@ -62,10 +62,10 @@ public class CalendarActivity extends Activity implements OnClickListener
     public void onCreate(Bundle savedInstanceState) 
     {
     	super.onCreate(savedInstanceState);
-        setContentView(R.layout.calendar);
+        //setContentView(R.layout.calendar);
         
         //here is error.
-        //HomeBarAction.inflateHomeBarView(this, R.layout.inventory);
+        HomeBarAction.inflateHomeBarView(this, R.layout.calendar);
         
         LinearLayout lv = (LinearLayout)findViewById( R.id.calendar_lLayout ) ;
         
@@ -124,4 +124,16 @@ public class CalendarActivity extends Activity implements OnClickListener
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 	}
+
+
+    @Override
+    public void goHomeClicked(View view) {
+        HomeBarAction.goHomeClicked(this, view);
+    }
+
+
+    @Override
+    public void addFavoriteClicked(View view) {
+        HomeBarAction.addFavoriteClicked(this, view);
+    }
 }
