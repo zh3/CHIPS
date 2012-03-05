@@ -6,8 +6,10 @@ import android.view.View;
 import android.widget.ExpandableListView;
 
 import com.chips.adapters.ExpandableCheckableFoodListAdapter;
+import com.chips.dataclient.DataPushClient;
 import com.chips.dataclient.FoodClient;
 import com.chips.dataclientobservers.ExpandableFoodClientObserver;
+import com.chips.dataclientobservers.ReloadClientOnPushSuccessObserver;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
 import com.chips.user.PersistentUser;
@@ -20,6 +22,8 @@ public class ShoppingListActivity extends DataClientActivity
         = BASE_URL + "list_foods_in_shopping_list";
     private static final String ADD_FOOD_TO_SHOPPING_LIST_URL
         = BASE_URL + "add_food_to_shopping_list/";
+    private static final String PURCHASE_ALL_URL
+        = BASE_URL + "purchase_entire_shopping_list/";
     
     /** Called when the activity is first created. */
     @Override
@@ -29,7 +33,7 @@ public class ShoppingListActivity extends DataClientActivity
         
         setupIntents();
         
-        FoodClient foodClient = new FoodClient();
+        foodClient = new FoodClient();
         ExpandableFoodClientObserver expandableFoodClientObserver 
             = new ExpandableFoodClientObserver(this, foodClient);
         
@@ -46,23 +50,18 @@ public class ShoppingListActivity extends DataClientActivity
             new ExpandableCheckableFoodListAdapter(this, 
                     foodClient.getFoodRecords(), shoppingListView)
         );
-
+        
         addClientObserverPair(foodClient, expandableFoodClientObserver);
+        
+        setupPushClient();
     }
     
-//    private void setupShoppingListView() {
-        // Make items not focusable to avoid listitem / button conflicts
-//        lv.setItemsCanFocus(false);
-//        lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-//
-//        // Listen for checked items
-//        lv.setOnItemClickListener(new OnItemClickListener() {
-//            public void onItemClick(AdapterView<?> arg0, View v, int arg2,
-//                    long arg3) {
-//                ((CheckedTextView)v).toggle();
-//            }
-//        });
-//    }
+    private void setupPushClient() {
+        pushClient = new DataPushClient();
+        ReloadClientOnPushSuccessObserver pushObserver 
+            = new ReloadClientOnPushSuccessObserver(this, foodClient);
+        addClientObserverPair(pushClient, pushObserver);
+    }
     
     private void setupIntents() {
         Bundle b = new Bundle();
@@ -86,5 +85,19 @@ public class ShoppingListActivity extends DataClientActivity
         startActivity(addFoodToShoppingListIntent);
     }
     
+    public void purchaseButtonClicked(View view) {
+        
+    }
+    
+    public void purchaseAllButtonClicked(View view) {
+        pushClient.setURL(PURCHASE_ALL_URL, PersistentUser.getSessionID());
+        // Does not check success
+        pushClient.asynchronousLoadClientData();
+        // Update foods in inventory
+        //foodClient.asynchronousLoadClientData();
+    }
+    
     private Intent addFoodToShoppingListIntent;
+    private DataPushClient pushClient;
+    private FoodClient foodClient;
 }

@@ -29,14 +29,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/purchase_button" android:layout_weight="1"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent"
+            android:onClick="purchaseButtonClicked"/>
 
         <ImageButton
             android:id="@+id/imagePurchase_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/purchase_all_button" android:layout_weight="1"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent"
+            android:onClick="purchaseAllButtonClicked"/>
 
     </LinearLayout>
 
