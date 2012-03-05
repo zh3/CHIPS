@@ -6,8 +6,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
+import java.util.Queue;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -40,6 +42,7 @@ public abstract class XMLDataClient extends Observable {
         }
         
         dataLoadedOnce = false;
+        taskList = new LinkedList<GetDataAsyncTask>();
     }
     
     private URL getXMLURL() throws MalformedURLException {
@@ -84,7 +87,9 @@ public abstract class XMLDataClient extends Observable {
 
         @Override
         protected void onPostExecute(Void result) {
-            getDataTask = null;
+            getDataTask = taskList.poll();
+            if (getDataTask != null) getDataTask.execute();
+            
             dataLoadedOnce = true;
             clientNotifyObservers();
         }
@@ -99,12 +104,16 @@ public abstract class XMLDataClient extends Observable {
     // Force client to reload the data asynchronously
     public void asynchronousLoadClientData() {
         //long now = SystemClock.uptimeMillis();
+        
         if (getDataTask == null && URL != null/* && (now > nextRunTime || now < lastRunTime)*/) {
             // 2nd check is in case the clock's been reset.
             //lastRunTime = SystemClock.uptimeMillis();
             //nextRunTime = lastRunTime + 1000 * 60 * 5; // 5 minutes
             getDataTask = new GetDataAsyncTask();
             getDataTask.execute();
+        } else if (URL != null) {
+            // Add task to Queue
+            taskList.add(new GetDataAsyncTask());
         }
     }
     
@@ -142,6 +151,7 @@ public abstract class XMLDataClient extends Observable {
     private boolean dataLoadedOnce;
     // Asynchronous task
     private GetDataAsyncTask getDataTask;
+    private Queue<GetDataAsyncTask> taskList;
     //private long lastRunTime = 0;
     //private long nextRunTime = 0;
 }
