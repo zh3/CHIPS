@@ -15,7 +15,6 @@ import com.chips.dataclientobservers.FoodClientObserver;
 import com.chips.datarecord.FoodRecord;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
-import com.chips.user.PersistentUser;
 
 public class SearchFoodActivity extends DataClientActivity 
         implements HomeBar {
@@ -50,7 +49,7 @@ public class SearchFoodActivity extends DataClientActivity
     
     public void doSearchFoodButtonClicked(View view) {
         ArrayList<String> searchArguments = new ArrayList<String>();
-        searchArguments.add(PersistentUser.getSessionID());
+//        searchArguments.add(PersistentUser.getSessionID());
         searchArguments.add(searchFoodEditText.getText().toString());
         
         foodClient.setURL(BASE_SEARCH_URL, searchArguments);

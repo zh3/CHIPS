@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent" android:id="@+id/OuterMealGroup" android:padding="10dp">
+    <ScrollView android:layout_above="@+id/buttonAccept" android:layout_alignParentTop="true" xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/ingredientScroll">
+    
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical" android:id="@+id/innerMealGroup" android:padding="10dp">
+        <TextView android:id="@+id/mealTypeTextView" android:layout_height="wrap_content" android:text="TextView" android:layout_width="wrap_content"></TextView>
+        <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical" android:id="@+id/mealIngredientGroup"></LinearLayout>
+    </LinearLayout>
+    </ScrollView>
+    <ImageButton android:layout_marginLeft="15dp" android:layout_toLeftOf="@+id/buttonReject" android:layout_width="wrap_content" android:src="@drawable/check" android:layout_height="wrap_content" android:id="@+id/buttonAccept" android:layout_alignParentBottom="true"></ImageButton>
+    <ImageButton android:layout_alignBaseline="@+id/buttonAccept" android:layout_width="wrap_content" android:src="@drawable/reject" android:layout_height="wrap_content" android:id="@+id/buttonReject" android:layout_alignParentBottom="true" android:layout_alignParentRight="true"></ImageButton>
+</RelativeLayout>

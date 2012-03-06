@@ -1,19 +1,23 @@
 package com.chips;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Gallery;
+import android.widget.LinearLayout;
 
 import com.chips.dataclient.MealClient;
 import com.chips.dataclientobservers.MealClientObserver;
 import com.chips.user.PersistentUser;
-import com.chips.R;
 
 public class ApplicationHubActivity extends DataClientActivity {
+    private static final double GALLERY_SCALE = 1.0 / 3.0;
     private static final String LIST_MEALS_URL 
-        = "http://cs110chips.phpfogapp.com/index.php/mobile/list_meals/";
+        = "http://cs110chips.phpfogapp.com/index.php/mobile/get_todays_meals/";
     
     /** Called when the activity is first created. */
     @Override
@@ -21,7 +25,8 @@ public class ApplicationHubActivity extends DataClientActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.application_hub);
         
-        Gallery gallery = (Gallery) findViewById(R.id.gallery);        
+        Gallery gallery = (Gallery) findViewById(R.id.gallery);    
+        scaleMealViewToScreen(gallery);
 //        gallery.setAdapter(new MealDisplayAdapter(this));
         
         MealClient client = new MealClient();
@@ -35,6 +40,17 @@ public class ApplicationHubActivity extends DataClientActivity {
         client.asynchronousLoadClientData();
         
         setupIntents();
+    }
+    
+    private void scaleMealViewToScreen(Gallery gallery) {
+        WindowManager wm 
+            = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        
+        int height = (int) Math.round(display.getHeight() * GALLERY_SCALE);
+        
+        gallery.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, height));
     }
     
     private void setupIntents() {

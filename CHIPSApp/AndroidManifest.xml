@@ -45,6 +45,6 @@
                   android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity android:name=".LoginActivity"
                   android:theme="@android:style/Theme.NoTitleBar"></activity>
-        <activity android:name="RegisterActivity"></activity>
+        <activity android:name=".RegisterActivity"></activity>
     </application>
 </manifest>

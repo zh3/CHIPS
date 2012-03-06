@@ -4,32 +4,22 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Gallery;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chips.R;
+import com.chips.datarecord.FoodRecord;
 import com.chips.datarecord.MealRecord;
 
 public class MealDisplayAdapter extends BaseAdapter {
     int mGalleryItemBackground;
     private Context mContext;
     private static final int ITEMS_TO_DISPLAY = 3;
-
-//    private Integer[] mImageIds = {
-//            R.drawable.bubble,
-//            R.drawable.bubble,
-//            R.drawable.bubble,
-//    };
-    
-//    private String[] mTitleStrings = {
-//            "Next Meal",
-//            "2 Meals Time",
-//            "3 Meals Time",
-//    };
 
     public MealDisplayAdapter(Context c, List<MealRecord> newMeals) {
         mContext = c;
@@ -53,27 +43,52 @@ public class MealDisplayAdapter extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        LinearLayout linearLayout = new LinearLayout(mContext);
-        linearLayout.setLayoutParams(
-            new Gallery.LayoutParams(
-                Gallery.LayoutParams.MATCH_PARENT, 
-                Gallery.LayoutParams.WRAP_CONTENT
-            )
-        );
+        LayoutInflater inflater = (LayoutInflater) mContext
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        RelativeLayout view = (RelativeLayout) inflater.inflate(R.layout.meal_view, 
+                    null);
+        LinearLayout innerView 
+            = (LinearLayout) view.findViewById(R.id.innerMealGroup);
+        view.setBackgroundResource(R.drawable.bubble);
         
-        linearLayout.setPadding(10, 10, 10, 10);
-       
-        TextView textView = new TextView(mContext);
-        textView.setPadding(10, 10, 0, 0);
-        textView.setBackgroundResource(R.drawable.bubble);
+        TextView mealTypeView = (TextView) view.findViewById(R.id.mealTypeTextView);
         
         if (mealRecords.size() > position) {
-            textView.setText(mealRecords.get(position).toString());
+            MealRecord currentMeal = mealRecords.get(position);
+            List<FoodRecord> foods = currentMeal.getFoods();
+            LinearLayout mealIngredientGroup 
+                = (LinearLayout) view.findViewById(R.id.mealIngredientGroup);
+            
+            for (FoodRecord food : foods) {
+                mealIngredientGroup.addView(getMealItemView(food.getName(), 
+                        food.getQuantity() + ""));
+            }
+            
+            mealTypeView.setText("Today's " + currentMeal.getMealTypeString()
+                    + ":");
+            
+            //scaleMealViewToScreen(parent);
         }
         
-        linearLayout.addView(textView);
+        return view;
+    }
+    
+
+    
+    private LinearLayout getMealItemView(String name, String quantity) {
+        LayoutInflater inflater = (LayoutInflater) mContext
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LinearLayout view = (LinearLayout) inflater.inflate(
+                R.layout.meal_view_item, null);
         
-        return linearLayout;
+        TextView nameView 
+            = (TextView) view.findViewById(R.id.mealIngredientName);
+        nameView.setText(name);
+        TextView quantityView 
+            = (TextView) view.findViewById(R.id.mealIngredientQuantity);
+        quantityView.setText(quantity + "g");
+        
+        return view;
     }
     
     private List<MealRecord> mealRecords;

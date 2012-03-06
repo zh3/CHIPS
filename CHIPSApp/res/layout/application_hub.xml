@@ -11,14 +11,13 @@
         <ImageButton android:layout_height="wrap_content" android:background="@android:color/transparent" android:id="@+id/applicationHubLogout" android:layout_width="wrap_content" android:onClick="logoutClicked" android:src="@drawable/logout"></ImageButton>
         
     </LinearLayout>
-    <Gallery xmlns:android="http://schemas.android.com/apk/res/android" 
+    <com.chips.widget.ScrollViewGallery
 	    android:id="@+id/gallery"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:spacing="10dp"
-	/>
-    <ImageButton android:src="@drawable/calendar_button" android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_weight="1" android:id="@+id/calendarButton" android:scaleType="fitCenter" android:background="@android:color/transparent" android:onClick="calendarClicked"></ImageButton>
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:id="@+id/applicationHubBottomButtonGroup">
+	    android:spacing="10dp"/>
+    <ImageButton android:src="@drawable/calendar_button" android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/calendarButton" android:scaleType="fitCenter" android:background="@android:color/transparent" android:onClick="calendarClicked" android:layout_weight="1"></ImageButton>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:id="@+id/applicationHubBottomButtonGroup" android:layout_weight="1">
         <ImageButton android:src="@drawable/inventory_button" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/inventoryButton" android:layout_weight="1" android:scaleType="fitCenter" android:background="@android:color/transparent" android:onClick="inventoryClicked"></ImageButton>
         <ImageButton android:src="@drawable/shopping_button" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/shoppingButton" android:layout_weight="1" android:scaleType="fitCenter" android:background="@android:color/transparent" android:onClick="shoppingListClicked"></ImageButton>
     </LinearLayout>
