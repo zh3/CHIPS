@@ -6,8 +6,10 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -47,8 +49,6 @@ public class MealDisplayAdapter extends BaseAdapter {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         RelativeLayout view = (RelativeLayout) inflater.inflate(R.layout.meal_view, 
                     null);
-        LinearLayout innerView 
-            = (LinearLayout) view.findViewById(R.id.innerMealGroup);
         view.setBackgroundResource(R.drawable.bubble);
         
         TextView mealTypeView = (TextView) view.findViewById(R.id.mealTypeTextView);
@@ -62,18 +62,22 @@ public class MealDisplayAdapter extends BaseAdapter {
             for (FoodRecord food : foods) {
                 mealIngredientGroup.addView(getMealItemView(food.getName(), 
                         food.getQuantity() + ""));
+                
+                registerMealDisplayButtonListeners(view);
             }
             
             mealTypeView.setText("Today's " + currentMeal.getMealTypeString()
                     + ":");
             
-            //scaleMealViewToScreen(parent);
         }
         
         return view;
     }
     
-
+    private void registerMealDisplayButtonListeners(ViewGroup view) {
+        ImageButton acceptButton = (ImageButton) view.findViewById(R.id.buttonAccept);
+        acceptButton.setOnClickListener(new MealAcceptOnClickListener());
+    }
     
     private LinearLayout getMealItemView(String name, String quantity) {
         LayoutInflater inflater = (LayoutInflater) mContext
@@ -89,6 +93,14 @@ public class MealDisplayAdapter extends BaseAdapter {
         quantityView.setText(quantity + "g");
         
         return view;
+    }
+    
+    private class MealAcceptOnClickListener implements OnClickListener {
+        public void onClick(View view) {
+            view.setVisibility(View.INVISIBLE);
+            
+        }
+        
     }
     
     private List<MealRecord> mealRecords;
