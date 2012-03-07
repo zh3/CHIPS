@@ -53,9 +53,9 @@ public class FavoritesActivity extends DataClientActivity implements HomeBar, Se
                     favoritesView)
         );
         
-        foodClient.setURL(FAVORITES_LIST_URL, PersistentUser.getSessionID());
+//        foodClient.setURL(FAVORITES_LIST_URL, PersistentUser.getSessionID());
 
-        foodClient.asynchronousLoadClientData();
+//        foodClient.asynchronousLoadClientData();
         setupIntents();
         
         // onActivityResult call?
@@ -76,7 +76,6 @@ public class FavoritesActivity extends DataClientActivity implements HomeBar, Se
         if (resultCode == RESULT_OK) {
         
         Bundle extras = intent.getExtras();
-        	
         FoodRecord selectedFood = (FoodRecord) extras.get("selectedFood");
         
         currentMeal.add(selectedFood);
