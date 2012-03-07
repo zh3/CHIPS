@@ -45,18 +45,11 @@ public class AddFoodToFavoriteMealActivity extends DataClientActivity implements
           = new FoodClientObserver(this, foodClient);
       
       addClientObserverPair(foodClient, foodClientObserver);
-      
-  //    TextView tv;
-      
-  //    ArrayAdapter<FoodRecord> adapter = new ArrayAdapter<FoodRecord>(this,
-  //  		  foodClient.getFoodRecords(), tv, favoriteMealView)
-      
+            
       ListView favoriteMealView 
           = (ListView) findViewById(R.id.addFavoriteMealListView);
       foodClientObserver.setListViewLayout(
           favoriteMealView, android.R.layout.simple_list_item_1 
-  //        new ListAdapter(this, foodClient.getFoodRecords(), android.R.layout.simple_list_item_1, 
-  //                                      favoriteMealView)
       );
       favoriteMealView.setOnItemClickListener(
               new favoriteItemOnClickListener()
