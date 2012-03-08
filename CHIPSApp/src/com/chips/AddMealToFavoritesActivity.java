@@ -118,6 +118,8 @@ public class AddMealToFavoritesActivity extends DataClientActivity
     private boolean pushMealToAddToFavorites() {
         ArrayList<String> addFoodArguments = new ArrayList<String>();
         addFoodArguments.add(PersistentUser.getSessionID());
+        addFoodArguments.add("THIS IS A TEST");
+        addFoodArguments.add("THIS IS A SECOND TEST");
 //        addFoodArguments.add(foodToAdd.getId() + "");
 //        addFoodArguments.add(quantityField.getText().toString());      
         
