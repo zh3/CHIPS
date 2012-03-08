@@ -93,17 +93,17 @@ public class AddMealToFavoritesActivity extends DataClientActivity implements Ho
     
     public void saveFavoriteClicked(View view) {
     	// TODO push the new favorite meal to the website here.
-    	if( pushMealToAddToFavorites() )   finish();
-    	else { Toast.makeText(this, "Problem with pushing to website.", 
-                Toast.LENGTH_LONG).show();
+//    	if( pushMealToAddToFavorites() )   finish();
+//    	else { Toast.makeText(this, "Problem with pushing to website.", 
+//                Toast.LENGTH_LONG).show();
     	}
-    }
+//    }
     
-    private boolean pushMealToAddToFavorites() {
-        ArrayList<String> addFoodArguments = new ArrayList<String>();
-        addFoodArguments.add(PersistentUser.getSessionID());
-        addFoodArguments.add(foodToAdd.getId() + "");
-        addFoodArguments.add(quantityField.getText().toString());
+//    private boolean pushMealToAddToFavorites() {
+//        ArrayList<String> addFoodArguments = new ArrayList<String>();
+//        addFoodArguments.add(PersistentUser.getSessionID());
+//        addFoodArguments.add(foodToAdd.getId() + "");
+//        addFoodArguments.add(quantityField.getText().toString());
 
 /*        
         String barcode = barcodeField.getText().toString();
@@ -115,18 +115,18 @@ public class AddMealToFavoritesActivity extends DataClientActivity implements Ho
         }
 */        
         
-        pushClient.setURL(addURL, addFoodArguments);
-        pushClient.logURL();
-        pushClient.synchronousLoadClientData();
+//        pushClient.setURL(addURL, addFoodArguments);
+//        pushClient.logURL();
+//        pushClient.synchronousLoadClientData();
         
-        boolean success = pushClient.lastCompletedPushSuccessful();
-        if (!success) {
-            Toast.makeText(this, "Communication Error", 
-                    Toast.LENGTH_LONG).show();
-        }
+//        boolean success = pushClient.lastCompletedPushSuccessful();
+//        if (!success) {
+//            Toast.makeText(this, "Communication Error", 
+//                    Toast.LENGTH_LONG).show();
+//        }
         
-        return success;
-    }
+//        return success;
+//    }
     
     public void goHomeClicked(View view) {
         HomeBarAction.goHomeClicked(this, view);
