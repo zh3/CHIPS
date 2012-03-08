@@ -31,9 +31,6 @@
         <activity android:name="InventoryActivity"
                   android:theme="@android:style/Theme.NoTitleBar">
         </activity>
-        <activity android:name=".PreferencesActivity"
-                  android:theme="@android:style/Theme.NoTitleBar">
-        </activity>
         <activity android:name=".StatisticsActivity"
                   android:theme="@android:style/Theme.NoTitleBar">
         </activity>

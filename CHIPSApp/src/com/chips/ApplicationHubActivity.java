@@ -58,8 +58,7 @@ public class ApplicationHubActivity extends DataClientActivity {
         shoppingListActivityIntent = new Intent(this, ShoppingListActivity.class);
         calendarActivityIntent = new Intent(this, CalendarActivity.class);
         inventoryActivityIntent = new Intent(this, InventoryActivity.class);
-        preferencesActivityIntent = new Intent(this, PreferencesActivity.class);
-        statisticsActivityIntent = new Intent(this, StatisticsActivity.class);
+        preferencesActivityIntent = new Intent(this, StatisticsActivity.class);
         loginActivityIntent = new Intent(this, LoginActivity.class);
     }
 

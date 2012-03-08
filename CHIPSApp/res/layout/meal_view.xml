@@ -11,5 +11,5 @@
     </ScrollView>
     <ImageButton android:layout_marginLeft="15dp" android:background="@android:color/transparent" android:layout_toLeftOf="@+id/buttonReject" android:layout_width="wrap_content" android:src="@drawable/check" android:layout_height="wrap_content" android:id="@+id/buttonAccept" android:layout_alignParentBottom="true" android:focusable="false"></ImageButton>
     <ImageButton android:layout_alignBaseline="@+id/buttonAccept" android:background="@android:color/transparent" android:layout_width="wrap_content" android:src="@drawable/reject" android:layout_height="wrap_content" android:id="@+id/buttonReject" android:layout_alignParentBottom="true" android:layout_alignParentRight="true" android:focusable="false"></ImageButton>
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/mealTypeTextView" android:text="TextView" android:layout_alignParentTop="true" android:textStyle="bold"></TextView>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/mealTypeTextView" android:layout_alignParentTop="true" android:textStyle="bold" android:text="@string/mealViewDefault"></TextView>
 </RelativeLayout>
