@@ -96,7 +96,7 @@ public class ApplicationHubActivity extends DataClientActivity {
     
     public void addFavoriteClicked(View view) {
       Intent favoriteActivityIntent 
-          = new Intent(this, FavoritesActivity.class);
+          = new Intent(this, AddMealToFavoritesActivity.class);
       startActivity(favoriteActivityIntent);
     }
     

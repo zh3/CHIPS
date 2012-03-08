@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.chips.ApplicationHubActivity;
-import com.chips.FavoritesActivity;
+import com.chips.AddMealToFavoritesActivity;
 import com.chips.R;
 
 public class HomeBarAction {
@@ -22,7 +22,7 @@ public class HomeBarAction {
     
     public static void addFavoriteClicked(Activity callingActivity, View view) {
         Intent favoriteActivityIntent 
-            = new Intent(callingActivity, FavoritesActivity.class);
+            = new Intent(callingActivity, AddMealToFavoritesActivity.class);
         favoriteActivityIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         
         callingActivity.startActivity(favoriteActivityIntent);
