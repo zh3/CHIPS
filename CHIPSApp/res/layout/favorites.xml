@@ -55,14 +55,6 @@
     
             <!-- The Add Food button. -->
     
-    <ImageButton
-        android:id="@+id/addButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:background="@android:color/transparent"
-        android:src="@drawable/add_button"
-        android:onClick="addFoodToFavoriteClicked" />
 
     <ExpandableListView
         android:id="@+id/favoriteMealListView"
@@ -87,9 +79,9 @@
         	android:layout_height="wrap_content"
         	android:layout_gravity="center_horizontal"
         	android:onClick="addFavoriteMealClicked"
-        	android:layout_weight="1"
+        	android:layout_weight="0"
         	android:background="@android:color/transparent"
-        	android:src="@drawable/add_button" />
+        	android:src="@drawable/add_normal" />
     
     </LinearLayout>
 

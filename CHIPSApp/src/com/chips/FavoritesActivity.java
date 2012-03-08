@@ -49,9 +49,10 @@ public class FavoritesActivity extends DataClientActivity
     }
     
     private void setupAddURL() {
-        Bundle b = getIntent().getExtras();
+//        Bundle b = getIntent().getExtras();
         
-        addURL = b.getString(BUNDLE_ADD_KEY);
+//        addURL = b.getString(BUNDLE_ADD_KEY);
+    	addURL = ADD_FOOD_TO_FAVORITES_URL;
     }
     
     private void setupWebsiteCommunication() {
@@ -229,7 +230,8 @@ public class FavoritesActivity extends DataClientActivity
         ImageButton addFoodToInventoryButton 
             = (ImageButton) findViewById(R.id.addButton);
         addFoodToInventoryButton.requestFocus();
-        
+
+/*        
         if (missingFoodFieldValuesExist()) {
             Toast.makeText(this, 
                     "Please fill name and all nutritional information for "
@@ -241,7 +243,7 @@ public class FavoritesActivity extends DataClientActivity
             boolean success = createFoodFromFields();
             if (!success) return;
         }
-        
+*/        
         if (pushFoodToAddToInventory()) finish();
     }
     

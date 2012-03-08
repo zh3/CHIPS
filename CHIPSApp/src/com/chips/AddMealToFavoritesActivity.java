@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 
 import com.chips.adapters.ExpandableFoodListAdapter;
@@ -92,6 +93,39 @@ public class AddMealToFavoritesActivity extends DataClientActivity implements Ho
     
     public void saveFavoriteClicked(View view) {
     	// TODO push the new favorite meal to the website here.
+    	if( pushMealToAddToFavorites() )   finish();
+    	else { Toast.makeText(this, "Problem with pushing to website.", 
+                Toast.LENGTH_LONG).show();
+    	}
+    }
+    
+    private boolean pushMealToAddToFavorites() {
+        ArrayList<String> addFoodArguments = new ArrayList<String>();
+        addFoodArguments.add(PersistentUser.getSessionID());
+        addFoodArguments.add(foodToAdd.getId() + "");
+        addFoodArguments.add(quantityField.getText().toString());
+
+/*        
+        String barcode = barcodeField.getText().toString();
+        String barcodeFormat = barcodeField.getText().toString();
+        if (!barcode.equals("") && !barcodeFormat.equals("")) {
+            assignBarcodeToFood(barcodeField.getText().toString(), 
+                    barcodeFormatField.getText().toString(), 
+                    foodToAdd.getId() + "");
+        }
+*/        
+        
+        pushClient.setURL(addURL, addFoodArguments);
+        pushClient.logURL();
+        pushClient.synchronousLoadClientData();
+        
+        boolean success = pushClient.lastCompletedPushSuccessful();
+        if (!success) {
+            Toast.makeText(this, "Communication Error", 
+                    Toast.LENGTH_LONG).show();
+        }
+        
+        return success;
     }
     
     public void goHomeClicked(View view) {
