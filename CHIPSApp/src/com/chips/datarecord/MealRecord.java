@@ -45,6 +45,16 @@ public class MealRecord extends DataRecord {
         
         return mealDescription;
     }
+    
+    public String calendarToString() {
+    	String meal = "" + mealType + ":\n";
+    	
+    	for (FoodRecord food : foods) {
+    		meal += food.toString() + "\n";
+    	}
+    	
+		return meal;
+    }
 
     private String scheduledDate;
     private String confirmedEaten;

@@ -15,7 +15,7 @@ import com.chips.dataclientobservers.MealClientObserver;
 import com.chips.user.PersistentUser;
 
 public class ApplicationHubActivity extends DataClientActivity {
-    private static final double GALLERY_SCALE = 1.0 / 3.0;
+    private static final double GALLERY_SCALE = 0.4;
     private static final String LIST_MEALS_URL 
         = "http://cs110chips.phpfogapp.com/index.php/mobile/get_todays_meals/";
     

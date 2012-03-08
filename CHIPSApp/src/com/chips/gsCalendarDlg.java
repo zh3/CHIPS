@@ -1,6 +1,8 @@
 package com.chips;
 
 import com.chips.R;
+import com.chips.dataclient.*;
+import com.chips.datarecord.*;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -28,15 +30,14 @@ import android.view.View.OnClickListener;
 				super.myClickEvent(yyyy, MM, dd);
 			}
 		}*/
-    	
-		private TextView text;
-		
-		public gsCalendarDlg( Context context ) 
+    			
+		public gsCalendarDlg( Context context, String data) 
 		{
 			super(context);
 			requestWindowFeature(Window.FEATURE_NO_TITLE);
 			setContentView(R.layout.calendar_dlg);
-			
+			TextView caltv = (TextView)findViewById(R.id.dia_textView2);
+			caltv.setText(data);
 	        //LinearLayout lv = (LinearLayout)findViewById( R.id.calendar_dia ) ;
 	        
 	        //text = (TextView)findViewById( R.id.dia_textview1 );
