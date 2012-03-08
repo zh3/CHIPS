@@ -24,13 +24,9 @@ import com.chips.user.PersistentUser;
 
 public class AddMealToFavoritesActivity extends DataClientActivity 
         implements HomeBar, Serializable {
-
-	//import com.chips.adapters.ExpandableFavoritesAdapter; up top ^^
 	
 	private static final String BASE_URL 
       = "http://cs110chips.phpfogapp.com/index.php/mobile/";
-//    private static final String FAVORITES_LIST_URL 
-//      = BASE_URL + "list_favorite_meals";
     private static final String ADD_MEAL_TO_FAVORITES_URL
       = BASE_URL + "add_meal_to_favorites/";
 
@@ -102,8 +98,6 @@ public class AddMealToFavoritesActivity extends DataClientActivity
     
       /* -- Web site Communications -- */
     private void setupAddURL() {
- //       Bundle b = getIntent().getExtras();
-        
         addURL = ADD_MEAL_TO_FAVORITES_URL;
     }
     
@@ -125,17 +119,7 @@ public class AddMealToFavoritesActivity extends DataClientActivity
         ArrayList<String> addFoodArguments = new ArrayList<String>();
         addFoodArguments.add(PersistentUser.getSessionID());
 //        addFoodArguments.add(foodToAdd.getId() + "");
-//        addFoodArguments.add(quantityField.getText().toString());
-
-/*        
-        String barcode = barcodeField.getText().toString();
-        String barcodeFormat = barcodeField.getText().toString();
-        if (!barcode.equals("") && !barcodeFormat.equals("")) {
-            assignBarcodeToFood(barcodeField.getText().toString(), 
-                    barcodeFormatField.getText().toString(), 
-                    foodToAdd.getId() + "");
-        }
-*/        
+//        addFoodArguments.add(quantityField.getText().toString());      
         
         pushClient.setURL(addURL, addFoodArguments);
         pushClient.logURL();

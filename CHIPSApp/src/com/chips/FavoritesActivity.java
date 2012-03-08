@@ -65,14 +65,9 @@ public class FavoritesActivity extends DataClientActivity
         setupWebsiteCommunication();
         
         addMealIntent = new Intent(this, AddMealToFavoritesActivity.class);
-//        handleLinkBarcode = false;
-//        setupEditTexts();
     }
     
     private void setupAddURL() {
-//        Bundle b = getIntent().getExtras();
-        
-//        addURL = b.getString(BUNDLE_ADD_KEY);
     	addURL = ADD_FOOD_TO_FAVORITES_URL;
     }
     
@@ -88,71 +83,7 @@ public class FavoritesActivity extends DataClientActivity
         updateActionObserver.addAction(action);
         
         addClientObserverPair(pushClient, updateActionObserver);
-    }
-    
-/*    
-    private void setupEditTexts() {
-        nameField = (EditText) findViewById(R.id.newFoodNameEditText);
-        caloriesField = (EditText) findViewById(R.id.caloriesEditText);
-        carbohydratesField 
-            = (EditText) findViewById(R.id.carbohydratesEditText);
-        proteinField = (EditText) findViewById(R.id.proteinEditText);
-        fatField = (EditText) findViewById(R.id.fatEditText);
-        quantityField = (EditText) findViewById(R.id.quantityEditText);
-        barcodeFormatField 
-            = (EditText) findViewById(R.id.barcodeFormatEditText);
-        barcodeField 
-            = (EditText) findViewById(R.id.barcodeEditText);
-    }
-*/  
-    
-    
-    /*
-     * Callback function for when 'Scan Barcode' is clicked
-     */
-/*    
-    public void scanBarcodeClicked(View view) {
-        startBarcodeScanner();
-        handleLinkBarcode = false;
-    }
-    
-    public void linkBarcodeClicked(View view) {
-        startBarcodeScanner();
-        handleLinkBarcode = true;
-    }
-    
-    private void startBarcodeScanner() {
-        IntentIntegrator integrator = new IntentIntegrator(this);
-        integrator.initiateScan();
-    }
-    
-    // Callback for barcode scanner activity
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        switch (requestCode) {
-        case SEARCH_REQUEST_CODE:
-            handleSearchResult(requestCode, resultCode, intent);
-            break;
-        default:
-            handleScanResult(requestCode, resultCode, intent);
-        }
-    }
-  
-*/   // Shouldn't need any barcode scanning here.
-    
-/*
-    
-    private void handleSearchResult(int requestCode, int resultCode, 
-            Intent intent) {
-        if (resultCode == RESULT_OK) {
-            Bundle extras = intent.getExtras();
-            FoodRecord selectedFood = (FoodRecord) extras.get("selectedFood");
-            
-            foodToAdd = selectedFood;
-            populateFields(selectedFood);
-        }
-    }
-
-*/    
+    }  
     
     private void populateFields(FoodRecord food) {
         if (food != null) {
@@ -178,93 +109,13 @@ public class FavoritesActivity extends DataClientActivity
         fatField.setEnabled(enabled);
         fatField.setFocusable(enabled);
     }
-    
-/*    
-    
-    private void handleScanResult(int requestCode, int resultCode, 
-            Intent intent) {
-        IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-//        ArrayList<String> assignBarcodeArguments = new ArrayList<String>();
-        
-        if (scanResult == null || scanResult.getContents() == null) return;
-        
-        if (!handleLinkBarcode)  {
-            // handle barcode lookup
-            List<FoodRecord> foods = synchronousLookupFoodsWithBarcode(scanResult.getContents(), 
-                    scanResult.getFormatName());
-            if (foods.size() > 0) {
-                getUserFoodChoice(foods);
-            } else {
-                Toast.makeText(this, "No foods with that barcode found." 
-                        + "Please enter nutritional information manually", 
-                        Toast.LENGTH_LONG);
-            }
-        }
-
-        barcodeField.setText(scanResult.getContents());
-        barcodeFormatField.setText(scanResult.getFormatName());
-    }
-
-*/
-    
-/*    
-    
-    private List<FoodRecord> synchronousLookupFoodsWithBarcode(String barcode,
-            String format) {
-        
-        ArrayList<String> assignBarcodeArguments = new ArrayList<String>();
-        assignBarcodeArguments.add(PersistentUser.getSessionID());
-        assignBarcodeArguments.add(barcode);
-        assignBarcodeArguments.add(format);
-        
-        foodClient.setURL(GET_FOOD_WITH_BARCODE_URL, 
-                  assignBarcodeArguments);
-        foodClient.logURL();
-        foodClient.synchronousLoadClientData();
-        
-        return foodClient.getFoodRecords();
-    }
-    
-    private void getUserFoodChoice(List<FoodRecord> foods) {
-        String[] foodNames = new String[foods.size()];
-        
-        for (int i = 0; i < foods.size(); i++) {
-            foodNames[i] = foods.get(i).toString();
-        }
-
-        if (foods.size() > 1) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Multiple foods with given barcode found:");
-            builder.setItems(foodNames, 
-                    new SelectFoodWithBarcodeListener(foods));
-            AlertDialog alert = builder.create();
-            alert.show();
-        } else {
-            foodToAdd = foods.get(0);
-            populateFields(foodToAdd);
-        }
-    }
-
-*/    
+       
     
     public void addFoodToInventoryClicked(View view) {
         ImageButton addFoodToInventoryButton 
             = (ImageButton) findViewById(R.id.addButton);
         addFoodToInventoryButton.requestFocus();
-
-/*        
-        if (missingFoodFieldValuesExist()) {
-            Toast.makeText(this, 
-                    "Please fill name and all nutritional information for "
-                    + "new food", 
-                    Toast.LENGTH_LONG).show();
-        }
-        
-        if (foodToAdd == null) {
-            boolean success = createFoodFromFields();
-            if (!success) return;
-        }
-*/        
+       
         if (pushFoodToAddToInventory()) finish();
     }
     
@@ -299,17 +150,7 @@ public class FavoritesActivity extends DataClientActivity
         ArrayList<String> addFoodArguments = new ArrayList<String>();
         addFoodArguments.add(PersistentUser.getSessionID());
         addFoodArguments.add(foodToAdd.getId() + "");
-        addFoodArguments.add(quantityField.getText().toString());
-
-/*        
-        String barcode = barcodeField.getText().toString();
-        String barcodeFormat = barcodeField.getText().toString();
-        if (!barcode.equals("") && !barcodeFormat.equals("")) {
-            assignBarcodeToFood(barcodeField.getText().toString(), 
-                    barcodeFormatField.getText().toString(), 
-                    foodToAdd.getId() + "");
-        }
-*/        
+        addFoodArguments.add(quantityField.getText().toString());       
         
         pushClient.setURL(addURL, addFoodArguments);
         pushClient.logURL();
@@ -322,25 +163,7 @@ public class FavoritesActivity extends DataClientActivity
         }
         
         return success;
-    }
-
-/*    
-    
-    private void assignBarcodeToFood(String barcode, String barcodeFormat, 
-            String foodID) {
-        ArrayList<String> assignBarcodeArguments = new ArrayList<String>();
-        assignBarcodeArguments.add(PersistentUser.getSessionID());
-        assignBarcodeArguments.add(barcode);
-        assignBarcodeArguments.add(barcodeFormat);
-        assignBarcodeArguments.add(foodID);
-          
-        pushClient.setURL(ASSIGN_BARCODE_TO_FOOD_URL, 
-                  assignBarcodeArguments);
-        pushClient.logURL();
-        pushClient.synchronousLoadClientData();
-    }
-
-*/    
+    }  
 
     private boolean missingFoodFieldValuesExist() {
         return (nameField.getText().toString().equals("")
@@ -361,27 +184,7 @@ public class FavoritesActivity extends DataClientActivity
     
     public void addFavoriteMealClicked(View view) {
         startActivityForResult(addMealIntent, SEARCH_REQUEST_CODE);
-    }
-    
-/*  
-    
-    private class SelectFoodWithBarcodeListener 
-            implements DialogInterface.OnClickListener {
-        public SelectFoodWithBarcodeListener(List<FoodRecord> selectableFoods) {
-            this.selectableFoods = selectableFoods;
-        }
-        
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            foodToAdd = selectableFoods.get(which);
-            populateFields(foodToAdd);
-        }
-        
-        private List<FoodRecord> selectableFoods;
-        
-    }
-    
-*/    
+    }    
     
     private Intent addMealIntent;
     private EditText nameField;
@@ -396,5 +199,4 @@ public class FavoritesActivity extends DataClientActivity
     private FoodClient foodClient;
     private FoodRecord foodToAdd;
     private String addURL;
-//    private boolean handleLinkBarcode;
 }
