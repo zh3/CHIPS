@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import android.app.Activity;
@@ -17,9 +18,15 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.chips.dataclient.MealClient;
+import com.chips.datarecord.MealRecord;
+import com.chips.user.PersistentUser;
 
-public class gsCalendar extends Activity 
+
+public class gsCalendar //extends Activity 
 {
+
+
 	final static int ROWS = 7 ; 
 	final static int COLS = 7 ; 
 	
@@ -30,7 +37,7 @@ public class gsCalendar extends Activity
 	Context m_context ;					
 	LinearLayout m_targetLayout ;	
 	Button [] m_controlBtn ;		
-	TextView [] m_viewTv ;			
+	TextView [] m_viewTv ;	
 	
 	Calendar m_Calendar ;			
 	
@@ -78,7 +85,7 @@ public class gsCalendar extends Activity
     
     Drawable m_todayCellBgImgId = null ; 	
     
-    String [] m_dayText ={ "sun","mon", "tue", "wed", "thu", "fri", "sat",} ; 
+    String [] m_dayText ={ "Sun","Mon", "Tue", "Wed", "Thu", "Fri", "Sat",} ; 
     
     
     Button m_preYearBtn ;			
@@ -88,8 +95,7 @@ public class gsCalendar extends Activity
     
     TextView m_yearTv ;				
     TextView m_mothTv ;				
-    TextView m_dayTv ;				
-    
+    TextView m_dayTv ;		    
     
     ArrayList< Integer > m_holiDay = new ArrayList< Integer >( ) ;
     
@@ -634,6 +640,7 @@ public class gsCalendar extends Activity
 		Log.d( "MM", "" + monthString ) ;
 		Log.d( "dd", "" + dd ) ;
 	}
+	
     
 	public int pixelToDip( int arg )
 	{
