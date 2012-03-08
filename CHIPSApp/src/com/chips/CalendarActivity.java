@@ -1,5 +1,7 @@
 package com.chips;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -10,9 +12,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.chips.dataclient.MealClient;
+import com.chips.datarecord.MealRecord;
 import com.chips.gsCalendar.gsCalendarColorParam;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
+import com.chips.user.PersistentUser;
 		
 
 public class CalendarActivity extends Activity 
@@ -22,10 +27,13 @@ public class CalendarActivity extends Activity
 	TextView tvs[] ;
 	Button btns[] ;
 	Context con;   
+	TextView caltv;
 
 	class myGsCalendar extends gsCalendar
 	{
-
+	    private static final String LIST_MEALS_URL 
+	    = "http://cs110chips.phpfogapp.com/index.php/mobile/list_meals/";
+	    
 		public myGsCalendar(Context context, LinearLayout layout) 
 		{
 			super(context, layout);
@@ -37,6 +45,7 @@ public class CalendarActivity extends Activity
 		public void myClickEvent(int yyyy, int MM, int dd) 
 		{
 			// TODO Auto-generated method stub
+	        
 			
 			cal.redraw( ) ;
 			
@@ -46,10 +55,27 @@ public class CalendarActivity extends Activity
 	        
 	        cal.setSelectedDayTextColor( 0xff009999 ) ;
 	        
-			//activity new window.
-			gsCalendarDlg dlg = new gsCalendarDlg( con ) ; 
-			dlg.show( ) ;
+	        
+	        MealClient client = new MealClient();
+	        client.setURL(LIST_MEALS_URL, PersistentUser.getSessionID());
+	        client.logURL();
+	        client.synchronousLoadClientData();
+	        
+	        String date = String.format("%04d-%02d-%02d", yyyy, MM + 1, dd);
+	        String data = "\n";
+	        List<MealRecord> meals = client.getMealRecords();
+        	data += "scheduled date: " + date + "\n";
+	        for(MealRecord meal : meals) {
+	        	if(meal.getScheduledDateString().equals(date))
+	        	{
+	        		data += meal.calendarToString();
+	        	}
+	        }
 			
+			//activity new window.
+			gsCalendarDlg dlg = new gsCalendarDlg( con, data ) ; 
+			dlg.show( ) ;
+	        
 			super.myClickEvent(yyyy, MM, dd);
 		}
 		
@@ -68,6 +94,7 @@ public class CalendarActivity extends Activity
         HomeBarAction.inflateHomeBarView(this, R.layout.calendar);
         
         LinearLayout lv = (LinearLayout)findViewById( R.id.calendar_lLayout ) ;
+       
         
         tvs = new TextView[3] ;
         tvs[0] = (TextView)findViewById( R.id.tv1 ) ;
@@ -81,7 +108,7 @@ public class CalendarActivity extends Activity
         btns[3] = (Button)findViewById( R.id.Button04 ) ;
         
         cal = new myGsCalendar( this, lv ) ;
-        
+
         gsCalendarColorParam cParam = new gsCalendarColorParam( ) ;
         
         cParam.m_cellColor = 0x00000000 ;
