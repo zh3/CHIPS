@@ -9,12 +9,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.chips.adapters.ExpandableFoodListAdapter;
 import com.chips.dataclient.DataPushClient;
 import com.chips.dataclient.FoodClient;
 import com.chips.dataclientactions.PushClientToastOnFailureAction;
+import com.chips.dataclientobservers.ExpandableFoodClientObserver;
 import com.chips.dataclientobservers.UpdateActionDataClientObserver;
 import com.chips.datarecord.FoodRecord;
 import com.chips.homebar.HomeBar;
@@ -39,6 +42,24 @@ public class FavoritesActivity extends DataClientActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         HomeBarAction.inflateHomeBarView(this, R.layout.favorites);
+        
+        foodClient = new FoodClient();
+        ExpandableFoodClientObserver expandableFoodClientObserver
+            = new ExpandableFoodClientObserver(this, foodClient);
+        
+        addClientObserverPair(foodClient, expandableFoodClientObserver);
+        
+        ExpandableListView favoritesView 
+            = (ExpandableListView) findViewById(R.id.favoriteMealsListView);
+        expandableFoodClientObserver.setListViewLayout(
+            favoritesView, 
+            new ExpandableFoodListAdapter(this, foodClient.getFoodRecords(), 
+                    favoritesView)
+        );
+        
+        foodClient.setURL(FAVORITES_LIST_URL, PersistentUser.getSessionID());
+
+        foodClient.asynchronousLoadClientData();
         
         setupAddURL();
         setupWebsiteCommunication();
