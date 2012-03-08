@@ -39,7 +39,8 @@ public class MealRecord extends DataRecord {
         String mealDescription = "Today's " + mealType + ":\n";
         
         for (FoodRecord food : foods) {
-            mealDescription += food.toString() + "\n";
+            mealDescription += food.getQuantity() + "g " + food.toString() 
+                    + "\n";
         }
         
         return mealDescription;

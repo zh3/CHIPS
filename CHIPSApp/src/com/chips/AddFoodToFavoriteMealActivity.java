@@ -45,18 +45,11 @@ public class AddFoodToFavoriteMealActivity extends DataClientActivity implements
           = new FoodClientObserver(this, foodClient);
       
       addClientObserverPair(foodClient, foodClientObserver);
-      
-  //    TextView tv;
-      
-  //    ArrayAdapter<FoodRecord> adapter = new ArrayAdapter<FoodRecord>(this,
-  //  		  foodClient.getFoodRecords(), tv, favoriteMealView)
-      
+            
       ListView favoriteMealView 
           = (ListView) findViewById(R.id.addFavoriteMealListView);
       foodClientObserver.setListViewLayout(
           favoriteMealView, android.R.layout.simple_list_item_1 
-  //        new ListAdapter(this, foodClient.getFoodRecords(), android.R.layout.simple_list_item_1, 
-  //                                      favoriteMealView)
       );
       favoriteMealView.setOnItemClickListener(
               new favoriteItemOnClickListener()
@@ -90,7 +83,8 @@ public class AddFoodToFavoriteMealActivity extends DataClientActivity implements
                 
                 if (selectedFood != null) {
                     setResult(RESULT_OK, intent);
-                    Toast.makeText(AddFoodToFavoriteMealActivity.this, "made it!", Toast.LENGTH_SHORT).show();
+                } else {
+                  Toast.makeText(AddFoodToFavoriteMealActivity.this, "Error getting food!", Toast.LENGTH_SHORT).show();
                 }
                 
                 finish();
@@ -108,6 +102,30 @@ public class AddFoodToFavoriteMealActivity extends DataClientActivity implements
     
     public void searchFoodClicked(View view) {
         startActivityForResult(searchFoodIntent, SEARCH_REQUEST_CODE);
+    }
+        
+    
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == 0) {
+          if (resultCode == RESULT_OK) {
+
+              // Get selectedFood from SearchFoodActivity:
+            Bundle extras = intent.getExtras();
+            FoodRecord selectedFood = (FoodRecord) extras.get("selectedFood");
+            
+              // Throughput selectedFood:
+            Intent out = new Intent();
+            out.putExtra("selectedFood", selectedFood);
+            
+            if (selectedFood != null) {
+            	setResult(RESULT_OK, out);
+            } else {
+            	Toast.makeText(AddFoodToFavoriteMealActivity.this, "Error getting food!", Toast.LENGTH_SHORT).show();
+            }
+            
+            finish();
+          }
+       }
     }
     
     private Intent searchFoodIntent;

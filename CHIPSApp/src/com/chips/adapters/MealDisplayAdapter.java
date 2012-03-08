@@ -4,32 +4,28 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Gallery;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chips.R;
+import com.chips.datarecord.FoodRecord;
 import com.chips.datarecord.MealRecord;
 
 public class MealDisplayAdapter extends BaseAdapter {
     int mGalleryItemBackground;
     private Context mContext;
     private static final int ITEMS_TO_DISPLAY = 3;
-
-//    private Integer[] mImageIds = {
-//            R.drawable.bubble,
-//            R.drawable.bubble,
-//            R.drawable.bubble,
-//    };
-    
-//    private String[] mTitleStrings = {
-//            "Next Meal",
-//            "2 Meals Time",
-//            "3 Meals Time",
-//    };
+    private static final int BREAKFAST_POSITION = 0;
+    private static final int LUNCH_POSITION = 1;
+    private static final int DINNER_POSITION = 2;
 
     public MealDisplayAdapter(Context c, List<MealRecord> newMeals) {
         mContext = c;
@@ -53,28 +49,119 @@ public class MealDisplayAdapter extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        LinearLayout linearLayout = new LinearLayout(mContext);
-        linearLayout.setLayoutParams(
-            new Gallery.LayoutParams(
-                Gallery.LayoutParams.MATCH_PARENT, 
-                Gallery.LayoutParams.WRAP_CONTENT
-            )
-        );
+        LayoutInflater inflater = (LayoutInflater) mContext
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        RelativeLayout view = (RelativeLayout) inflater.inflate(R.layout.meal_view, 
+                    null);
+        view.setBackgroundResource(R.drawable.bubble);
         
-        linearLayout.setPadding(10, 10, 10, 10);
-       
-        TextView textView = new TextView(mContext);
-        textView.setPadding(10, 10, 0, 0);
-        textView.setBackgroundResource(R.drawable.bubble);
+        TextView mealTypeView = (TextView) view.findViewById(R.id.mealTypeTextView);
         
         if (mealRecords.size() > position) {
-            textView.setText(mealRecords.get(position).toString());
+            MealRecord currentMeal = findMeal(position);
+            List<FoodRecord> foods = currentMeal.getFoods();
+            LinearLayout mealIngredientGroup 
+                = (LinearLayout) view.findViewById(R.id.mealIngredientGroup);
+            
+            for (FoodRecord food : foods) {
+                mealIngredientGroup.addView(getMealItemView(food.getName(), 
+                        food.getQuantity() + ""));
+                
+                registerMealDisplayButtonListeners(view, currentMeal);
+            }
+            
+            mealTypeView.setText("Today's " + currentMeal.getMealTypeString()
+                    + ":");
+            
         }
         
-        linearLayout.addView(textView);
+        return view;
+    }
+    
+    private MealRecord findMeal(int position) {
+        String mealType = getMealString(position);
         
-        return linearLayout;
+        for (int i = 0; i < mealRecords.size(); i++) {
+            if (mealRecords.get(i).getMealTypeString().equals(mealType)) {
+                return mealRecords.get(i);
+            }
+        }
+        
+        return null;
+    }
+    
+    private String getMealString(int position) {
+        switch (position) {
+        case BREAKFAST_POSITION:
+            return "Breakfast";
+        case LUNCH_POSITION:
+            return "Lunch";
+        case DINNER_POSITION:
+            return "Dinner";
+        default:
+            return "";
+        }
+    }
+    
+
+    
+    private void registerMealDisplayButtonListeners(ViewGroup view, 
+            MealRecord associatedMeal) {
+        ImageButton acceptButton = (ImageButton) view.findViewById(R.id.buttonAccept);
+        acceptButton.setOnClickListener(
+                new MealAcceptOnClickListener(associatedMeal));
+    }
+    
+    private LinearLayout getMealItemView(String name, String quantity) {
+        LayoutInflater inflater = (LayoutInflater) mContext
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LinearLayout view = (LinearLayout) inflater.inflate(
+                R.layout.meal_view_item, null);
+        
+        TextView nameView 
+            = (TextView) view.findViewById(R.id.mealIngredientName);
+        nameView.setText(name);
+        TextView quantityView 
+            = (TextView) view.findViewById(R.id.mealIngredientQuantity);
+        quantityView.setText(quantity + "g");
+        
+        return view;
+    }
+    
+    private class MealAcceptOnClickListener implements OnClickListener {
+        public MealAcceptOnClickListener(MealRecord newAssociatedMeal) {
+            associatedMeal = newAssociatedMeal;
+        }
+        
+        public void onClick(View view) {
+            view.setVisibility(View.INVISIBLE);
+            acceptListener.onClick(view, associatedMeal);
+            Log.d("clicked meal was: ", associatedMeal.toString());
+        }
+        
+        private MealRecord associatedMeal;
+    }
+    
+    public void setAcceptButtonListener(
+            MealDisplayButtonOnClickListener newAcceptListener) {
+        acceptListener = newAcceptListener;
+    }
+    
+    public void setRejectButtonListener(
+            MealDisplayButtonOnClickListener newRejectListener) {
+        rejectListener = newRejectListener;
+    }
+    
+    public void setCustomizeButtonListener(
+            MealDisplayButtonOnClickListener newCustomizeListener) {
+        customizeListener = newCustomizeListener;
     }
     
     private List<MealRecord> mealRecords;
+    private MealDisplayButtonOnClickListener acceptListener 
+        = new NoOpMealDisplayButtonListener();
+    private MealDisplayButtonOnClickListener rejectListener
+        = new NoOpMealDisplayButtonListener();
+    private MealDisplayButtonOnClickListener customizeListener
+        = new NoOpMealDisplayButtonListener();
 }

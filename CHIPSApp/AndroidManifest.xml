@@ -41,10 +41,12 @@
                   android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity android:name="AddFoodToFavoriteMealActivity"
                   android:theme="@android:style/Theme.NoTitleBar"></activity>
-        <activity android:name="FavoritesActivity"
+        <activity android:name=".AddMealToFavoritesActivity"
+                  android:theme="@android:style/Theme.NoTitleBar"></activity>
+        <activity android:name=".FavoritesActivity"
                   android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity android:name=".LoginActivity"
                   android:theme="@android:style/Theme.NoTitleBar"></activity>
-        <activity android:name="RegisterActivity"></activity>
+        <activity android:name=".RegisterActivity"></activity>
     </application>
 </manifest>
