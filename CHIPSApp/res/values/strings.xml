@@ -34,4 +34,6 @@
     <string name="barcodeFormatTextViewTitle">Barcode Format</string>
     <string name="shopping_group_checkbox_text"></string>
     <string name="mealViewDefault">No Meals Found</string>
+    <string name="heightTitle">Height</string>
+    <string name="weightTitle">Weight</string>
 </resources>
