@@ -16,7 +16,7 @@ public class LaunchActivity extends Activity implements Observer {
     public static final String PREFS_NAME = "MyPrefsFile";
     private static final String LOGIN_URL 
         = "http://cs110chips.phpfogapp.com/index.php/mobile/"
-                + "authenticate_credentials";
+                + "authenticate_credentials/";
     
     @Override
     protected void onCreate(Bundle state){
@@ -32,9 +32,10 @@ public class LaunchActivity extends Activity implements Observer {
            
            // Login with cached details
            ArrayList<String> loginArguments = new ArrayList<String>();
-           loginArguments.add(PersistentUser.getSavedUsername(this));
+           //loginArguments.add(PersistentUser.getSavedUsername(this));
            loginArguments.add(PersistentUser.getSavedPassword(this));
-           loginClient.setURL(LOGIN_URL, loginArguments);
+           loginClient.setURL(LOGIN_URL + PersistentUser.getSavedUsername(this),
+                   loginArguments);
            
            loginClient.asynchronousLoadClientData();
        } else {

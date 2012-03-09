@@ -19,7 +19,7 @@ import com.chips.user.PersistentUser;
 public class LoginActivity extends Activity implements Observer {
     private static final String LOGIN_URL 
         = "http://cs110chips.phpfogapp.com/index.php/mobile/"
-                + "authenticate_credentials";
+                + "authenticate_credentials/";
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,10 +60,12 @@ public class LoginActivity extends Activity implements Observer {
     public void loginClicked(View v) {
         if (loginDetailsEntered()) {
             ArrayList<String> loginArguments = new ArrayList<String>();
-            loginArguments.add(usernameEditText.getText().toString());
+//            loginArguments.add(usernameEditText.getText().toString());
             loginArguments.add(passwordEditText.getText().toString());
-            loginClient.setURL(LOGIN_URL, loginArguments);
-            
+            loginClient.setURL(LOGIN_URL 
+                    + usernameEditText.getText().toString(),
+                    loginArguments);
+            loginClient.logURL();
             loginClient.asynchronousLoadClientData();
         } else {
             Toast.makeText(this, "Please enter a username and password", 
