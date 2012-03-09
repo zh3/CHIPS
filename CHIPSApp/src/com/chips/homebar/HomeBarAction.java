@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.chips.ApplicationHubActivity;
-import com.chips.AddMealToFavoritesActivity;
 import com.chips.FavoritesActivity;
 import com.chips.R;
 
