@@ -1,15 +1,11 @@
 package com.chips;
 
-import com.chips.R;
-import com.chips.dataclient.*;
-import com.chips.datarecord.*;
-
 import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.TextView;
-import android.view.View.OnClickListener;
 
 	public class gsCalendarDlg extends Dialog implements OnClickListener
     {		

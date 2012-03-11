@@ -1,6 +1,5 @@
 package com.chips;
 
-import java.security.KeyStore.LoadStoreParameter;
 import java.util.List;
 
 import android.app.Activity;
@@ -13,9 +12,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.chips.gsCalendar.gsCalendarColorParam;
 import com.chips.dataclient.MealClient;
 import com.chips.datarecord.MealRecord;
-import com.chips.gsCalendar.gsCalendarColorParam;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
 import com.chips.user.PersistentUser;

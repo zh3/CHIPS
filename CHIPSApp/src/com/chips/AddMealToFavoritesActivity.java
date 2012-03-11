@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
-
 import com.chips.adapters.ExpandableFoodListAdapter;
 import com.chips.dataclient.DataPushClient;
 import com.chips.dataclient.FoodClient;
@@ -24,8 +23,10 @@ import com.chips.user.PersistentUser;
 
 public class AddMealToFavoritesActivity extends DataClientActivity 
         implements HomeBar, Serializable {
-	
-	private static final String BASE_URL 
+
+    private static final long serialVersionUID = -5553313136084359754L;
+    
+    private static final String BASE_URL 
       = "http://cs110chips.phpfogapp.com/index.php/mobile/";
     private static final String ADD_MEAL_TO_FAVORITES_URL
       = BASE_URL + "add_meal_to_favorites/";
