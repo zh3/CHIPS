@@ -64,7 +64,7 @@ public class CalendarActivity extends Activity
 	        String date = String.format("%04d-%02d-%02d", yyyy, MM + 1, dd);
 	        String data = "\n";
 	        List<MealRecord> meals = client.getMealRecords();
-        	data += "scheduled date: " + date + "\n";
+        	data += "Scheduled date: " + date + "\n";
 	        for(MealRecord meal : meals) {
 	        	if(meal.getScheduledDateString().equals(date))
 	        	{

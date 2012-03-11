@@ -47,10 +47,10 @@ public class MealRecord extends DataRecord {
     }
     
     public String calendarToString() {
-    	String meal = "" + mealType + ":\n";
+    	String meal = "\n" + mealType + ":\n";
     	
     	for (FoodRecord food : foods) {
-    		meal += food.toString() + "\n";
+    		meal += food.toString() +": "+ food.getQuantity() + "g\n";
     	}
     	
 		return meal;
