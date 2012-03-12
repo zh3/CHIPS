@@ -26,31 +26,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge" >
         </TextView>
 
-        <LinearLayout
-            android:id="@+id/linearLayout1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:baselineAligned="true" >
-
-            <TextView
-                android:id="@+id/textMeal"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:gravity="center_horizontal"
-                android:text="Meal:   "
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-
-            <EditText
-                android:id="@+id/editText3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" >
-
-                <requestFocus />
-            </EditText>
-            
-        </LinearLayout>
-
+        
     </LinearLayout>
     
             <!-- The Add Food button. -->

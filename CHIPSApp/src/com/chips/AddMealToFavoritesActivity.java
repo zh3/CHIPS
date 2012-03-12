@@ -65,13 +65,6 @@ public class AddMealToFavoritesActivity extends DataClientActivity
                     favoritesView, QUANTITY_UPDATE_URL)
         );
         
-//        foodAdapter = new ExpandableFoodListAdapter(this, 
-//                foodClient.getFoodRecords(), favoritesView);
-//        expandableFoodClientObserver.setListViewLayout(
-//            favoritesView, 
-//            foodAdapter
-//        );
-        
         setupAddURL();
         setupWebsiteCommunication();
         setupIntents();
@@ -156,13 +149,6 @@ public class AddMealToFavoritesActivity extends DataClientActivity
     }
     
     private boolean pushMealToAddToFavorites() {
-    	// Set up new empty meal slot in favorites:
-
-/*    	
-    	newMealID = send "BASE_URL/create_new_meal_in_favorites/" to website, get meal ID back  ;
-    	
-    	 
-*/    	
     	List<FoodRecord> favMealFoods = foodAdapter.getFoods();
     	DataPushClient favoritePushClient = new DataPushClient();
         
