@@ -19,13 +19,11 @@ import com.chips.datarecord.FoodRecord;
 
 public class ExpandableCheckableFoodListAdapter 
             extends ExpandableFoodListAdapter {
-    private static final String SHOPPING_LIST_QUANTITY_UPDATE_URL 
-        = "http://cs110chips.phpfogapp.com/index.php/mobile/"
-          + "set_quantity_of_food_in_shopping_list";
     
     public ExpandableCheckableFoodListAdapter(Context newContext, 
-            List<FoodRecord> newItems, ExpandableListView newAssociatedView) {
-        super(newContext, newItems, newAssociatedView);
+            List<FoodRecord> newItems, ExpandableListView newAssociatedView,
+            String newQuantityUpdateURL) {
+        super(newContext, newItems, newAssociatedView, newQuantityUpdateURL);
         checkedPositions = new ArrayList<Integer>();
     }
 
@@ -108,7 +106,7 @@ public class ExpandableCheckableFoodListAdapter
         updateButton.setOnClickListener(
                 new FoodUpdateOnClickListener(
                         groupPosition, childPosition, quantityEditText,
-                        SHOPPING_LIST_QUANTITY_UPDATE_URL));
+                        quantityUpdateURL));
         
         return convertView;
 //        View childView = super.getChildView(groupPosition, childPosition, 

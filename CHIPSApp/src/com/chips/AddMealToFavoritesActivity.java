@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
-import com.chips.adapters.ExpandableCheckableFoodListAdapter;
 import com.chips.adapters.ExpandableFoodListAdapter;
 import com.chips.dataclient.DataPushClient;
 import com.chips.dataclient.FoodClient;
@@ -38,6 +37,9 @@ public class AddMealToFavoritesActivity extends DataClientActivity
       = BASE_URL + "add_meal_to_favorites/";
     private static final String ADD_FOOD_TO_THIS_FAVORITE_URL
       = BASE_URL + "add_food_to_meal/";
+    //TODO get proper quantity update URL
+    private static final String QUANTITY_UPDATE_URL
+      = BASE_URL;
 
 	private static final int SEARCH_REQUEST_CODE = 0;
 	
@@ -60,7 +62,7 @@ public class AddMealToFavoritesActivity extends DataClientActivity
         expandableFoodClientObserver.setListViewLayout(
             favoritesView, 
             foodAdapter = new ExpandableFoodListAdapter(this, currentMeal, 
-                    favoritesView)
+                    favoritesView, QUANTITY_UPDATE_URL)
         );
         
 //        foodAdapter = new ExpandableFoodListAdapter(this, 

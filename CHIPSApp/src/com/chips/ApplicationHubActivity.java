@@ -119,7 +119,7 @@ public class ApplicationHubActivity extends DataClientActivity {
         
     }
     
-    public void customizeClicked(View view) {
+    public void customizeClicked(View view) {Log.d("Click", "clicked");
         client.asynchronousLoadClientData();
     }
     

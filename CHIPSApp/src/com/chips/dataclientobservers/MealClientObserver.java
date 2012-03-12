@@ -4,17 +4,13 @@ import java.util.List;
 import java.util.Observable;
 
 import android.app.Activity;
-import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Gallery;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.chips.adapters.ExpandableMealListAdapter;
 import com.chips.adapters.MealDisplayAdapter;
 import com.chips.dataclient.MealClient;
-import com.chips.datarecord.MealRecord;
 
 public class MealClientObserver extends DataClientObserver {
     public MealClientObserver(Activity parentActivity, Gallery gallery,

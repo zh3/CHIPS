@@ -30,7 +30,9 @@ public class ShoppingListActivity extends DataClientActivity
     private static final String PURCHASE_ALL_URL
         = BASE_URL + "purchase_entire_shopping_list/";
     private static final String PURCHASE_URL
-    = BASE_URL + "purchase_food_in_shopping_list/";
+        = BASE_URL + "purchase_food_in_shopping_list/";
+    private static final String QUANTITY_UPDATE_URL 
+        = BASE_URL + "set_quantity_of_food_in_shopping_list";
     
     /** Called when the activity is first created. */
     @Override
@@ -55,7 +57,7 @@ public class ShoppingListActivity extends DataClientActivity
         
         
         foodAdapter = new ExpandableCheckableFoodListAdapter(this, 
-                foodClient.getFoodRecords(), shoppingListView);
+                foodClient.getFoodRecords(), shoppingListView, QUANTITY_UPDATE_URL);
         expandableFoodClientObserver.setListViewLayout(
             shoppingListView, 
             foodAdapter

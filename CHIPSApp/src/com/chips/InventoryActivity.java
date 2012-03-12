@@ -19,7 +19,8 @@ public class InventoryActivity extends DataClientActivity implements HomeBar {
         = BASE_URL + "list_foods_in_inventory";
     private static final String ADD_FOOD_TO_INVENTORY_URL
         = BASE_URL + "add_food_to_inventory/";
-    
+    private static final String QUANTITY_UPDATE_URL 
+          = BASE_URL + "set_quantity_of_food_in_inventory";
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class InventoryActivity extends DataClientActivity implements HomeBar {
         expandableFoodClientObserver.setListViewLayout(
             inventoryView, 
             new ExpandableFoodListAdapter(this, foodClient.getFoodRecords(), 
-                    inventoryView)
+                    inventoryView, QUANTITY_UPDATE_URL)
         );
         
         foodClient.setURL(INVENTORY_LIST_URL, PersistentUser.getSessionID());

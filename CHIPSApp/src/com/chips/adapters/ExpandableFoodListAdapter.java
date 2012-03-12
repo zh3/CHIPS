@@ -23,15 +23,14 @@ import com.chips.datarecord.FoodRecord;
 import com.chips.user.PersistentUser;
 
 public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
-    private static final String QUANTITY_UPDATE_URL 
-        = "http://cs110chips.phpfogapp.com/index.php/mobile/"
-          + "set_quantity_of_food_in_inventory";
     
     public ExpandableFoodListAdapter(Context newContext, 
-            List<FoodRecord> newItems, ExpandableListView newAssociatedView) {
+            List<FoodRecord> newItems, ExpandableListView newAssociatedView,
+            String newQuantityUpdateURL) {
         context = newContext;
         items = newItems;
         associatedView = newAssociatedView;
+        quantityUpdateURL = newQuantityUpdateURL;
     }
     
     public List<FoodRecord> getFoods() {
@@ -75,7 +74,7 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
         updateButton.setOnClickListener(
                 new FoodUpdateOnClickListener(
                         groupPosition, childPosition, quantityEditText,
-                        QUANTITY_UPDATE_URL));
+                        quantityUpdateURL));
         
         return convertView;
     }
@@ -193,5 +192,6 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
     
     protected Context context;
     protected List<FoodRecord> items;
+    protected String quantityUpdateURL;
     private ExpandableListView associatedView;
 }
