@@ -60,4 +60,29 @@ public class MealRecord extends DataRecord {
     private String confirmedEaten;
     private String mealType;
     private List<FoodRecord> foods;
+
+	public String getQuantity() {
+		// TODO Auto-generated method stub
+		return "-1";
+	}
+
+	public String getCalories() {
+		// TODO Auto-generated method stub
+		return "-1";
+	}
+
+	public String getCarbohydrates() {
+		// TODO Auto-generated method stub
+		return "-1";
+	}
+
+	public String getFat() {
+		// TODO Auto-generated method stub
+		return "-1";
+	}
+
+	public String getProtein() {
+		// TODO Auto-generated method stub
+		return "-1";
+	}
 }

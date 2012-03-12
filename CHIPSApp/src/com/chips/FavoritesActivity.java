@@ -11,13 +11,17 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.chips.adapters.ExpandableFoodListAdapter;
+import com.chips.adapters.MealDisplayAdapter;
 import com.chips.dataclient.DataPushClient;
 import com.chips.dataclient.FoodClient;
+import com.chips.dataclient.MealClient;
 import com.chips.dataclientactions.PushClientToastOnFailureAction;
 import com.chips.dataclientobservers.ExpandableFoodClientObserver;
+import com.chips.dataclientobservers.MealClientObserver;
 import com.chips.dataclientobservers.UpdateActionDataClientObserver;
 import com.chips.datarecord.FoodRecord;
 import com.chips.homebar.HomeBar;
@@ -43,6 +47,24 @@ public class FavoritesActivity extends DataClientActivity
         super.onCreate(savedInstanceState);
         HomeBarAction.inflateHomeBarView(this, R.layout.favorites);
         
+        
+        mealClient = new MealClient();
+        ExpandableListView favoritesView 
+        = (ExpandableListView) findViewById(R.id.favoriteMealsListView);
+        MealClientObserver mealClientObserver
+            = new MealClientObserver(this, favoritesView, mealClient);
+        
+        addClientObserverPair(mealClient, mealClientObserver);
+        
+//        MealClientObserver(
+//            favoritesView, 
+//            new MealDisplayAdapter(this, mealClient.getMealRecords())
+//        );
+        
+        mealClient.setURL(FAVORITES_LIST_URL, PersistentUser.getSessionID());
+
+        mealClient.asynchronousLoadClientData();
+/*       
         foodClient = new FoodClient();
         ExpandableFoodClientObserver expandableFoodClientObserver
             = new ExpandableFoodClientObserver(this, foodClient);
@@ -60,7 +82,7 @@ public class FavoritesActivity extends DataClientActivity
         foodClient.setURL(FAVORITES_LIST_URL, PersistentUser.getSessionID());
 
         foodClient.asynchronousLoadClientData();
-        
+*/        
         setupAddURL();
         setupWebsiteCommunication();
         
@@ -196,6 +218,7 @@ public class FavoritesActivity extends DataClientActivity
     private EditText barcodeField;
     private EditText barcodeFormatField;
     private DataPushClient pushClient;
+    private MealClient mealClient;
     private FoodClient foodClient;
     private FoodRecord foodToAdd;
     private String addURL;
