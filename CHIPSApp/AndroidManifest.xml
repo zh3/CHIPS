@@ -34,6 +34,9 @@
         <activity android:name=".StatisticsActivity"
                   android:theme="@android:style/Theme.NoTitleBar">
         </activity>
+        <activity android:name=".CustomizeActivity"
+                  android:theme="@android:style/Theme.NoTitleBar">
+        </activity>
         <activity android:name=".AddFoodActivity"
                   android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity android:name="AddFoodToFavoriteMealActivity"

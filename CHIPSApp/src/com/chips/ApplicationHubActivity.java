@@ -72,6 +72,7 @@ public class ApplicationHubActivity extends DataClientActivity {
         inventoryActivityIntent = new Intent(this, InventoryActivity.class);
         preferencesActivityIntent = new Intent(this, StatisticsActivity.class);
         loginActivityIntent = new Intent(this, LoginActivity.class);
+        customizeActivityIntent = new Intent(this, CustomizeActivity.class);
     }
 
     public void searchFoodClicked(View v) {
@@ -119,7 +120,12 @@ public class ApplicationHubActivity extends DataClientActivity {
         
     }
     
-    public void customizeClicked(View view) {Log.d("Click", "clicked");
+    public void customizeClicked(View view) {
+        MealRecord selectedMeal = (MealRecord) gallery.getSelectedItem();
+        
+        customizeActivityIntent.putExtra("selectedMeal", 
+                new Integer(selectedMeal.getId()));
+        startActivity(customizeActivityIntent);
         client.asynchronousLoadClientData();
     }
     
@@ -154,6 +160,7 @@ public class ApplicationHubActivity extends DataClientActivity {
     private Intent preferencesActivityIntent;
     private Intent statisticsActivityIntent;
     private Intent loginActivityIntent;
+    private Intent customizeActivityIntent;
     private MealDisplayAdapter mealAdapter;
     private Gallery gallery;
     private View acceptButton;

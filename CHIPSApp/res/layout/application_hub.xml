@@ -6,9 +6,9 @@
   android:layout_height="match_parent">
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:id="@+id/applicationHubTopBarGroup">
         <ImageButton android:src="@drawable/settings" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/applicationHubSettingsButton" android:background="@android:color/transparent" android:onClick="preferencesClicked"/>
-        <ImageButton android:src="@drawable/plus" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/applicationHubCreateMealsButton" android:background="@android:color/transparent" android:onClick="addFavoriteClicked"/>
+        <ImageButton android:src="@drawable/logout" android:id="@+id/applicationHubLogout" android:layout_height="wrap_content" android:layout_width="wrap_content" android:background="@android:color/transparent" android:onClick="logoutClicked"></ImageButton>
         <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:id="@+id/applicationHubTopBarPadding" android:background="@android:color/transparent"/>
-        <ImageButton android:layout_height="wrap_content" android:background="@android:color/transparent" android:id="@+id/applicationHubLogout" android:layout_width="wrap_content" android:onClick="logoutClicked" android:src="@drawable/logout"></ImageButton>
+        <ImageButton android:src="@drawable/plus" android:id="@+id/applicationHubCreateMealsButton" android:layout_height="wrap_content" android:layout_width="wrap_content" android:background="@android:color/transparent" android:onClick="addFavoriteClicked"></ImageButton>
         
     </LinearLayout>
     <com.chips.widget.ScrollViewGallery
@@ -18,9 +18,9 @@
 	    android:spacing="10dp" android:paddingLeft="10dp" android:paddingTop="10dp" android:paddingRight="10dp"/>
     <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/modifyMealGroup" android:orientation="horizontal" android:gravity="right" android:paddingRight="10dp">
         <ImageButton android:background="@android:color/transparent" android:layout_width="wrap_content" android:src="@drawable/check" android:layout_height="wrap_content" android:id="@+id/buttonAccept" android:focusable="false" android:onClick="acceptClicked" android:paddingRight="5dp"></ImageButton>
-        <ImageButton android:background="@android:color/transparent" android:layout_width="wrap_content" android:src="@drawable/reject" android:layout_height="wrap_content" android:focusable="false" android:onClick="suggestAnotherClicked" android:id="@+id/buttonSuggestAnother"></ImageButton>
-        <ImageButton android:background="@android:color/transparent" android:layout_height="wrap_content" android:layout_width="wrap_content" android:src="@drawable/customize" android:onClick="customizeClicked" android:id="@+id/buttonCustomize"></ImageButton>
-        <ImageButton android:layout_height="wrap_content" android:paddingRight="5dp" android:focusable="false" android:id="@+id/switchToFavouriteButton" android:background="@android:color/transparent" android:layout_width="wrap_content" android:src="@drawable/favorite" android:onClick="switchMealToFavouriteClicked"></ImageButton>
+        <ImageButton android:background="@android:color/transparent" android:layout_width="wrap_content" android:src="@drawable/reject" android:layout_height="wrap_content" android:focusable="false" android:onClick="suggestAnotherClicked" android:id="@+id/buttonSuggestAnother" android:paddingRight="5dp"></ImageButton>
+        <ImageButton android:background="@android:color/transparent" android:layout_height="wrap_content" android:layout_width="wrap_content" android:src="@drawable/customize" android:onClick="customizeClicked" android:id="@+id/buttonCustomize" android:paddingRight="5dp"></ImageButton>
+        <ImageButton android:layout_height="wrap_content" android:paddingRight="5dp" android:focusable="false" android:id="@+id/switchToFavouriteButton" android:background="@android:color/transparent" android:layout_width="wrap_content" android:onClick="switchMealToFavouriteClicked" android:src="@drawable/swap_favourite"></ImageButton>
     </LinearLayout>
     <ImageButton android:src="@drawable/calendar_button" android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/calendarButton" android:scaleType="fitCenter" android:background="@android:color/transparent" android:onClick="calendarClicked" android:layout_weight="1"></ImageButton>
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:id="@+id/applicationHubBottomButtonGroup" android:layout_weight="1">
