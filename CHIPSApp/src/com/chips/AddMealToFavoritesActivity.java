@@ -164,23 +164,23 @@ public class AddMealToFavoritesActivity extends DataClientActivity
     	 
 */    	
     	List<FoodRecord> favMealFoods = foodAdapter.getFoods();
-    	List<String> addFoodArguments = new ArrayList<String>();
     	DataPushClient favoritePushClient = new DataPushClient();
         
-        addFoodArguments.add(PersistentUser.getSessionID());
         for (FoodRecord food : favMealFoods) {
             Log.d("Favorite Meal Food", food.toString());
+            List<String> addFoodArguments = new ArrayList<String>();
+            addFoodArguments.add(PersistentUser.getSessionID());
+            addFoodArguments.add(newMealID + "");
             addFoodArguments.add(food.getId() + "");
+            //TODO read quantity from elsewhere as this may not be valid!
+            addFoodArguments.add(food.getQuantity() + "");
             
             favoritePushClient.setURL(
-            		(ADD_FOOD_TO_THIS_FAVORITE_URL + newMealID),
+            		(ADD_FOOD_TO_THIS_FAVORITE_URL),
             		addFoodArguments
             	);
             favoritePushClient.asynchronousLoadClientData();
             favoritePushClient.logURL();
-            
-            // Remove top
-            addFoodArguments.remove(1);
         }
         
         boolean success = favoritePushClient.lastCompletedPushSuccessful();
