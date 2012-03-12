@@ -8,7 +8,6 @@ import java.util.Locale;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
@@ -17,7 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
-public class gsCalendar //extends Activity 
+public abstract class gsCalendar //extends Activity 
 {
 
 
@@ -214,7 +213,6 @@ public class gsCalendar //extends Activity
 		m_todayCellBgImgId = bgimg ;
 		m_colorParam.m_todayCellColor = 0x00000000 ;
 		m_cellTextBtn[ m_Calendar.get( Calendar.DAY_OF_MONTH ) + m_startPos - 1 ].setBackgroundDrawable( bgimg ) ;
-		Log.d("===",(m_Calendar.get( Calendar.DAY_OF_MONTH ) -1)+ "" ) ;
 	}
 	
 	
@@ -255,7 +253,6 @@ public class gsCalendar //extends Activity
 		        	{
 	        			int pos = ( ( i / 2 ) * COLS ) + ( j / 2 ) ;
 	        			
-	        			Log.d( "pos1", "" +  pos ) ;
 		        		m_cellLy[ pos ] = new LinearLayout( m_context ) ;
 		        		m_cellTextBtn[ pos ] = new TextView( m_context ) ;
 		        		m_lineLy[ i / 2 ].addView( m_cellLy[ pos ] ) ;
@@ -266,7 +263,6 @@ public class gsCalendar //extends Activity
 	        		{
 	        			int pos = ( ( i / 2 ) * (COLS - 1) ) + ( j - 1 ) / 2 ;
 	        			
-	        			Log.d( "pos2", "" +  pos ) ;
 	        			m_verticalLine[ pos ] = new LinearLayout( m_context ) ;
 		        		m_lineLy[ i / 2 ].addView( m_verticalLine[ pos ] ) ;
 	        		}
@@ -589,51 +585,7 @@ public class gsCalendar //extends Activity
 		return sdf.format( new Date( m_Calendar.getTimeInMillis( ) ) ) ;
 	}
 	
-	public void myClickEvent( int yyyy, int MM, int dd )
-	{
-		String monthString = "";
-		switch(MM)
-		{
-			case 1:  monthString = "January";
-				break;
-			
-			case 2:  monthString = "February";
-				break;
-			
-			case 3:  monthString = "March";
-				break;
-
-			case 4:  monthString = "April";
-				break;
-
-			case 5:  monthString = "May";
-				break;
-
-			case 6:  monthString = "June";
-				break;
-
-			case 7:  monthString = "July";
-				break;
-			
-			case 8:  monthString = "August";
-				break;
-
-			case 9:  monthString = "September";
-				break;
-			
-			case 10: monthString = "October";
-				break;
-			
-			case 11: monthString = "November";
-				break;
-
-			case 12: monthString = "December";
-				break;
-		}
-		Log.d( "yyyy", "" + yyyy ) ;
-		Log.d( "MM", "" + monthString ) ;
-		Log.d( "dd", "" + dd ) ;
-	}
+	public abstract void myClickEvent( int yyyy, int MM, int dd );
 	
     
 	public int pixelToDip( int arg )

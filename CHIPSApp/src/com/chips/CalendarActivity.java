@@ -82,8 +82,6 @@ public class CalendarActivity extends Activity
 			//activity new window.
 			gsCalendarDlg dlg = new gsCalendarDlg( con, data ) ; 
 			dlg.show( ) ;
-	        
-			super.myClickEvent(yyyy, MM, dd);
 		}
 		
 	}
