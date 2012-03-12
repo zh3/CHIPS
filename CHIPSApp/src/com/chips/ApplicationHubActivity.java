@@ -113,7 +113,9 @@ public class ApplicationHubActivity extends DataClientActivity {
     
     public void acceptClicked(View view) {
         MealRecord selectedItem = (MealRecord) gallery.getSelectedItem();
-        Log.d("Selected item first food:", selectedItem.calendarToString());
+        if (selectedItem != null) {
+            Log.d("Selected item first food:", selectedItem.calendarToString());
+        }
     }
     
     public void suggestAnotherClicked(View view) {
@@ -123,10 +125,12 @@ public class ApplicationHubActivity extends DataClientActivity {
     public void customizeClicked(View view) {
         MealRecord selectedMeal = (MealRecord) gallery.getSelectedItem();
         
-        customizeActivityIntent.putExtra("selectedMeal", 
-                new Integer(selectedMeal.getId()));
-        startActivity(customizeActivityIntent);
-        client.asynchronousLoadClientData();
+        if (selectedMeal != null) {
+            customizeActivityIntent.putExtra("selectedMeal", 
+                    new Integer(selectedMeal.getId()));
+            startActivity(customizeActivityIntent);
+            client.asynchronousLoadClientData();
+        }
     }
     
     public void switchMealToFavouriteClicked(View view) {

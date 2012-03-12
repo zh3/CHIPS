@@ -35,6 +35,7 @@ public class AddFoodActivity extends DataClientActivity
     private static final String ADD_NEW_FOOD_TO_DATABASE_URL
         = BASE_URL + "add_new_food_to_database";
     public static final String BUNDLE_ADD_KEY = "addURL";
+    public static final String BUNDLE_ARGUMENTS_KEY = "fixedArguments";
     
     /** Called when the activity is first created. */
     @Override
@@ -54,6 +55,7 @@ public class AddFoodActivity extends DataClientActivity
         Bundle b = getIntent().getExtras();
         
         addURL = b.getString(BUNDLE_ADD_KEY);
+        fixedArguments = b.getString(BUNDLE_ARGUMENTS_KEY);
     }
     
     private void setupWebsiteCommunication() {
@@ -226,7 +228,7 @@ public class AddFoodActivity extends DataClientActivity
             if (!success) return;
         }
         
-        if (pushFoodToAddToInventory()) finish();
+        if (pushFoodToAdd()) finish();
     }
     
     private boolean createFoodFromFields() {
@@ -256,9 +258,10 @@ public class AddFoodActivity extends DataClientActivity
         return success;
     }
     
-    private boolean pushFoodToAddToInventory() {
+    private boolean pushFoodToAdd() {
         ArrayList<String> addFoodArguments = new ArrayList<String>();
         addFoodArguments.add(PersistentUser.getSessionID());
+        if (fixedArguments != null) addFoodArguments.add(fixedArguments);
         addFoodArguments.add(foodToAdd.getId() + "");
         addFoodArguments.add(quantityField.getText().toString());
         
@@ -347,5 +350,6 @@ public class AddFoodActivity extends DataClientActivity
     private FoodClient foodClient;
     private FoodRecord foodToAdd;
     private String addURL;
+    private String fixedArguments;
     private boolean handleLinkBarcode;
 }

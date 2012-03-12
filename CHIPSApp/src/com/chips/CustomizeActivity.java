@@ -21,9 +21,9 @@ public class CustomizeActivity extends DataClientActivity implements HomeBar {
     private static final String MEAL_LIST_FOOD_URL 
         = BASE_URL + "get_meal_with_id";
     private static final String ADD_FOOD_TO_MEAL_URL
-        = BASE_URL + "add_food_to_inventory/";
+        = BASE_URL + "add_food_to_meal/";
     private static final String QUANTITY_UPDATE_URL 
-          = BASE_URL + "set_quantity_of_food_in_inventory";
+          = BASE_URL + "modify_quantity_of_food_in_meal/";
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class CustomizeActivity extends DataClientActivity implements HomeBar {
         expandableMealClientObserver.setListViewLayout(
             customizeView, 
             new ExpandableFoodListAdapter(this, mealClient.getFirstMealFoods(), 
-                    customizeView, QUANTITY_UPDATE_URL)
+                    customizeView, QUANTITY_UPDATE_URL, "" + selectedMeal)
         );
        
         loadSelectedMealFromWebsite();
@@ -66,13 +66,13 @@ public class CustomizeActivity extends DataClientActivity implements HomeBar {
         Bundle b = new Bundle();
         b.putString(AddFoodActivity.BUNDLE_ADD_KEY, 
                 ADD_FOOD_TO_MEAL_URL);
+        b.putString(AddFoodActivity.BUNDLE_ARGUMENTS_KEY, "" + selectedMeal);
 
-        addFoodToMealIntent 
-            = new Intent(this, AddFoodActivity.class);
+        addFoodToMealIntent = new Intent(this, AddFoodActivity.class);
         addFoodToMealIntent.putExtras(b);
     }
     
-    public void addFoodToInventoryClicked(View view) {
+    public void addFoodToMealClicked(View view) {
         startActivity(addFoodToMealIntent);
     }
     

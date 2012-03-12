@@ -27,10 +27,25 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
     public ExpandableFoodListAdapter(Context newContext, 
             List<FoodRecord> newItems, ExpandableListView newAssociatedView,
             String newQuantityUpdateURL) {
+        initFields(newContext, newItems, newAssociatedView,
+                newQuantityUpdateURL);
+    }
+    
+    public ExpandableFoodListAdapter(Context newContext, 
+            List<FoodRecord> newItems, ExpandableListView newAssociatedView,
+            String newQuantityUpdateURL, String newFixedArguments) {
+        initFields(newContext, newItems, newAssociatedView, 
+                newQuantityUpdateURL);
+        fixedArguments = newFixedArguments;
+    }
+
+    private void initFields(Context newContext, List<FoodRecord> newItems,
+            ExpandableListView newAssociatedView, String newQuantityUpdateURL) {
         context = newContext;
         items = newItems;
         associatedView = newAssociatedView;
         quantityUpdateURL = newQuantityUpdateURL;
+        fixedArguments = null;
     }
     
     public List<FoodRecord> getFoods() {
@@ -160,6 +175,8 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
             
             ArrayList<String> quantityUpdateArguments = new ArrayList<String>();
             quantityUpdateArguments.add(PersistentUser.getSessionID());
+            if (fixedArguments != null) 
+                quantityUpdateArguments.add(fixedArguments);
             quantityUpdateArguments.add(food.getId() + "");
             quantityUpdateArguments.add(food.getQuantity() + "");
             
@@ -194,4 +211,5 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
     protected List<FoodRecord> items;
     protected String quantityUpdateURL;
     private ExpandableListView associatedView;
+    private String fixedArguments;
 }
