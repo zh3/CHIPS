@@ -48,7 +48,7 @@ public class CalendarActivity extends Activity
 			client = new MealClient();
 	        client.setURL(LIST_MEALS_URL, PersistentUser.getSessionID());
 	        client.logURL();
-	        client.synchronousLoadClientData();
+	        client.asynchronousLoadClientData();
 		}
 		
 		@Override
