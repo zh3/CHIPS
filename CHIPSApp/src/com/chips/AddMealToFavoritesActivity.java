@@ -33,7 +33,7 @@ public class AddMealToFavoritesActivity extends DataClientActivity
     private static final String BASE_URL 
       = "http://cs110chips.phpfogapp.com/index.php/mobile/";
 	private static final String CREATE_NEW_EMPTY_MEAL
-	  = BASE_URL + "make_new_favorite_meal/";
+	  = BASE_URL + "create_new_meal_in_favorites/";
     private static final String ADD_MEAL_TO_FAVORITES_URL
       = BASE_URL + "add_meal_to_favorites/";
     private static final String ADD_FOOD_TO_THIS_FAVORITE_URL
