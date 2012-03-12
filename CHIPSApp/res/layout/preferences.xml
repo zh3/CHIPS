@@ -6,7 +6,7 @@
     
     <ScrollView
 		android:layout_width="fill_parent"
-		android:layout_height="fill_parent" android:layout_weight="1">
+		android:layout_weight="0" android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,23 +20,11 @@
             <com.customwidget.numberpicker.NumberPicker android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/heightPicker"></com.customwidget.numberpicker.NumberPicker>
             <com.customwidget.numberpicker.NumberPicker android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/numberPicker1"></com.customwidget.numberpicker.NumberPicker>
         </LinearLayout>
-
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:id="@+id/preferencesBottomButtonGroup">
-    
-        <ImageButton
-            android:id="@+id/saveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@android:color/transparent"
-            android:src="@drawable/save_button" android:layout_weight="1"/>
-    </LinearLayout>
 	
 	</LinearLayout>
 	</ScrollView>
+    <LinearLayout android:orientation="vertical" android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/padLayout" android:layout_weight="1"></LinearLayout>
+    <LinearLayout android:id="@+id/preferencesBottomButtonGroup" android:layout_height="wrap_content" android:layout_width="match_parent">
+        <ImageButton android:background="@android:color/transparent" android:layout_weight="1" android:id="@+id/saveButton" android:src="@drawable/save_button" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content"></ImageButton>
+    </LinearLayout>
 </LinearLayout>

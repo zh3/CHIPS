@@ -12,9 +12,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.chips.gsCalendar.gsCalendarColorParam;
 import com.chips.dataclient.MealClient;
 import com.chips.datarecord.MealRecord;
-import com.chips.gsCalendar.gsCalendarColorParam;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
 import com.chips.user.PersistentUser;
@@ -33,12 +33,22 @@ public class CalendarActivity extends Activity
 	{
 	    private static final String LIST_MEALS_URL 
 	    = "http://cs110chips.phpfogapp.com/index.php/mobile/list_meals/";
+	    private MealClient client;
 	    
 		public myGsCalendar(Context context, LinearLayout layout) 
 		{
 			super(context, layout);
 			con = context;
+			loadHistoryMeals();
 			// TODO Auto-generated constructor stub
+		}
+		
+		public void loadHistoryMeals()
+		{
+			client = new MealClient();
+	        client.setURL(LIST_MEALS_URL, PersistentUser.getSessionID());
+	        client.logURL();
+	        client.synchronousLoadClientData();
 		}
 		
 		@Override
@@ -56,10 +66,7 @@ public class CalendarActivity extends Activity
 	        cal.setSelectedDayTextColor( 0xff009999 ) ;
 	        
 	        
-	        MealClient client = new MealClient();
-	        client.setURL(LIST_MEALS_URL, PersistentUser.getSessionID());
-	        client.logURL();
-	        client.synchronousLoadClientData();
+	        
 	        
 	        String date = String.format("%04d-%02d-%02d", yyyy, MM + 1, dd);
 	        String data = "\n";
