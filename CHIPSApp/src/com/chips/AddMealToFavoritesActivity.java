@@ -13,10 +13,12 @@ import android.widget.Toast;
 import com.chips.adapters.ExpandableFoodListAdapter;
 import com.chips.dataclient.DataPushClient;
 import com.chips.dataclient.FoodClient;
+import com.chips.dataclient.MealClient;
 import com.chips.dataclientactions.PushClientToastOnFailureAction;
 import com.chips.dataclientobservers.ExpandableFoodClientObserver;
 import com.chips.dataclientobservers.UpdateActionDataClientObserver;
 import com.chips.datarecord.FoodRecord;
+import com.chips.datarecord.MealRecord;
 import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
 import com.chips.user.PersistentUser;
@@ -28,8 +30,12 @@ public class AddMealToFavoritesActivity extends DataClientActivity
     
     private static final String BASE_URL 
       = "http://cs110chips.phpfogapp.com/index.php/mobile/";
+	private static final String CREATE_NEW_EMPTY_MEAL
+	  = BASE_URL + "make_new_favorite_meal/";
     private static final String ADD_MEAL_TO_FAVORITES_URL
       = BASE_URL + "add_meal_to_favorites/";
+    private static final String ADD_FOOD_TO_THIS_FAVORITE_URL
+      = BASE_URL + "add_food_to_meal/";
 
 	private static final int SEARCH_REQUEST_CODE = 0;
 	
@@ -63,7 +69,7 @@ public class AddMealToFavoritesActivity extends DataClientActivity
     private void setupIntents() {
     	Bundle b = new Bundle();
         b.putString(AddFoodActivity.BUNDLE_ADD_KEY, 
-                ADD_MEAL_TO_FAVORITES_URL);
+                ADD_FOOD_TO_THIS_FAVORITE_URL);
 
         addFoodToFavoriteIntent 
             = new Intent(this, AddFoodToFavoriteMealActivity.class);
@@ -91,6 +97,8 @@ public class AddMealToFavoritesActivity extends DataClientActivity
     
     public void saveFavoriteClicked(View view) {
     	// TODO push the new favorite meal to the website here - gives Communication Failed errors.
+    	createNewMeal();
+    	
     	if( pushMealToAddToFavorites() )   finish();
     	else { Toast.makeText(this, "Problem with pushing to website.", 
                 Toast.LENGTH_LONG).show();
@@ -98,25 +106,55 @@ public class AddMealToFavoritesActivity extends DataClientActivity
     }
     
       /* -- Web site Communications -- */
-    private void setupAddURL() {
+    private void setupAddURL() {    	
         addURL = ADD_MEAL_TO_FAVORITES_URL;
     }
     
+    private void createNewMeal() {
+//    	newMealPC = new Client();
+    	newFavMeal   = new MealClient();
+    	// mealClient -> getMealRecords() returns a list of Meals in format List<MealRecord>
+    	
+    	newFavMeal.setURL(CREATE_NEW_EMPTY_MEAL, "");
+    	newFavMeal.logURL();
+    	newFavMeal.synchronousLoadClientData();
+
+        // get new meal ID from website:
+        newMealRecords = newFavMeal.getMealRecords();
+        newMealID = Integer.toString( (newMealRecords.get(0)).getId() );
+        
+        // now we have a meal ID, and can add foods to it using 
+        //  add_food_to_meal/(newMealID) for each FoodRecord object in the
+        // listview that we build in this activity.
+    }
+    
     private void setupWebsiteCommunication() {
-        pushClient = new DataPushClient();
+//        pushClient = new DataPushClient();
+    	mealClient = new MealClient();
         foodClient = new FoodClient();
         UpdateActionDataClientObserver updateActionObserver 
-            = new UpdateActionDataClientObserver(this, pushClient);
+            = new UpdateActionDataClientObserver(this, mealClient);
         Toast failureToast = Toast.makeText(this, 
                 "Website Communication Failed", Toast.LENGTH_LONG);
         PushClientToastOnFailureAction action 
             = new PushClientToastOnFailureAction(failureToast);
         updateActionObserver.addAction(action);
         
-        addClientObserverPair(pushClient, updateActionObserver);
+        addClientObserverPair(mealClient, updateActionObserver);
     }
     
     private boolean pushMealToAddToFavorites() {
+    	// Set up new empty meal slot in favorites:
+
+/*    	
+    	newMealID = send "BASE_URL/create_new_meal_in_favorites/" to website, get meal ID back  ;
+    	
+    	 
+*/    	
+    	// Will now need to pass add_food_to_meal(session_id, meal_id, food_id, quantity)
+    	// There's also remove_food_from_id, which is the same but without a quantity field.
+    	
+    	// remove meal from favorites is done by remove_meal_from_favorites(session_id, meal_id)
         ArrayList<String> addFoodArguments = new ArrayList<String>();
         addFoodArguments.add(PersistentUser.getSessionID());
         addFoodArguments.add("THIS IS A TEST");
@@ -148,6 +186,11 @@ public class AddMealToFavoritesActivity extends DataClientActivity
     
     private Intent addFoodToFavoriteIntent;
     private String addURL;
+    private String newMealID;
+    private List<MealRecord> newMealRecords;
+    private MealClient mealClient;
+    private MealClient newFavMeal;
     private DataPushClient pushClient;
+    private DataPushClient newMealPC;
     private FoodClient foodClient;
 }
