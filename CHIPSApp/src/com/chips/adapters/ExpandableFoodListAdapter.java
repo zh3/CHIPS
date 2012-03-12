@@ -34,6 +34,10 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
         associatedView = newAssociatedView;
     }
     
+    public List<FoodRecord> getFoods() {
+    	return items;
+    }
+    
     @Override
     public Object getChild(int groupPosition, int childPosition) {
         return items.get(groupPosition);

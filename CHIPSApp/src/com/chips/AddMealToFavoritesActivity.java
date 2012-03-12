@@ -6,10 +6,12 @@ import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
+import com.chips.adapters.ExpandableCheckableFoodListAdapter;
 import com.chips.adapters.ExpandableFoodListAdapter;
 import com.chips.dataclient.DataPushClient;
 import com.chips.dataclient.FoodClient;
@@ -57,9 +59,16 @@ public class AddMealToFavoritesActivity extends DataClientActivity
             = (ExpandableListView) findViewById(R.id.mealFoodsListView);
         expandableFoodClientObserver.setListViewLayout(
             favoritesView, 
-            new ExpandableFoodListAdapter(this, currentMeal, 
+            foodAdapter = new ExpandableFoodListAdapter(this, currentMeal, 
                     favoritesView)
         );
+        
+//        foodAdapter = new ExpandableFoodListAdapter(this, 
+//                foodClient.getFoodRecords(), favoritesView);
+//        expandableFoodClientObserver.setListViewLayout(
+//            favoritesView, 
+//            foodAdapter
+//        );
         
         setupAddURL();
         setupWebsiteCommunication();
@@ -115,7 +124,7 @@ public class AddMealToFavoritesActivity extends DataClientActivity
     	newFavMeal   = new MealClient();
     	// mealClient -> getMealRecords() returns a list of Meals in format List<MealRecord>
     	
-    	newFavMeal.setURL(CREATE_NEW_EMPTY_MEAL, "");
+    	newFavMeal.setURL(CREATE_NEW_EMPTY_MEAL, PersistentUser.getSessionID());
     	newFavMeal.logURL();
     	newFavMeal.synchronousLoadClientData();
 
@@ -126,6 +135,7 @@ public class AddMealToFavoritesActivity extends DataClientActivity
         // now we have a meal ID, and can add foods to it using 
         //  add_food_to_meal/(newMealID) for each FoodRecord object in the
         // listview that we build in this activity.
+        
     }
     
     private void setupWebsiteCommunication() {
@@ -151,28 +161,58 @@ public class AddMealToFavoritesActivity extends DataClientActivity
     	
     	 
 */    	
+    	List<FoodRecord> favMealFoods = foodAdapter.getFoods();
+    	List<String> addFoodArguments = new ArrayList<String>();
+    	DataPushClient favoritePushClient = new DataPushClient();
+        
+        addFoodArguments.add(PersistentUser.getSessionID());
+        for (FoodRecord food : favMealFoods) {
+            Log.d("Favorite Meal Food", food.toString());
+            addFoodArguments.add(food.getId() + "");
+            
+            favoritePushClient.setURL(
+            		(ADD_FOOD_TO_THIS_FAVORITE_URL + newMealID),
+            		addFoodArguments
+            	);
+            favoritePushClient.asynchronousLoadClientData();
+            favoritePushClient.logURL();
+            
+            // Remove top
+            addFoodArguments.remove(1);
+        }
+        
+        boolean success = favoritePushClient.lastCompletedPushSuccessful();
+        if (!success) {
+        	Toast.makeText(this, "Communication Error in new foreach push to website", 
+            Toast.LENGTH_LONG).show();
+    	}
+        
+        return success;
+        
+//        foodAdapter.removeCheckedFoods();
+    	
     	// Will now need to pass add_food_to_meal(session_id, meal_id, food_id, quantity)
     	// There's also remove_food_from_id, which is the same but without a quantity field.
     	
     	// remove meal from favorites is done by remove_meal_from_favorites(session_id, meal_id)
-        ArrayList<String> addFoodArguments = new ArrayList<String>();
-        addFoodArguments.add(PersistentUser.getSessionID());
-        addFoodArguments.add("THIS IS A TEST");
-        addFoodArguments.add("THIS IS A SECOND TEST");
+//        ArrayList<String> addFoodArguments = new ArrayList<String>();
+//        addFoodArguments.add(PersistentUser.getSessionID());
+//        addFoodArguments.add("THIS IS A TEST");
+//        addFoodArguments.add("THIS IS A SECOND TEST");
 //        addFoodArguments.add(foodToAdd.getId() + "");
 //        addFoodArguments.add(quantityField.getText().toString());      
         
-        pushClient.setURL(addURL, addFoodArguments);
-        pushClient.logURL();
-        pushClient.synchronousLoadClientData();
+//        pushClient.setURL(addURL, addFoodArguments);
+//        pushClient.logURL();
+//        pushClient.synchronousLoadClientData();
         
-        boolean success = pushClient.lastCompletedPushSuccessful();
-        if (!success) {
-            Toast.makeText(this, "Communication Error", 
-                    Toast.LENGTH_LONG).show();
-        }
+//        boolean success = pushClient.lastCompletedPushSuccessful();
+//        if (!success) {
+//            Toast.makeText(this, "Communication Error", 
+//                    Toast.LENGTH_LONG).show();
+//        }
         
-        return success;
+//        return success;
     }
       // -------------- end website communication --
     
@@ -187,10 +227,11 @@ public class AddMealToFavoritesActivity extends DataClientActivity
     private Intent addFoodToFavoriteIntent;
     private String addURL;
     private String newMealID;
+    private ExpandableFoodListAdapter foodAdapter;
     private List<MealRecord> newMealRecords;
     private MealClient mealClient;
     private MealClient newFavMeal;
     private DataPushClient pushClient;
-    private DataPushClient newMealPC;
+//    private DataPushClient newMealPC;
     private FoodClient foodClient;
 }
