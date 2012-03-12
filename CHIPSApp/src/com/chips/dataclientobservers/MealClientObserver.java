@@ -11,15 +11,18 @@ import android.widget.Toast;
 import com.chips.adapters.ExpandableMealListAdapter;
 import com.chips.adapters.MealDisplayAdapter;
 import com.chips.dataclient.MealClient;
+import com.chips.dataclientactions.OnUpdateAction;
 
 public class MealClientObserver extends DataClientObserver {
     public MealClientObserver(Activity parentActivity, Gallery gallery,
-            MealClient newClient, MealDisplayAdapter newAdapter) {
+            MealClient newClient, MealDisplayAdapter newAdapter, 
+            OnUpdateAction action) {
         super(parentActivity);
         list = false;
         client = newClient;
         recordAdapter = newAdapter;
         gallery.setAdapter(recordAdapter);
+        updateAction = action;
     }
     
       // Overloaded ctor for a ListView instead of a gallery
@@ -50,10 +53,13 @@ public class MealClientObserver extends DataClientObserver {
                     "No items found", 
                     Toast.LENGTH_SHORT).show();
         }
+        
+        updateAction.doUpdateAction(dataClient, data, client);
     }
     
     private MealDisplayAdapter recordAdapter;
     private ExpandableMealListAdapter mealListAdapter;
     protected MealClient client;
+    private OnUpdateAction updateAction;
     private boolean list;
 }
