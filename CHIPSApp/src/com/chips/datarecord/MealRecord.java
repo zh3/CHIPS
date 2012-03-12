@@ -35,6 +35,18 @@ public class MealRecord extends DataRecord {
         foods.addAll(newFoods);
     }
     
+    public MealState getMealState() {
+        if (confirmedEaten.equals("0")) {
+            return MealState.NOT_EATEN;
+        } else if (confirmedEaten.equals("1")) {
+            return MealState.EATEN;
+        } else if (confirmedEaten.equals("2")) {
+            return MealState.ATE_OUT;
+        } else {
+            return MealState.UNKNOWN;
+        }
+    }
+    
     public String toString() {
         String mealDescription = "Today's " + mealType + ":\n";
         

@@ -24,7 +24,7 @@
 	</LinearLayout>
 	</ScrollView>
     <LinearLayout android:orientation="vertical" android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/padLayout" android:layout_weight="1"></LinearLayout>
-    <LinearLayout android:id="@+id/preferencesBottomButtonGroup" android:layout_height="wrap_content" android:layout_width="match_parent">
-        <ImageButton android:background="@android:color/transparent" android:layout_weight="1" android:id="@+id/saveButton" android:src="@drawable/save_button" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content"></ImageButton>
+    <LinearLayout android:id="@+id/preferencesBottomButtonGroup" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical" android:layout_weight="1" android:gravity="bottom">
+        <ImageButton android:background="@android:color/transparent" android:id="@+id/saveButton" android:src="@drawable/save_button" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content"></ImageButton>
     </LinearLayout>
 </LinearLayout>

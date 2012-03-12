@@ -4,18 +4,24 @@ package com.chips;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Gallery;
 import android.widget.LinearLayout;
 
+import com.chips.adapters.MealDisplayAdapter;
 import com.chips.dataclient.MealClient;
 import com.chips.dataclientobservers.MealClientObserver;
+import com.chips.datarecord.MealRecord;
+import com.chips.datarecord.MealState;
 import com.chips.user.PersistentUser;
 
 public class ApplicationHubActivity extends DataClientActivity {
-    private static final double GALLERY_SCALE = 0.4;
+    private static final double GALLERY_SCALE = 0.3;
     private static final String LIST_MEALS_URL 
         = "http://cs110chips.phpfogapp.com/index.php/mobile/get_todays_meals/";
     
@@ -25,19 +31,25 @@ public class ApplicationHubActivity extends DataClientActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.application_hub);
         
-        Gallery gallery = (Gallery) findViewById(R.id.gallery);    
+        gallery = (Gallery) findViewById(R.id.gallery);
+        gallery.setOnItemSelectedListener(new MealItemSelectedListener());
         scaleMealViewToScreen(gallery);
 //        gallery.setAdapter(new MealDisplayAdapter(this));
         
         MealClient client = new MealClient();
+        mealAdapter = new MealDisplayAdapter(this, 
+                client.getMealRecords());
         MealClientObserver observer 
-            = new MealClientObserver(this, gallery, client);
+            = new MealClientObserver(this, gallery, client, mealAdapter);
         
         addClientObserverPair(client, observer);
         
         client.setURL(LIST_MEALS_URL, PersistentUser.getSessionID());
         client.logURL();
         client.asynchronousLoadClientData();
+        
+        acceptButton = findViewById(R.id.buttonAccept);
+        suggestAnotherButton = findViewById(R.id.buttonSuggestAnother);
         
         setupIntents();
     }
@@ -89,7 +101,6 @@ public class ApplicationHubActivity extends DataClientActivity {
     public void logoutClicked(View v) {
         startActivity(loginActivityIntent);
         PersistentUser.setLoginAutomaticallyEnabled(this, false);
-        // TODO implement actual logout calling website
         finish();
     }
     
@@ -99,6 +110,39 @@ public class ApplicationHubActivity extends DataClientActivity {
       startActivity(favoriteActivityIntent);
     }
     
+    public void acceptClicked(View view) {
+        MealRecord selectedItem = (MealRecord) gallery.getSelectedItem();
+        Log.d("Selected item first food:", selectedItem.calendarToString());
+    }
+    
+    public void suggestAnotherClicked(View view) {
+        
+    }
+    
+    public void customizeClicked(View view) {
+        
+    }
+    
+    private class MealItemSelectedListener implements OnItemSelectedListener {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, 
+                int position, long id) {
+            MealRecord item = (MealRecord) parent.getItemAtPosition(position);
+            if (item != null) {
+                acceptButton.setEnabled(
+                        item.getMealState() == MealState.NOT_EATEN);
+                suggestAnotherButton.setEnabled(
+                        item.getMealState() == MealState.NOT_EATEN);
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> arg0) {
+            // Do Nothing            
+        }
+        
+    }
+    
     private Intent searchFoodActivityIntent;
     private Intent shoppingListActivityIntent;
     private Intent calendarActivityIntent;
@@ -106,4 +150,8 @@ public class ApplicationHubActivity extends DataClientActivity {
     private Intent preferencesActivityIntent;
     private Intent statisticsActivityIntent;
     private Intent loginActivityIntent;
+    private MealDisplayAdapter mealAdapter;
+    private Gallery gallery;
+    private View acceptButton;
+    private View suggestAnotherButton;
 }

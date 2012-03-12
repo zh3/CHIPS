@@ -41,7 +41,7 @@ public class MealDisplayAdapter extends BaseAdapter {
     }
 
     public Object getItem(int position) {
-        return position;
+        return findMeal(position);
     }
 
     public long getItemId(int position) {
@@ -67,7 +67,7 @@ public class MealDisplayAdapter extends BaseAdapter {
                 mealIngredientGroup.addView(getMealItemView(food.getName(), 
                         food.getQuantity() + ""));
                 
-                registerMealDisplayButtonListeners(view, currentMeal);
+                //registerMealDisplayButtonListeners(view, currentMeal);
             }
             
             mealTypeView.setText("Today's " + currentMeal.getMealTypeString()
@@ -102,8 +102,6 @@ public class MealDisplayAdapter extends BaseAdapter {
             return "";
         }
     }
-    
-
     
     private void registerMealDisplayButtonListeners(ViewGroup view, 
             MealRecord associatedMeal) {

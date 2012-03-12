@@ -12,11 +12,10 @@ import com.chips.dataclient.MealClient;
 
 public class MealClientObserver extends DataClientObserver {
     public MealClientObserver(Activity parentActivity, Gallery gallery,
-            MealClient newClient) {
+            MealClient newClient, MealDisplayAdapter newAdapter) {
         super(parentActivity);
         client = newClient;
-        recordAdapter = new MealDisplayAdapter(parentActivity, 
-                client.getMealRecords());
+        recordAdapter = newAdapter;
         gallery.setAdapter(recordAdapter);
     }
     
