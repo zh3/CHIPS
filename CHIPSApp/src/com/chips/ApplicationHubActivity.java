@@ -123,6 +123,10 @@ public class ApplicationHubActivity extends DataClientActivity {
         client.asynchronousLoadClientData();
     }
     
+    public void switchMealToFavouriteClicked(View view) {
+        // TODO dialog to swap displayed meal to favourite
+    }
+    
     private class MealItemSelectedListener implements OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, 
