@@ -36,7 +36,7 @@ public class ApplicationHubActivity extends DataClientActivity {
         scaleMealViewToScreen(gallery);
 //        gallery.setAdapter(new MealDisplayAdapter(this));
         
-        MealClient client = new MealClient();
+        client = new MealClient();
         mealAdapter = new MealDisplayAdapter(this, 
                 client.getMealRecords());
         MealClientObserver observer 
@@ -120,7 +120,7 @@ public class ApplicationHubActivity extends DataClientActivity {
     }
     
     public void customizeClicked(View view) {
-        
+        client.asynchronousLoadClientData();
     }
     
     private class MealItemSelectedListener implements OnItemSelectedListener {
@@ -154,4 +154,5 @@ public class ApplicationHubActivity extends DataClientActivity {
     private Gallery gallery;
     private View acceptButton;
     private View suggestAnotherButton;
+    private MealClient client;
 }
