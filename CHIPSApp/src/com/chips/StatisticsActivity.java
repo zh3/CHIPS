@@ -42,6 +42,8 @@ public class StatisticsActivity extends Activity implements HomeBar {
         heightPicker = (NumberPicker) findViewById(R.id.heightPicker);
         weightPicker.setCurrent(statisticsClient.getWeight());
         heightPicker.setCurrent(statisticsClient.getHeight());
+        weightPicker.setEditTextEnabled(false);
+        heightPicker.setEditTextEnabled(false);
     }
     
     // super calls for basic activity-changing functions.
@@ -85,11 +87,13 @@ public class StatisticsActivity extends Activity implements HomeBar {
     
     public void saveStatisticsClicked(View view) {
         ArrayList<String> arguments = new ArrayList<String>();
+        
         arguments.add(PersistentUser.getSessionID());
         arguments.add(heightPicker.getCurrent() + "");
         arguments.add(weightPicker.getCurrent() + "");
         
         pushClient.setURL(ADD_STATISTICS, arguments);
+        pushClient.logURL();
         pushClient.synchronousLoadClientData();
         
         if (pushClient.lastCompletedPushSuccessful()) {

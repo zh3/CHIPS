@@ -17,8 +17,8 @@
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/weightTitle" android:text="@string/weightTitle"></TextView>
         </LinearLayout>
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/pickerGroup">
-            <com.customwidget.numberpicker.NumberPicker android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/heightPicker"></com.customwidget.numberpicker.NumberPicker>
-            <com.customwidget.numberpicker.NumberPicker android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/weightPicker"></com.customwidget.numberpicker.NumberPicker>
+            <com.customwidget.numberpicker.NumberPicker android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/heightPicker" android:focusable="false"></com.customwidget.numberpicker.NumberPicker>
+            <com.customwidget.numberpicker.NumberPicker android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/weightPicker" android:focusable="false"></com.customwidget.numberpicker.NumberPicker>
         </LinearLayout>
 	
 	</LinearLayout>
