@@ -26,7 +26,7 @@ public class StatisticsActivity extends Activity implements HomeBar {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        HomeBarAction.inflateHomeBarView(this, R.layout.preferences);
+        HomeBarAction.inflateHomeBarView(this, R.layout.statistics);
         
         pushClient = new DataPushClient();
         setupNumberPickers();
