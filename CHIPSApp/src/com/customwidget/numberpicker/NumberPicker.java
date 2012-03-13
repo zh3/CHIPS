@@ -150,6 +150,7 @@ public class NumberPicker extends LinearLayout implements OnClickListener,
     
     public void setEditTextEnabled(boolean enabled) {
         mText.setEnabled(enabled);
+        mText.setFocusable(enabled);
     }
 
     public void setOnChangeListener(OnChangedListener listener) {
