@@ -54,7 +54,9 @@ public class MealClientObserver extends DataClientObserver {
                     Toast.LENGTH_SHORT).show();
         }
         
-        updateAction.doUpdateAction(dataClient, data, client);
+        if (updateAction != null) {
+            updateAction.doUpdateAction(dataClient, data, client);
+        }
     }
     
     private MealDisplayAdapter recordAdapter;

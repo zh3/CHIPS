@@ -168,27 +168,31 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
 
         @Override
         public void onClick(View v) {
-            FoodRecord food = (FoodRecord) getChild(buttonGroupPosition, 
-                    buttonChildPosition);
-            food.setQuantity(Integer.parseInt(
-                    quantityEditText.getText().toString().trim()));
+            String newQuantity = quantityEditText.getText().toString().trim();
             
-            ArrayList<String> quantityUpdateArguments = new ArrayList<String>();
-            quantityUpdateArguments.add(PersistentUser.getSessionID());
-            if (fixedArguments != null) 
-                quantityUpdateArguments.add(fixedArguments);
-            quantityUpdateArguments.add(food.getId() + "");
-            quantityUpdateArguments.add(food.getQuantity() + "");
-            
-            pushClient.setURL(updateURL, quantityUpdateArguments);
-            pushClient.asynchronousLoadClientData();
-            pushClient.logURL();
-            
-            if (food.getQuantity() == 0) {
-                associatedView.collapseGroup(buttonGroupPosition);
-                items.remove(food);
+            if (!newQuantity.equals("")) {
+                FoodRecord food = (FoodRecord) getChild(buttonGroupPosition, 
+                        buttonChildPosition);
+                food.setQuantity(Integer.parseInt(newQuantity));
+                
+                ArrayList<String> quantityUpdateArguments 
+                    = new ArrayList<String>();
+                quantityUpdateArguments.add(PersistentUser.getSessionID());
+                if (fixedArguments != null) 
+                    quantityUpdateArguments.add(fixedArguments);
+                quantityUpdateArguments.add(food.getId() + "");
+                quantityUpdateArguments.add(food.getQuantity() + "");
+                
+                pushClient.setURL(updateURL, quantityUpdateArguments);
+                pushClient.asynchronousLoadClientData();
+                pushClient.logURL();
+                
+                if (food.getQuantity() == 0) {
+                    associatedView.collapseGroup(buttonGroupPosition);
+                    items.remove(food);
+                }
+                notifyDataSetChanged();
             }
-            notifyDataSetChanged();
         }
         
         @Override
