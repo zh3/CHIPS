@@ -25,6 +25,8 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class AddFoodActivity extends DataClientActivity
         implements HomeBar {
+    private static final String LAST_DIALOG_FOOD_NAMES = "lastDialogFoodNames";
+    private static final String LAST_DIALOG_FOOD_RECORDS = "lastDialogFoodRecords";
     private static final int SEARCH_REQUEST_CODE = 0;
     private static final String BASE_URL 
         = "http://cs110chips.phpfogapp.com/index.php/mobile/";
@@ -49,6 +51,19 @@ public class AddFoodActivity extends DataClientActivity
         searchFoodIntent = new Intent(this, SearchFoodActivity.class);
         handleLinkBarcode = false;
         setupEditTexts();
+        
+        restoreDialog(savedInstanceState);
+    }
+    
+    @SuppressWarnings("unchecked")
+    private void restoreDialog(Bundle savedInstanceState) {
+        lastDialogFoodNames = savedInstanceState.getStringArray(
+                LAST_DIALOG_FOOD_NAMES);
+        lastDialogFoodRecords = (ArrayList<FoodRecord>) 
+                savedInstanceState.getSerializable(LAST_DIALOG_FOOD_RECORDS);
+        if (lastDialogFoodNames != null && lastDialogFoodRecords != null) {
+            makeSelectFoodDialog(lastDialogFoodNames, lastDialogFoodRecords);
+        }
     }
     
     private void setupAddURL() {
@@ -199,16 +214,30 @@ public class AddFoodActivity extends DataClientActivity
         }
 
         if (foods.size() > 1) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Multiple foods with given barcode found:");
-            builder.setItems(foodNames, 
-                    new SelectFoodWithBarcodeListener(foods));
-            AlertDialog alert = builder.create();
-            alert.show();
+            makeSelectFoodDialog(foodNames, foods);
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            builder.setTitle("Multiple foods with given barcode found:");
+//            builder.setItems(foodNames, 
+//                    new SelectFoodWithBarcodeListener(foods));
+//            lastAlertDialog = builder.create();
+//            lastAlertDialog.show();
         } else {
             foodToAdd = foods.get(0);
             populateFields(foodToAdd);
         }
+    }
+    
+    private void makeSelectFoodDialog(String[] foodNames, 
+            List<FoodRecord> foods) {
+        lastDialogFoodNames = foodNames;
+        lastDialogFoodRecords = new ArrayList<FoodRecord>(foods);
+        
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Multiple foods with given barcode found:");
+        builder.setItems(foodNames, 
+                new SelectFoodWithBarcodeListener(foods));
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
     
     public void addFoodToInventoryClicked(View view) {
@@ -337,6 +366,15 @@ public class AddFoodActivity extends DataClientActivity
         
     }
     
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        
+        outState.putSerializable(LAST_DIALOG_FOOD_RECORDS, 
+                lastDialogFoodRecords);
+        outState.putStringArray(LAST_DIALOG_FOOD_NAMES, lastDialogFoodNames);
+    }
+    
     private Intent searchFoodIntent;
     private EditText nameField;
     private EditText caloriesField;
@@ -352,4 +390,6 @@ public class AddFoodActivity extends DataClientActivity
     private String addURL;
     private String fixedArguments;
     private boolean handleLinkBarcode;
+    private String[] lastDialogFoodNames;
+    private ArrayList<FoodRecord> lastDialogFoodRecords;
 }
