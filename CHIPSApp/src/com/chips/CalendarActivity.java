@@ -65,9 +65,6 @@ public class CalendarActivity extends Activity
 	        
 	        cal.setSelectedDayTextColor( 0xff009999 ) ;
 	        
-	        
-	        
-	        
 	        String date = String.format("%04d-%02d-%02d", yyyy, MM + 1, dd);
 	        String data = "\n";
 	        List<MealRecord> meals = client.getMealRecords();

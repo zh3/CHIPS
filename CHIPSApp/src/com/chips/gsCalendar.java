@@ -504,24 +504,28 @@ public abstract class gsCalendar //extends Activity
 	
 	public void preYear( )
 	{
+		redraw();
 		m_Calendar.add( Calendar.YEAR, -1 ) ;
 		setContentext( ) ;
 		printView( ) ;
 	}
 	public void nextYear( )
 	{
+		redraw();
 		m_Calendar.add( Calendar.YEAR, 1 ) ;
 		setContentext( ) ;
 		printView( ) ;
 	}
 	public void preMonth( )
 	{
+		redraw();
 		m_Calendar.add( Calendar.MONTH, -1 ) ;
 		setContentext( ) ;
 		printView( ) ;
 	}
 	public void nextMonth( )
 	{
+		redraw();
 		m_Calendar.add( Calendar.MONTH, 1 ) ;
 		setContentext( ) ;
 		printView( ) ;
