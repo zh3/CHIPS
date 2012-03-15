@@ -57,12 +57,14 @@ public class AddFoodActivity extends DataClientActivity
     
     @SuppressWarnings("unchecked")
     private void restoreDialog(Bundle savedInstanceState) {
-        lastDialogFoodNames = savedInstanceState.getStringArray(
-                LAST_DIALOG_FOOD_NAMES);
-        lastDialogFoodRecords = (ArrayList<FoodRecord>) 
-                savedInstanceState.getSerializable(LAST_DIALOG_FOOD_RECORDS);
-        if (lastDialogFoodNames != null && lastDialogFoodRecords != null) {
-            makeSelectFoodDialog(lastDialogFoodNames, lastDialogFoodRecords);
+        if (savedInstanceState != null) {
+            lastDialogFoodNames = savedInstanceState.getStringArray(
+                    LAST_DIALOG_FOOD_NAMES);
+            lastDialogFoodRecords = (ArrayList<FoodRecord>) 
+                    savedInstanceState.getSerializable(LAST_DIALOG_FOOD_RECORDS);
+            if (lastDialogFoodNames != null && lastDialogFoodRecords != null) {
+                makeSelectFoodDialog(lastDialogFoodNames, lastDialogFoodRecords);
+            }
         }
     }
     
