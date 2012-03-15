@@ -66,17 +66,7 @@
 		  		android:layout_height="wrap_content"
 		  		android:layout_marginTop="10dip"
 		  		android:text="Login" android:onClick="loginClicked"/>
-		  <!-- Link to Registration Screen -->		
-		  <TextView android:id="@+id/link_to_register" 
-		  		android:layout_width="fill_parent"
-		  		android:layout_height="wrap_content"
-		  		android:layout_marginTop="40dip"
-		  		android:layout_marginBottom="40dip"
-		  		android:text="New to CHIPS? Register here"
-		  		android:gravity="center"
-		  		android:textSize="20dip"
-		  		android:textColor="#ffffff" android:onClick="registerClicked"
-		  		android:clickable="true"/>
+		  <!-- Link to Registration Screen -->
 		    
 		</LinearLayout>
   		<!-- Login Form Ends --> 		
