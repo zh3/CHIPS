@@ -27,6 +27,10 @@ import com.chips.datarecord.MealRecord;
 import com.chips.user.PersistentUser;
 
 public class ExpandableFavoritesAdapter extends BaseExpandableListAdapter {
+    private static final String BASE_URL 
+        = "http://cs110chips.phpfogapp.com/index.php/mobile/";
+    private static final String USER_MEAL_URL 
+        = BASE_URL + "get_favorite_meal_with_id";
     
     public ExpandableFavoritesAdapter(Context newContext, 
             List<MealRecord> newItems, ExpandableListView newAssociatedView) {
@@ -238,6 +242,9 @@ public class ExpandableFavoritesAdapter extends BaseExpandableListAdapter {
         public void onClick(View v) {            
             customizeActivityIntent.putExtra(CustomizeActivity.SELECTED_MEAL, 
                     new Integer(associatedMeal.getId()));
+            customizeActivityIntent.putExtra(CustomizeActivity.GET_MEAL, 
+                    USER_MEAL_URL);
+            
             context.startActivity(customizeActivityIntent);
             //client.asynchronousLoadClientData();
         }

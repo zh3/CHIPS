@@ -34,6 +34,7 @@ public class ApplicationHubActivity extends DataClientActivity {
     private static final String LIST_MEALS_URL 
         = BASE_URL + "get_todays_meals/";
     private static final String ACCEPT_URL = BASE_URL + "accept_meal/";
+    private static final String USER_MEAL_URL = BASE_URL + "get_meal_with_id";
     //private static final String REJECT_URL = BASE_URL + "suggest_another/";
     
     /** Called when the activity is first created. */
@@ -163,6 +164,8 @@ public class ApplicationHubActivity extends DataClientActivity {
         if (selectedMeal != null) {
             customizeActivityIntent.putExtra(CustomizeActivity.SELECTED_MEAL, 
                     new Integer(selectedMeal.getId()));
+            customizeActivityIntent.putExtra(CustomizeActivity.GET_MEAL, 
+                    USER_MEAL_URL);
             startActivity(customizeActivityIntent);
             client.asynchronousLoadClientData();
         }
