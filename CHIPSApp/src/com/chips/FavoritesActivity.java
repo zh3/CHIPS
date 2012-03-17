@@ -75,7 +75,7 @@ public class FavoritesActivity extends DataClientActivity
         setupAddURL();
         setupWebsiteCommunication();
         
-        addMealIntent = new Intent(this, AddMealToFavoritesActivity.class);
+        addMealIntent = new Intent(this, EditFavoriteActivity.class);
     }
     
     private void setupAddURL() {

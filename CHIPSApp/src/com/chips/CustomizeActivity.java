@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 
@@ -16,10 +15,10 @@ import com.chips.homebar.HomeBarAction;
 import com.chips.user.PersistentUser;
 
 public class CustomizeActivity extends DataClientActivity implements HomeBar {
+    public static final String SELECTED_MEAL = "selectedMeal";
     private static final String BASE_URL 
         = "http://cs110chips.phpfogapp.com/index.php/mobile/";
-    private static final String MEAL_LIST_FOOD_URL 
-        = BASE_URL + "get_meal_with_id";
+    public static final String GET_MEAL = "mealListFood";
     private static final String ADD_FOOD_TO_MEAL_URL
         = BASE_URL + "add_food_to_meal/";
     private static final String QUANTITY_UPDATE_URL 
@@ -30,8 +29,8 @@ public class CustomizeActivity extends DataClientActivity implements HomeBar {
         super.onCreate(savedInstanceState);
         HomeBarAction.inflateHomeBarView(this, R.layout.customize_meal);
         
-        selectedMeal = getIntent().getExtras().getInt("selectedMeal");
-        Log.d("Selected meal: ", selectedMeal + "");
+        selectedMeal = getIntent().getExtras().getInt(SELECTED_MEAL);
+        getMealURL = getIntent().getExtras().getString(GET_MEAL);
         
         mealClient = new MealClient();
         ExpandableMealClientObserver expandableMealClientObserver
@@ -57,7 +56,7 @@ public class CustomizeActivity extends DataClientActivity implements HomeBar {
         arguments.add(PersistentUser.getSessionID());
         arguments.add(selectedMeal + "");
         
-        mealClient.setURL(MEAL_LIST_FOOD_URL, arguments);
+        mealClient.setURL(getMealURL, arguments);
         mealClient.logURL();
         mealClient.asynchronousLoadClientData();
     }
@@ -87,4 +86,5 @@ public class CustomizeActivity extends DataClientActivity implements HomeBar {
     private Intent addFoodToMealIntent;
     private int selectedMeal;
     private MealClient mealClient;
+    private String getMealURL;
 }

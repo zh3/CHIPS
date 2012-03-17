@@ -83,7 +83,7 @@ public class MealHandler extends SAXHandler<MealTagState> {
             MealRecord newMeal 
                 = new MealRecord(getString(MealTagState.MEALID), 
                                  getString(MealTagState.MEALTYPE),
-                                 getString(MealTagState.NAME),
+                                 getString(MealTagState.MEAL_NAME),
                                  getString(MealTagState.SCHEDULEDDATE), 
                                  getString(MealTagState.CONFIRMEDEATEN));
             

@@ -6,6 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,10 +14,12 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.chips.CustomizeActivity;
 import com.chips.R;
 import com.chips.dataclient.DataPushClient;
 import com.chips.datarecord.FoodRecord;
@@ -24,6 +27,10 @@ import com.chips.datarecord.MealRecord;
 import com.chips.user.PersistentUser;
 
 public class ExpandableFavoritesAdapter extends BaseExpandableListAdapter {
+    private static final String BASE_URL 
+        = "http://cs110chips.phpfogapp.com/index.php/mobile/";
+    private static final String USER_MEAL_URL 
+        = BASE_URL + "get_favorite_meal_with_id";
     
     public ExpandableFavoritesAdapter(Context newContext, 
             List<MealRecord> newItems, ExpandableListView newAssociatedView) {
@@ -71,8 +78,16 @@ public class ExpandableFavoritesAdapter extends BaseExpandableListAdapter {
 //                new FoodUpdateOnClickListener(
 //                        groupPosition, childPosition, quantityEditText,
 //                        QUANTITY_UPDATE_URL));
-        
+        setupUpdateButton(convertView, meal);
         return convertView;
+    }
+    
+    private void setupUpdateButton(View view, MealRecord meal) {
+        ImageButton updateButton 
+            = (ImageButton) view.findViewById(R.id.editMealButton);
+        updateButton.setFocusable(false);
+        updateButton.setOnClickListener(
+                new FavoritesEditOnClickListener(meal));
     }
     
     protected void setTextViewString(View outerView, int textViewId, 
@@ -127,7 +142,8 @@ public class ExpandableFavoritesAdapter extends BaseExpandableListAdapter {
         
         LinearLayout ingredientsLayout
             = (LinearLayout) convertView.findViewById(R.id.ingredientsLayout);
-        
+        ingredientsLayout.removeAllViews();
+
         for (FoodRecord food : meal.getFoods()) {
             insertFoodRow(convertView, ingredientsLayout, food, inflater);
         }
@@ -213,6 +229,28 @@ public class ExpandableFavoritesAdapter extends BaseExpandableListAdapter {
 
         private EditText quantityEditText;
         private String updateURL;
+    }
+    
+    private class FavoritesEditOnClickListener implements OnClickListener {
+        public FavoritesEditOnClickListener(MealRecord newAssociatedMeal) {
+            associatedMeal = newAssociatedMeal;
+            customizeActivityIntent 
+                = new Intent(context, CustomizeActivity.class);
+        }
+        
+        @Override
+        public void onClick(View v) {            
+            customizeActivityIntent.putExtra(CustomizeActivity.SELECTED_MEAL, 
+                    new Integer(associatedMeal.getId()));
+            customizeActivityIntent.putExtra(CustomizeActivity.GET_MEAL, 
+                    USER_MEAL_URL);
+            
+            context.startActivity(customizeActivityIntent);
+            //client.asynchronousLoadClientData();
+        }
+        
+        private MealRecord associatedMeal;
+        private Intent customizeActivityIntent;
     }
     
     protected Context context;
