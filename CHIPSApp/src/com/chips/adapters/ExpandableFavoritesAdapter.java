@@ -11,9 +11,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -113,15 +113,44 @@ public class ExpandableFavoritesAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.food_group, null);
+            convertView = infalInflater.inflate(R.layout.meal_group, null);
         }
         TextView groupName 
             = (TextView) convertView.findViewById(R.id.groupName);
         groupName.setText(group);
         
-//        setTextViewString(convertView, R.id.groupQuantity, 
-//                meal.getQuantity() + "g");
+        populateIngredientsTable(convertView, meal);
         return convertView;
+    }
+    
+    private void populateIngredientsTable(View convertView, MealRecord meal) {
+        LayoutInflater inflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        
+        LinearLayout ingredientsLayout
+            = (LinearLayout) convertView.findViewById(R.id.ingredientsLayout);
+        
+        for (FoodRecord food : meal.getFoods()) {
+            insertFoodRow(convertView, ingredientsLayout, food, inflater);
+        }
+    }
+    
+    private void insertFoodRow(View convertView, LinearLayout tableLayout, 
+            FoodRecord food, LayoutInflater inflater) {
+        View mealIngredientRow = inflater.inflate(R.layout.meal_ingredient_row, 
+                null);
+        
+        TextView ingredientNameView 
+            = (TextView) mealIngredientRow.findViewById(
+                    R.id.ingredientNameView);
+        ingredientNameView.setText(food.getName());
+        
+        TextView ingredientQuantityView 
+            = (TextView) mealIngredientRow.findViewById(
+                    R.id.ingredientQuantityView);
+        ingredientQuantityView.setText(food.getQuantity() + "g");
+        
+        tableLayout.addView(mealIngredientRow);
     }
 
     @Override
