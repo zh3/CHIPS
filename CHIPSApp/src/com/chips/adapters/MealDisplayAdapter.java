@@ -100,10 +100,10 @@ public class MealDisplayAdapter extends BaseAdapter {
         }
     }
     
-    private LinearLayout getMealItemView(String name, String quantity) {
+    private RelativeLayout getMealItemView(String name, String quantity) {
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        LinearLayout view = (LinearLayout) inflater.inflate(
+        RelativeLayout view = (RelativeLayout) inflater.inflate(
                 R.layout.meal_view_item, null);
         
         TextView nameView 
