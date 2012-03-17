@@ -36,15 +36,12 @@
                 android:id="@+id/textMeal"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:gravity="center_horizontal"
-                android:text="Meal:   "
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge" android:gravity="center|center_horizontal" android:text="@string/mealNameFieldLabel" android:paddingRight="3dp"/>
 
             <EditText
-                android:id="@+id/editText3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" >
+                android:layout_weight="1" android:id="@+id/mealNameField">
 
                 <requestFocus />
             </EditText>
@@ -54,15 +51,6 @@
     </LinearLayout>
     
             <!-- The Add Food button. -->
-    
-    <ImageButton
-        android:id="@+id/addButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:background="@android:color/transparent"
-        android:src="@drawable/add_button"
-        android:onClick="addFoodToFavoriteClicked" />
 
     <ExpandableListView
         android:id="@+id/mealFoodsListView"
@@ -80,6 +68,7 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_alignParentBottom="true">
+        <ImageButton android:onClick="addFoodToFavoriteClicked" android:layout_width="wrap_content" android:src="@drawable/add_button" android:layout_height="wrap_content" android:id="@+id/addButton" android:background="@android:color/transparent" android:layout_weight="1"></ImageButton>
         
     	<ImageButton
         	android:id="@+id/saveButton"

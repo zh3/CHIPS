@@ -41,4 +41,5 @@
     <string name="mealNutritionalSummaryTitle">Nutritional Information</string>
     <string name="mealIngredientsTitle">Ingredients</string>
     <string name="mealEditButtonText">Edit</string>
+    <string name="mealNameFieldLabel">Name</string>
 </resources>

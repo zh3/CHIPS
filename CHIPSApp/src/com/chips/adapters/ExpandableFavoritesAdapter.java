@@ -24,9 +24,6 @@ import com.chips.datarecord.MealRecord;
 import com.chips.user.PersistentUser;
 
 public class ExpandableFavoritesAdapter extends BaseExpandableListAdapter {
-    private static final String QUANTITY_UPDATE_URL 
-        = "http://cs110chips.phpfogapp.com/index.php/mobile/"
-          + "set_quantity_of_food_in_inventory";
     
     public ExpandableFavoritesAdapter(Context newContext, 
             List<MealRecord> newItems, ExpandableListView newAssociatedView) {
