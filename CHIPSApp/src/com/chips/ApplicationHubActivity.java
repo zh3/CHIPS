@@ -2,9 +2,12 @@ package com.chips;
 
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,6 +38,8 @@ public class ApplicationHubActivity extends DataClientActivity {
         = BASE_URL + "get_todays_meals/";
     private static final String ACCEPT_URL = BASE_URL + "accept_meal/";
     //private static final String REJECT_URL = BASE_URL + "suggest_another/";
+    private static final String LAST_DIALOG_MEAL_NAMES = "lastDialogMealNames";
+    private static final String LAST_DIALOG_MEAL_RECORDS = "lastDialogMealRecords";
     
     /** Called when the activity is first created. */
     @Override
@@ -65,6 +70,21 @@ public class ApplicationHubActivity extends DataClientActivity {
         suggestAnotherButton = findViewById(R.id.buttonSuggestAnother);
         
         setupIntents();
+        
+        restoreDialog(savedInstanceState);
+    }
+    
+    @SuppressWarnings("unchecked")
+    private void restoreDialog(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            lastDialogMealNames = savedInstanceState.getStringArray(
+                    LAST_DIALOG_MEAL_NAMES);
+            lastDialogMealRecords = (ArrayList<MealRecord>) 
+                    savedInstanceState.getSerializable(LAST_DIALOG_MEAL_RECORDS);
+            if (lastDialogMealNames != null && lastDialogMealRecords != null) {
+                makeSelectFavoriteDialog(lastDialogMealNames, lastDialogMealRecords);
+            }
+        }
     }
     
     private void scaleMealViewToScreen(Gallery gallery) {
@@ -169,7 +189,46 @@ public class ApplicationHubActivity extends DataClientActivity {
     }
     
     public void switchMealToFavouriteClicked(View view) {
-        // TODO dialog to swap displayed meal to favourite
+        
+    }
+    
+    private void makeSelectFavoriteDialog(String[] mealNames, 
+            List<MealRecord> meals) {
+        lastDialogMealNames = mealNames;
+        lastDialogMealRecords = new ArrayList<MealRecord>(meals);
+        
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose a favorite meal to swap in:");
+        builder.setItems(mealNames, 
+                new SelectFavoriteListener(meals));
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+    
+    private class SelectFavoriteListener 
+    		implements DialogInterface.OnClickListener {
+    	public SelectFavoriteListener(List<MealRecord> selectableMeals) {
+    		this.selectableMeals = selectableMeals;
+    	}
+
+    	// I think this was only needed for AddFoodActivity, could be wrong.
+    	@Override
+    	public void onClick(DialogInterface dialog, int which) {
+//    		mealToAdd = selectableMeals.get(which);
+//    		populateFields(mealToAdd);
+    	}
+
+    	private List<MealRecord> selectableMeals;
+
+    }
+    
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        
+        outState.putSerializable(LAST_DIALOG_MEAL_RECORDS, 
+                lastDialogMealRecords);
+        outState.putStringArray(LAST_DIALOG_MEAL_NAMES, lastDialogMealNames);
     }
     
     private void setButtonEnabledStates(MealRecord item) {
@@ -220,4 +279,6 @@ public class ApplicationHubActivity extends DataClientActivity {
     private View suggestAnotherButton;
     private MealClient client;
     private DataPushClient pushClient;
+    private String[] lastDialogMealNames;
+    private ArrayList<MealRecord> lastDialogMealRecords;
 }

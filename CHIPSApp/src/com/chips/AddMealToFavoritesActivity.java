@@ -219,7 +219,7 @@ public class AddMealToFavoritesActivity extends DataClientActivity
     private List<MealRecord> newMealRecords;
     private MealClient mealClient;
     private MealClient newFavMeal;
-    private DataPushClient pushClient;
+//    private DataPushClient pushClient;
 //    private DataPushClient newMealPC;
     private FoodClient foodClient;
 }
