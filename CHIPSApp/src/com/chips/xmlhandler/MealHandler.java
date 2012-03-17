@@ -82,7 +82,8 @@ public class MealHandler extends SAXHandler<MealTagState> {
         if (localName.equals("meal")) {
             MealRecord newMeal 
                 = new MealRecord(getString(MealTagState.MEALID), 
-                                 getString(MealTagState.MEALTYPE), 
+                                 getString(MealTagState.MEALTYPE),
+                                 getString(MealTagState.NAME),
                                  getString(MealTagState.SCHEDULEDDATE), 
                                  getString(MealTagState.CONFIRMEDEATEN));
             

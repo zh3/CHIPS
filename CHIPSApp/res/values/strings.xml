@@ -36,4 +36,6 @@
     <string name="mealViewDefault">No Meals Found</string>
     <string name="heightTitle">Height</string>
     <string name="weightTitle">Weight</string>
+    <string name="expanded_food_title">Nutritional Information (per 100g)</string>
+    <string name="childServingSizeTitle">Serving Size</string>
 </resources>

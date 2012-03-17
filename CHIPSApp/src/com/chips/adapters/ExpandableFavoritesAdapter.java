@@ -23,12 +23,12 @@ import com.chips.datarecord.FoodRecord;
 import com.chips.datarecord.MealRecord;
 import com.chips.user.PersistentUser;
 
-public class ExpandableMealListAdapter extends BaseExpandableListAdapter {
+public class ExpandableFavoritesAdapter extends BaseExpandableListAdapter {
     private static final String QUANTITY_UPDATE_URL 
         = "http://cs110chips.phpfogapp.com/index.php/mobile/"
           + "set_quantity_of_food_in_inventory";
     
-    public ExpandableMealListAdapter(Context newContext, 
+    public ExpandableFavoritesAdapter(Context newContext, 
             List<MealRecord> newItems, ExpandableListView newAssociatedView) {
         context = newContext;
         items = newItems;
@@ -52,27 +52,27 @@ public class ExpandableMealListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.food_child, null);
+            convertView = inflater.inflate(R.layout.meal_child, null);
         }
         
         setTextViewString(convertView, R.id.childCaloriesDisplay, 
                           "" + meal.getCalories());
         setTextViewString(convertView, R.id.childCarbohydratesDisplay, 
-                "" + meal.getCarbohydrates());
+                meal.getCarbohydrates() + "g");
         setTextViewString(convertView, R.id.childProteinDisplay, 
-                "" + meal.getProtein());
+                meal.getProtein() + "g");
         setTextViewString(convertView, R.id.childFatDisplay, 
-                "" + meal.getFat());
-        EditText quantityEditText 
-            = (EditText) convertView.findViewById(R.id.childQuantityEditText);
-        quantityEditText.setText(meal.getQuantity() + "");
-        Button updateButton 
-            = (Button) convertView.findViewById(R.id.childUpdateButton);
-        updateButton.setFocusable(false);
-        updateButton.setOnClickListener(
-                new FoodUpdateOnClickListener(
-                        groupPosition, childPosition, quantityEditText,
-                        QUANTITY_UPDATE_URL));
+                meal.getFat() + "g");
+        setTextViewString(convertView, R.id.childServingSizeDisplay, 
+                meal.getServingSize() + "g");
+        
+//        Button updateButton 
+//            = (Button) convertView.findViewById(R.id.childUpdateButton);
+//        updateButton.setFocusable(false);
+//        updateButton.setOnClickListener(
+//                new FoodUpdateOnClickListener(
+//                        groupPosition, childPosition, quantityEditText,
+//                        QUANTITY_UPDATE_URL));
         
         return convertView;
     }
@@ -109,7 +109,7 @@ public class ExpandableMealListAdapter extends BaseExpandableListAdapter {
             ViewGroup parent) {
         MealRecord meal = (MealRecord) getGroup(groupPosition);
         
-        String group = meal.toString();
+        String group = meal.getName();
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -119,8 +119,8 @@ public class ExpandableMealListAdapter extends BaseExpandableListAdapter {
             = (TextView) convertView.findViewById(R.id.groupName);
         groupName.setText(group);
         
-        setTextViewString(convertView, R.id.groupQuantity, 
-                meal.getQuantity() + "g");
+//        setTextViewString(convertView, R.id.groupQuantity, 
+//                meal.getQuantity() + "g");
         return convertView;
     }
 

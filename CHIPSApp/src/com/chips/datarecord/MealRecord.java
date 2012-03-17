@@ -6,10 +6,11 @@ import java.util.List;
 public class MealRecord extends DataRecord {
     private static final long serialVersionUID = -688249945600134511L;
     
-    public MealRecord(String newId, String newMealType, String newScheduledDate, 
-            String newConfirmedEatenValue) {
+    public MealRecord(String newId, String newMealType, String newMealName,
+            String newScheduledDate, String newConfirmedEatenValue) {
         super(newId);
         scheduledDate = newScheduledDate.trim();
+        mealName = newMealName.trim();
         confirmedEaten = newConfirmedEatenValue.trim();
         mealType = newMealType.trim();
         foods = new ArrayList<FoodRecord>();
@@ -67,34 +68,61 @@ public class MealRecord extends DataRecord {
     	
 		return meal;
     }
+    
+    public String getName() {
+        return mealName;
+    }
+    
+    public String getCarbohydrates() {
+        double carbohydrates = 0.0;
+        
+        for (FoodRecord food : foods) {
+            carbohydrates += food.getCarbohydrates();
+        }
+        
+        return Long.toString(Math.round(carbohydrates));
+    }
+    
+    public String getCalories() {
+        double calories = 0.0;
+        for (FoodRecord food : foods) {
+            calories += food.getCalories();
+        }
+        
+        return Long.toString(Math.round(calories));
+    }
+    
+    public String getFat() {
+        double fat = 0.0;
+        for (FoodRecord food : foods) {
+            fat += food.getFat();
+        }
+        
+        return Long.toString(Math.round(fat));
+    }
+    
+    public String getProtein() {
+        double protein = 0.0;
+        for (FoodRecord food : foods) {
+            protein += food.getProtein();
+        }
+        
+        return Long.toString(Math.round(protein));
+    }
 
+    public String getServingSize() {
+        int servingSize = 0;
+        
+        for (FoodRecord food : foods) {
+            servingSize += food.getQuantity();
+        }
+        
+        return Integer.toString(servingSize);
+    }
+    
     private String scheduledDate;
     private String confirmedEaten;
     private String mealType;
+    private String mealName;
     private List<FoodRecord> foods;
-
-	public String getQuantity() {
-		// TODO Auto-generated method stub
-		return "-1";
-	}
-
-	public String getCalories() {
-		// TODO Auto-generated method stub
-		return "-1";
-	}
-
-	public String getCarbohydrates() {
-		// TODO Auto-generated method stub
-		return "-1";
-	}
-
-	public String getFat() {
-		// TODO Auto-generated method stub
-		return "-1";
-	}
-
-	public String getProtein() {
-		// TODO Auto-generated method stub
-		return "-1";
-	}
 }

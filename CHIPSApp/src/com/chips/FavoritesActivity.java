@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.chips.adapters.ExpandableFavoritesAdapter;
 import com.chips.adapters.ExpandableFoodListAdapter;
 import com.chips.adapters.MealDisplayAdapter;
 import com.chips.dataclient.DataPushClient;
@@ -19,6 +20,7 @@ import com.chips.dataclient.FoodClient;
 import com.chips.dataclient.MealClient;
 import com.chips.dataclientactions.PushClientToastOnFailureAction;
 import com.chips.dataclientobservers.ExpandableFoodClientObserver;
+import com.chips.dataclientobservers.ExpandableMealClientObserver;
 import com.chips.dataclientobservers.MealClientObserver;
 import com.chips.dataclientobservers.UpdateActionDataClientObserver;
 import com.chips.datarecord.FoodRecord;
@@ -46,19 +48,17 @@ public class FavoritesActivity extends DataClientActivity
         
         mealClient = new MealClient();
         ExpandableListView favoritesView 
-        = (ExpandableListView) findViewById(R.id.favoriteMealsListView);
-        MealClientObserver mealClientObserver
-            = new MealClientObserver(this, favoritesView, mealClient);
+            = (ExpandableListView) findViewById(R.id.favoriteMealsListView);
+        ExpandableFavoritesAdapter adapter 
+            = new ExpandableFavoritesAdapter(this, mealClient.getMealRecords(), 
+                    favoritesView);
+        ExpandableMealClientObserver observer 
+            = new ExpandableMealClientObserver(this, mealClient);
+        observer.setListViewLayout(favoritesView, adapter);
         
-        addClientObserverPair(mealClient, mealClientObserver);
-        
-//        MealClientObserver(
-//            favoritesView, 
-//            new MealDisplayAdapter(this, mealClient.getMealRecords())
-//        );
-        
-        mealClient.setURL(FAVORITES_LIST_URL, PersistentUser.getSessionID());
+        addClientObserverPair(mealClient, observer);
 
+        mealClient.setURL(FAVORITES_LIST_URL, PersistentUser.getSessionID());
         mealClient.asynchronousLoadClientData();
 /*       
         foodClient = new FoodClient();
@@ -91,7 +91,6 @@ public class FavoritesActivity extends DataClientActivity
     
     private void setupWebsiteCommunication() {
         pushClient = new DataPushClient();
-        foodClient = new FoodClient();
         UpdateActionDataClientObserver updateActionObserver 
             = new UpdateActionDataClientObserver(this, pushClient);
         Toast failureToast = Toast.makeText(this, 
@@ -102,31 +101,6 @@ public class FavoritesActivity extends DataClientActivity
         
         addClientObserverPair(pushClient, updateActionObserver);
     }  
-    
-    private void populateFields(FoodRecord food) {
-        if (food != null) {
-            nameField.setText(food.getName());
-            caloriesField.setText(Double.toString(food.getCalories()));
-            carbohydratesField.setText(Double.toString(food.getCarbohydrates()));
-            proteinField.setText(Double.toString(food.getProtein()));
-            fatField.setText(Double.toString(food.getFat()));
-            
-            setNutritionFieldsEnabled(false);
-        }
-    }
-    
-    private void setNutritionFieldsEnabled(boolean enabled) {
-        nameField.setEnabled(enabled);
-        nameField.setFocusable(enabled);
-        caloriesField.setEnabled(enabled);
-        caloriesField.setFocusable(enabled);
-        carbohydratesField.setEnabled(enabled);
-        carbohydratesField.setFocusable(enabled);
-        proteinField.setEnabled(enabled);
-        proteinField.setFocusable(enabled);
-        fatField.setEnabled(enabled);
-        fatField.setFocusable(enabled);
-    }
        
     
     public void addFoodToInventoryClicked(View view) {
@@ -135,33 +109,6 @@ public class FavoritesActivity extends DataClientActivity
         addFoodToInventoryButton.requestFocus();
        
         if (pushFoodToAddToInventory()) finish();
-    }
-    
-    private boolean createFoodFromFields() {
-        ArrayList<String> createFoodArguments = new ArrayList<String>();
-        createFoodArguments.add(PersistentUser.getSessionID());
-        createFoodArguments.add(nameField.getText().toString());
-        createFoodArguments.add(caloriesField.getText().toString());
-        createFoodArguments.add(carbohydratesField.getText().toString());
-        createFoodArguments.add(fatField.getText().toString());
-        createFoodArguments.add(proteinField.getText().toString());
-        
-        foodClient.setURL(FAVORITES_LIST_URL, createFoodArguments);
-        foodClient.logURL();
-        foodClient.synchronousLoadClientData();
-
-        // make foodToAdd the returned food
-        List<FoodRecord> createdFoodList = foodClient.getFoodRecords();
-        boolean success = (createdFoodList.size() > 0);
-        
-        if (success) {
-            foodToAdd = createdFoodList.get(0);
-        } else {
-            Toast.makeText(this, "Communication Error", 
-                    Toast.LENGTH_LONG).show();
-        }
-        
-        return success;
     }
     
     private boolean pushFoodToAddToInventory() {
@@ -182,15 +129,6 @@ public class FavoritesActivity extends DataClientActivity
         
         return success;
     }  
-
-    private boolean missingFoodFieldValuesExist() {
-        return (nameField.getText().toString().equals("")
-                    || caloriesField.getText().toString().equals("")
-                    || carbohydratesField.getText().toString().equals("")
-                    || proteinField.getText().toString().equals("")
-                    || fatField.getText().toString().equals("")
-                    || quantityField.getText().toString().equals(""));
-    }
     
     public void goHomeClicked(View view) {
         HomeBarAction.goHomeClicked(this, view);
@@ -205,17 +143,9 @@ public class FavoritesActivity extends DataClientActivity
     }    
     
     private Intent addMealIntent;
-    private EditText nameField;
-    private EditText caloriesField;
-    private EditText carbohydratesField;
-    private EditText proteinField;
-    private EditText fatField;
     private EditText quantityField;
-    private EditText barcodeField;
-    private EditText barcodeFormatField;
     private DataPushClient pushClient;
     private MealClient mealClient;
-    private FoodClient foodClient;
     private FoodRecord foodToAdd;
     private String addURL;
 }

@@ -4,29 +4,30 @@
   android:orientation="vertical"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
-    <TableLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/nutritionTable">
-        <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/caloriesRow">
-            <TextView android:layout_width="wrap_content" android:text="@string/childCaloriesTitle" android:id="@+id/childCaloriesTitle" android:layout_height="wrap_content" android:textStyle="bold"></TextView>
-            <TextView android:layout_width="wrap_content" android:text="TextView" android:id="@+id/childCaloriesDisplay" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center|right"></TextView>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/textView1" android:text="@string/expanded_food_title"></TextView>
+    <TableLayout android:id="@+id/nutritionTable" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TableRow android:layout_width="wrap_content" android:id="@+id/caloriesRow" android:layout_height="wrap_content">
+            <TextView android:text="@string/childCaloriesTitle" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/childCaloriesTitle"></TextView>
+            <TextView android:text="TextView" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center|right" android:id="@+id/childCaloriesDisplay"></TextView>
         </TableRow>
-        <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/carbohydratesRow">
-            <TextView android:layout_width="wrap_content" android:text="@string/childCarbohydratesTitle" android:id="@+id/childCarbohydratesTitle" android:layout_height="wrap_content" android:textStyle="bold"></TextView>
-            <TextView android:layout_width="wrap_content" android:text="TextView" android:id="@+id/childCarbohydratesDisplay" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center|right"></TextView>
+        <TableRow android:layout_width="wrap_content" android:id="@+id/carbohydratesRow" android:layout_height="wrap_content">
+            <TextView android:text="@string/childCarbohydratesTitle" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/childCarbohydratesTitle"></TextView>
+            <TextView android:text="TextView" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center|right" android:id="@+id/childCarbohydratesDisplay"></TextView>
         </TableRow>
-        <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/proteinRow">
-            <TextView android:layout_width="wrap_content" android:text="@string/childProteinTitle" android:id="@+id/childProteinTitle" android:layout_height="wrap_content" android:textStyle="bold"></TextView>
-            <TextView android:layout_width="wrap_content" android:text="TextView" android:id="@+id/childProteinDisplay" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center|right"></TextView>
+        <TableRow android:layout_width="wrap_content" android:id="@+id/proteinRow" android:layout_height="wrap_content">
+            <TextView android:text="@string/childProteinTitle" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/childProteinTitle"></TextView>
+            <TextView android:text="TextView" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center|right" android:id="@+id/childProteinDisplay"></TextView>
         </TableRow>
-        <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/fatRow">
-            <TextView android:layout_width="wrap_content" android:text="@string/childFatTitle" android:id="@+id/childFatTitle" android:layout_height="wrap_content" android:textStyle="bold"></TextView>
-            <TextView android:layout_width="wrap_content" android:text="TextView" android:id="@+id/childFatDisplay" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center|right"></TextView>
+        <TableRow android:layout_width="wrap_content" android:id="@+id/fatRow" android:layout_height="wrap_content">
+            <TextView android:text="@string/childFatTitle" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/childFatTitle"></TextView>
+            <TextView android:text="TextView" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center|right" android:id="@+id/childFatDisplay"></TextView>
         </TableRow>
-        <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/childQuantityRow">
-            <TextView android:layout_height="wrap_content" android:textStyle="bold" android:layout_width="wrap_content" android:text="@string/childQuantityTitle" android:id="@+id/childQuantityTitle"></TextView>
-            <EditText android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1" android:id="@+id/childQuantityEditText" android:gravity="right" android:inputType="number|numberDecimal">
-                <!--  <requestFocus></requestFocus> -->
+        <TableRow android:layout_width="wrap_content" android:id="@+id/childQuantityRow" android:layout_height="wrap_content">
+            <TextView android:text="@string/childQuantityTitle" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/childQuantityTitle"></TextView>
+            <EditText android:layout_weight="1" android:gravity="right" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="number|numberDecimal" android:id="@+id/childQuantityEditText">
+                <requestFocus></requestFocus>
             </EditText>
-            <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/childUpdateQuantityButtonTitle" android:id="@+id/childUpdateButton"></Button>
+            <Button android:text="@string/childUpdateQuantityButtonTitle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/childUpdateButton"></Button>
         </TableRow>
     </TableLayout>
     
