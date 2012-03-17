@@ -66,6 +66,7 @@ public class ExpandableFavoritesAdapter extends BaseExpandableListAdapter {
         setTextViewString(convertView, R.id.childServingSizeDisplay, 
                 meal.getServingSize() + "g");
         
+        populateIngredientsTable(convertView, meal);
 //        Button updateButton 
 //            = (Button) convertView.findViewById(R.id.childUpdateButton);
 //        updateButton.setFocusable(false);
@@ -119,7 +120,7 @@ public class ExpandableFavoritesAdapter extends BaseExpandableListAdapter {
             = (TextView) convertView.findViewById(R.id.groupName);
         groupName.setText(group);
         
-        populateIngredientsTable(convertView, meal);
+        
         return convertView;
     }
     

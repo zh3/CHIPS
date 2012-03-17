@@ -4,7 +4,14 @@
   android:orientation="vertical"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
+    <TextView android:layout_height="wrap_content" android:paddingTop="2dp" android:layout_width="wrap_content" android:id="@+id/mealIngredientsTitle" android:text="@string/mealIngredientsTitle"></TextView>
+    <LinearLayout android:layout_width="match_parent" android:id="@+id/ingredientsLayout" android:layout_height="wrap_content" android:orientation="vertical"></LinearLayout>
+    <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/mealNutritionalSummaryTitle" android:text="@string/mealNutritionalSummaryTitle" android:paddingTop="2dp"></TextView>
     <TableLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/nutritionTable">
+        <TableRow android:layout_width="wrap_content" android:id="@+id/quantityRow" android:layout_height="wrap_content">
+            <TextView android:text="@string/childServingSizeTitle" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/childServingSizeTitle"></TextView>
+            <TextView android:text="TextView" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center|right" android:id="@+id/childServingSizeDisplay"></TextView>
+        </TableRow>
         <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/caloriesRow">
             <TextView android:layout_width="wrap_content" android:text="@string/childCaloriesTitle" android:id="@+id/childCaloriesTitle" android:layout_height="wrap_content" android:textStyle="bold"></TextView>
             <TextView android:layout_width="wrap_content" android:text="TextView" android:id="@+id/childCaloriesDisplay" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center|right"></TextView>
@@ -20,10 +27,6 @@
         <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/fatRow">
             <TextView android:layout_width="wrap_content" android:text="@string/childFatTitle" android:id="@+id/childFatTitle" android:layout_height="wrap_content" android:textStyle="bold"></TextView>
             <TextView android:layout_width="wrap_content" android:text="TextView" android:id="@+id/childFatDisplay" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center|right"></TextView>
-        </TableRow>
-        <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/quantityRow">
-            <TextView android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/childServingSizeTitle" android:text="@string/childServingSizeTitle"></TextView>
-            <TextView android:text="TextView" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center|right" android:id="@+id/childServingSizeDisplay"></TextView>
         </TableRow>
     </TableLayout>
     
