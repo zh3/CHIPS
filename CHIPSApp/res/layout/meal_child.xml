@@ -4,9 +4,12 @@
   android:orientation="vertical"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
-    <TextView android:layout_height="wrap_content" android:paddingTop="2dp" android:layout_width="wrap_content" android:id="@+id/mealIngredientsTitle" android:text="@string/mealIngredientsTitle"></TextView>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/IngredientTitleGroup">
+        <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:text="@string/mealIngredientsTitle" android:id="@+id/ingredientsTitle" android:layout_weight="1"></TextView>
+        <ImageButton android:focusable="false" android:layout_width="wrap_content" android:src="@drawable/edit" android:layout_height="wrap_content" android:id="@+id/editMealButton" android:background="@android:color/transparent" android:layout_gravity="right"></ImageButton>
+    </LinearLayout>
     <LinearLayout android:layout_width="match_parent" android:id="@+id/ingredientsLayout" android:layout_height="wrap_content" android:orientation="vertical"></LinearLayout>
-    <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/mealNutritionalSummaryTitle" android:text="@string/mealNutritionalSummaryTitle" android:paddingTop="2dp"></TextView>
+    <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:text="@string/mealNutritionalSummaryTitle" android:id="@+id/nutritionalInformationTitle"></TextView>
     <TableLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/nutritionTable">
         <TableRow android:layout_width="wrap_content" android:id="@+id/quantityRow" android:layout_height="wrap_content">
             <TextView android:text="@string/childServingSizeTitle" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/childServingSizeTitle"></TextView>

@@ -4,6 +4,6 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent" android:orientation="vertical">
     <TextView android:layout_alignParentLeft="true" android:layout_alignParentTop="true" android:text="TextView" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/ingredientNameView" android:textStyle="bold"></TextView>
-    <TextView android:layout_alignParentRight="true" android:layout_alignParentTop="true" android:text="TextView" android:layout_height="wrap_content" android:layout_width="wrap_content" android:gravity="right" android:layout_gravity="right" android:id="@+id/ingredientQuantityView"></TextView>
+    <TextView android:layout_alignParentRight="true" android:text="TextView" android:layout_height="wrap_content" android:layout_width="wrap_content" android:gravity="right" android:layout_gravity="right" android:id="@+id/ingredientQuantityView" android:layout_alignBottom="@+id/ingredientNameView" android:layout_alignParentTop="false"></TextView>
     
 </RelativeLayout>

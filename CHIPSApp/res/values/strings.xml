@@ -40,4 +40,5 @@
     <string name="childServingSizeTitle">Serving Size</string>
     <string name="mealNutritionalSummaryTitle">Nutritional Information</string>
     <string name="mealIngredientsTitle">Ingredients</string>
+    <string name="mealEditButtonText">Edit</string>
 </resources>
