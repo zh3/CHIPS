@@ -36,6 +36,10 @@ public class ApplicationHubActivity extends DataClientActivity {
         = "http://cs110chips.phpfogapp.com/index.php/mobile/";
     private static final String LIST_MEALS_URL 
         = BASE_URL + "get_todays_meals/";
+    private static final String LIST_FAVORITES_URL
+        = BASE_URL + "list_favorite_meals/";
+    private static final String SWAP_MEALS_URL
+        = BASE_URL + "replace_meal_with_meal";
     private static final String ACCEPT_URL = BASE_URL + "accept_meal/";
     private static final String USER_MEAL_URL = BASE_URL + "get_meal_with_id";
     //private static final String REJECT_URL = BASE_URL + "suggest_another/";
@@ -72,7 +76,16 @@ public class ApplicationHubActivity extends DataClientActivity {
         
         setupIntents();
         
+        setupFavoritesClient();
         restoreDialog(savedInstanceState);
+    }
+    
+    private void setupFavoritesClient() {
+        favoritesClient = new MealClient();
+        favoritesClient.setURL(LIST_FAVORITES_URL, 
+                PersistentUser.getSessionID());
+        favoritesClient.logURL();
+        favoritesClient.asynchronousLoadClientData();
     }
     
     @SuppressWarnings("unchecked")
@@ -192,7 +205,16 @@ public class ApplicationHubActivity extends DataClientActivity {
     }
     
     public void switchMealToFavouriteClicked(View view) {
+        List<MealRecord> favoriteMeals = favoritesClient.getMealRecords();
         
+        if (favoriteMeals.size() > 0) {
+            String[] mealNames = new String[favoriteMeals.size()];
+            for (int i = 0; i < favoriteMeals.size(); i++) {
+                mealNames[i] = favoriteMeals.get(i).getName();
+            }
+            
+            makeSelectFavoriteDialog(mealNames, favoriteMeals);
+        }
     }
     
     private void makeSelectFavoriteDialog(String[] mealNames, 
@@ -217,12 +239,30 @@ public class ApplicationHubActivity extends DataClientActivity {
     	// I think this was only needed for AddFoodActivity, could be wrong.
     	@Override
     	public void onClick(DialogInterface dialog, int which) {
-//    		mealToAdd = selectableMeals.get(which);
-//    		populateFields(mealToAdd);
+    	    MealRecord currentMeal = (MealRecord) gallery.getSelectedItem();
+    	    MealRecord selectedFavorite = selectableMeals.get(which);
+    	    
+    	    ArrayList<String> arguments = new ArrayList<String>();
+    	    arguments.add(PersistentUser.getSessionID());
+    	    arguments.add(currentMeal.getId() + "");
+    	    arguments.add(selectedFavorite.getId() + "");
+    	    
+    	    pushClient.setURL(SWAP_MEALS_URL, arguments);
+    	    pushClient.synchronousLoadClientData();
+    	    
+    	    if (pushClient.lastCompletedPushSuccessful()) {
+    	        Toast.makeText(getApplicationContext(), 
+    	                "Successfully swapped favorite", 
+    	                Toast.LENGTH_LONG).show();
+    	    } else {
+    	        Toast.makeText(getApplicationContext(), 
+    	                "Communication error", Toast.LENGTH_LONG).show();
+    	    }
+    	    
+    	    client.asynchronousLoadClientData();
     	}
 
     	private List<MealRecord> selectableMeals;
-
     }
     
     @Override
@@ -281,6 +321,7 @@ public class ApplicationHubActivity extends DataClientActivity {
     private View acceptButton;
     private View suggestAnotherButton;
     private MealClient client;
+    private MealClient favoritesClient;
     private DataPushClient pushClient;
     private String[] lastDialogMealNames;
     private ArrayList<MealRecord> lastDialogMealRecords;
