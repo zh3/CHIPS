@@ -14,7 +14,7 @@ public interface TagStateEnum {
 	}
 	
 	enum MealTagState implements TagStateEnum {
-	    MEALID, NAME, MEALTYPE, SCHEDULEDDATE, CONFIRMEDEATEN, FOODS
+	    MEALID, MEAL_NAME, MEALTYPE, SCHEDULEDDATE, CONFIRMEDEATEN, FOODS
 	}
 	
 	enum StatisticsTagState implements TagStateEnum {

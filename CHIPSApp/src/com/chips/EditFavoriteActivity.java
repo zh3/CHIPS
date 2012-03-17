@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ import com.chips.homebar.HomeBar;
 import com.chips.homebar.HomeBarAction;
 import com.chips.user.PersistentUser;
 
-public class AddMealToFavoritesActivity extends DataClientActivity 
+public class EditFavoriteActivity extends DataClientActivity 
         implements HomeBar, Serializable {
 
     private static final long serialVersionUID = -5553313136084359754L;
@@ -49,7 +50,7 @@ public class AddMealToFavoritesActivity extends DataClientActivity
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        HomeBarAction.inflateHomeBarView(this, R.layout.add_meal_to_favorites);
+        HomeBarAction.inflateHomeBarView(this, R.layout.edit_meal);
         
         foodClient = new FoodClient();
         ExpandableFoodClientObserver expandableFoodClientObserver
@@ -65,9 +66,14 @@ public class AddMealToFavoritesActivity extends DataClientActivity
                     favoritesView, QUANTITY_UPDATE_URL)
         );
         
+        setupFavoriteNameField();        
         setupAddURL();
         setupWebsiteCommunication();
         setupIntents();
+    }
+    
+    private void setupFavoriteNameField() {
+        favoriteNameField = (EditText) findViewById(R.id.mealNameField);
     }
     
     private void setupIntents() {
@@ -222,4 +228,5 @@ public class AddMealToFavoritesActivity extends DataClientActivity
     private DataPushClient pushClient;
 //    private DataPushClient newMealPC;
     private FoodClient foodClient;
+    private EditText favoriteNameField;
 }

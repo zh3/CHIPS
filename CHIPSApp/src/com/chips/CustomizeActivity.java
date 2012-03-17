@@ -16,6 +16,7 @@ import com.chips.homebar.HomeBarAction;
 import com.chips.user.PersistentUser;
 
 public class CustomizeActivity extends DataClientActivity implements HomeBar {
+    public static final String SELECTED_MEAL = "selectedMeal";
     private static final String BASE_URL 
         = "http://cs110chips.phpfogapp.com/index.php/mobile/";
     private static final String MEAL_LIST_FOOD_URL 
@@ -30,7 +31,7 @@ public class CustomizeActivity extends DataClientActivity implements HomeBar {
         super.onCreate(savedInstanceState);
         HomeBarAction.inflateHomeBarView(this, R.layout.customize_meal);
         
-        selectedMeal = getIntent().getExtras().getInt("selectedMeal");
+        selectedMeal = getIntent().getExtras().getInt(SELECTED_MEAL);
         Log.d("Selected meal: ", selectedMeal + "");
         
         mealClient = new MealClient();

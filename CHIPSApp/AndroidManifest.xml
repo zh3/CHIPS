@@ -41,7 +41,7 @@
                   android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity android:name="AddFoodToFavoriteMealActivity"
                   android:theme="@android:style/Theme.NoTitleBar"></activity>
-        <activity android:name=".AddMealToFavoritesActivity"
+        <activity android:name=".EditFavoriteActivity"
                   android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity android:name=".FavoritesActivity"
                   android:theme="@android:style/Theme.NoTitleBar"></activity>

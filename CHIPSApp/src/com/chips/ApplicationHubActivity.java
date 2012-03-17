@@ -161,7 +161,7 @@ public class ApplicationHubActivity extends DataClientActivity {
         MealRecord selectedMeal = (MealRecord) gallery.getSelectedItem();
         
         if (selectedMeal != null) {
-            customizeActivityIntent.putExtra("selectedMeal", 
+            customizeActivityIntent.putExtra(CustomizeActivity.SELECTED_MEAL, 
                     new Integer(selectedMeal.getId()));
             startActivity(customizeActivityIntent);
             client.asynchronousLoadClientData();
