@@ -72,7 +72,7 @@ public class ApplicationHubActivity extends DataClientActivity {
         client.asynchronousLoadClientData();
         
         acceptButton = findViewById(R.id.buttonAccept);
-        suggestAnotherButton = findViewById(R.id.buttonSuggestAnother);
+        //suggestAnotherButton = findViewById(R.id.buttonSuggestAnother);
         
         setupIntents();
         
@@ -281,8 +281,8 @@ public class ApplicationHubActivity extends DataClientActivity {
         if (item != null) {
             acceptButton.setEnabled(
                     item.getMealState() == MealState.NOT_EATEN);
-            suggestAnotherButton.setEnabled(
-                    item.getMealState() == MealState.NOT_EATEN);
+//            suggestAnotherButton.setEnabled(
+//                    item.getMealState() == MealState.NOT_EATEN);
         }
     }
     
@@ -322,7 +322,7 @@ public class ApplicationHubActivity extends DataClientActivity {
     private MealDisplayAdapter mealAdapter;
     private Gallery gallery;
     private View acceptButton;
-    private View suggestAnotherButton;
+    //private View suggestAnotherButton;
     private MealClient client;
     private MealClient favoritesClient;
     private DataPushClient pushClient;
