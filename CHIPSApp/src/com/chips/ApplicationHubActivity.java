@@ -259,6 +259,9 @@ public class ApplicationHubActivity extends DataClientActivity {
     	                "Communication error", Toast.LENGTH_LONG).show();
     	    }
     	    
+    	    lastDialogMealNames = null;
+    	    lastDialogMealRecords = null;
+    	    
     	    client.asynchronousLoadClientData();
     	}
 

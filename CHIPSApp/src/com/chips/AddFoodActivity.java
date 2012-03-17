@@ -362,6 +362,9 @@ public class AddFoodActivity extends DataClientActivity
         public void onClick(DialogInterface dialog, int which) {
             foodToAdd = selectableFoods.get(which);
             populateFields(foodToAdd);
+            
+            lastDialogFoodNames = null;
+            lastDialogFoodRecords = null;
         }
         
         private List<FoodRecord> selectableFoods;
