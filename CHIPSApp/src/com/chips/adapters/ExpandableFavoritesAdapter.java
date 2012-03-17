@@ -7,7 +7,6 @@ import java.util.Observer;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -236,9 +235,7 @@ public class ExpandableFavoritesAdapter extends BaseExpandableListAdapter {
         }
         
         @Override
-        public void onClick(View v) {
-            Log.d("edit:", "edit clicked");
-            
+        public void onClick(View v) {            
             customizeActivityIntent.putExtra(CustomizeActivity.SELECTED_MEAL, 
                     new Integer(associatedMeal.getId()));
             context.startActivity(customizeActivityIntent);

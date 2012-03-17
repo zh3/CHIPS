@@ -3,8 +3,6 @@ package com.chips.dataclient;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.util.Log;
-
 import com.chips.datarecord.FoodRecord;
 import com.chips.datarecord.MealRecord;
 import com.chips.xmlhandler.MealHandler;
@@ -24,7 +22,6 @@ public class MealClient extends XMLDataClient {
         
         meals.clear();
         meals.addAll(handler.getMealRecords());
-        Log.d("meal foods size: ", meals.get(0).getFoods().size() + "");
         
         firstMealFoods.clear();
         if (meals.size() >= 1) {

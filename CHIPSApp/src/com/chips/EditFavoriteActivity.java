@@ -6,7 +6,6 @@ import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
@@ -159,7 +158,6 @@ public class EditFavoriteActivity extends DataClientActivity
     	DataPushClient favoritePushClient = new DataPushClient();
         
         for (FoodRecord food : favMealFoods) {
-            Log.d("Favorite Meal Food", food.toString());
             List<String> addFoodArguments = new ArrayList<String>();
             addFoodArguments.add(PersistentUser.getSessionID());
             addFoodArguments.add(newMealID + "");
