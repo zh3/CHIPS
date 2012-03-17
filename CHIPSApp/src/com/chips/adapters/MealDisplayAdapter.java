@@ -4,13 +4,10 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -103,13 +100,6 @@ public class MealDisplayAdapter extends BaseAdapter {
         }
     }
     
-    private void registerMealDisplayButtonListeners(ViewGroup view, 
-            MealRecord associatedMeal) {
-        ImageButton acceptButton = (ImageButton) view.findViewById(R.id.buttonAccept);
-        acceptButton.setOnClickListener(
-                new MealAcceptOnClickListener(associatedMeal));
-    }
-    
     private LinearLayout getMealItemView(String name, String quantity) {
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -126,40 +116,5 @@ public class MealDisplayAdapter extends BaseAdapter {
         return view;
     }
     
-    private class MealAcceptOnClickListener implements OnClickListener {
-        public MealAcceptOnClickListener(MealRecord newAssociatedMeal) {
-            associatedMeal = newAssociatedMeal;
-        }
-        
-        public void onClick(View view) {
-            view.setVisibility(View.INVISIBLE);
-            acceptListener.onClick(view, associatedMeal);
-            Log.d("clicked meal was: ", associatedMeal.toString());
-        }
-        
-        private MealRecord associatedMeal;
-    }
-    
-    public void setAcceptButtonListener(
-            MealDisplayButtonOnClickListener newAcceptListener) {
-        acceptListener = newAcceptListener;
-    }
-    
-    public void setRejectButtonListener(
-            MealDisplayButtonOnClickListener newRejectListener) {
-        rejectListener = newRejectListener;
-    }
-    
-    public void setCustomizeButtonListener(
-            MealDisplayButtonOnClickListener newCustomizeListener) {
-        customizeListener = newCustomizeListener;
-    }
-    
     private List<MealRecord> mealRecords;
-    private MealDisplayButtonOnClickListener acceptListener 
-        = new NoOpMealDisplayButtonListener();
-    private MealDisplayButtonOnClickListener rejectListener
-        = new NoOpMealDisplayButtonListener();
-    private MealDisplayButtonOnClickListener customizeListener
-        = new NoOpMealDisplayButtonListener();
 }
