@@ -42,4 +42,5 @@
     <string name="mealIngredientsTitle">Ingredients</string>
     <string name="mealEditButtonText">Edit</string>
     <string name="mealNameFieldLabel">Name</string>
+    <string name="loginChipsTitle">Computer Health Information Processing System</string>
 </resources>

@@ -21,6 +21,7 @@
   							android:layout_height="wrap_content"
   							android:layout_marginLeft="10dip"/>
   				<!-- Logo Ends -->
+  				<TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:text="@string/loginChipsTitle" android:paddingLeft="5dp" android:id="@+id/CHIPStitle"></TextView>
   		</LinearLayout>
   		<!--  Header Ends -->  
   		<!-- Footer Start -->
