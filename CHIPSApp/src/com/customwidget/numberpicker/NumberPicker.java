@@ -44,8 +44,8 @@ import com.chips.R;
  */
 public class NumberPicker extends LinearLayout implements OnClickListener,
         OnFocusChangeListener, OnLongClickListener {
-    private static final int DEFAULT_MAX = 200;
-    private static final int DEFAULT_MIN = 0;
+    private static final int DEFAULT_MAX = 300;
+    private static final int DEFAULT_MIN = 1;
 
     public interface OnChangedListener {
         void onChanged(NumberPicker picker, int oldVal, int newVal);
