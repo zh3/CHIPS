@@ -7,46 +7,34 @@
     
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <application android:icon="@drawable/icon" android:label="@string/app_name">
+    <application android:icon="@drawable/icon" android:label="@string/app_name"
+                 android:theme="@style/ChipsStyle">
         <activity android:name="LaunchActivity"
-                  android:label="@string/app_name"
-                  android:theme="@android:style/Theme.NoTitleBar">
+                  android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="ApplicationHubActivity"
-                  android:theme="@android:style/Theme.NoTitleBar">
+        <activity android:name="ApplicationHubActivity" >
         </activity>
-        <activity android:name=".SearchFoodActivity" 
-                  android:theme="@android:style/Theme.NoTitleBar">
+        <activity android:name=".SearchFoodActivity">
         </activity>
-        <activity android:name=".ShoppingListActivity"
-                  android:theme="@android:style/Theme.NoTitleBar">
+        <activity android:name=".ShoppingListActivity">
         </activity>
-        <activity android:name=".CalendarActivity"
-                  android:theme="@android:style/Theme.NoTitleBar">
+        <activity android:name=".CalendarActivity">
         </activity>
-        <activity android:name="InventoryActivity"
-                  android:theme="@android:style/Theme.NoTitleBar">
+        <activity android:name="InventoryActivity">
         </activity>
-        <activity android:name=".StatisticsActivity"
-                  android:theme="@android:style/Theme.NoTitleBar">
+        <activity android:name=".StatisticsActivity">
         </activity>
-        <activity android:name=".CustomizeActivity"
-                  android:theme="@android:style/Theme.NoTitleBar">
+        <activity android:name=".CustomizeActivity">
         </activity>
-        <activity android:name=".AddFoodActivity"
-                  android:theme="@android:style/Theme.NoTitleBar"></activity>
-        <activity android:name="AddFoodToFavoriteMealActivity"
-                  android:theme="@android:style/Theme.NoTitleBar"></activity>
-        <activity android:name=".EditFavoriteActivity"
-                  android:theme="@android:style/Theme.NoTitleBar"></activity>
-        <activity android:name=".FavoritesActivity"
-                  android:theme="@android:style/Theme.NoTitleBar"></activity>
-        <activity android:name=".LoginActivity"
-                  android:theme="@android:style/Theme.NoTitleBar"></activity>
+        <activity android:name=".AddFoodActivity"></activity>
+        <activity android:name="AddFoodToFavoriteMealActivity"></activity>
+        <activity android:name=".EditFavoriteActivity"></activity>
+        <activity android:name=".FavoritesActivity"></activity>
+        <activity android:name=".LoginActivity"></activity>
         <activity android:name=".RegisterActivity"></activity>
     </application>
 </manifest>
