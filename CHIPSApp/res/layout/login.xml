@@ -42,7 +42,7 @@
 		  <!--  Email Label -->
 		  <TextView android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
-		  		android:textColor="#ffffff" android:text="@string/usernameEditTextTitle"/>
+		  		android:text="@string/usernameEditTextTitle"/>
 		  <EditText android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
 		  		android:layout_marginTop="5dip"
@@ -51,7 +51,6 @@
 		  <!--  Password Label -->
 		  <TextView android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
-		  		android:textColor="#ffffff"
 		  		android:text="Password"/>
 		  <EditText android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
